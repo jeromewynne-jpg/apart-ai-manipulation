@@ -2,54 +2,23 @@
 
 **Event:** [AI Manipulation Hackathon (January 9-11, 2026)](https://apartresearch.com/sprints/ai-manipulation-hackathon-2026-01-09-to-2026-01-11)
 
-## Overview
+## Background
 
 The line between authentic interaction and strategic manipulation is disappearing as AI systems master deception, sycophancy, sandbagging, and psychological exploitation at scale. Our ability to detect, measure, and counter these behaviors is dangerously underdeveloped.
 
-This hackathon brings together 500+ builders to prototype systems that could help us measure, detect, and defend against AI manipulation over one intensive weekend.
+This project investigates AI-mediated manipulation: when a principal uses an AI chatbot to steer user decisions in ways that benefit the principal at the user's expense.
 
-## What to Build
+## Documents
 
-Participants can submit:
-- Open-source benchmarks
-- Detection tools
-- Scenario analyses
-- Monitoring tools
-- Empirical research advancing our understanding of AI trajectories
+| Document | Description |
+|----------|-------------|
+| [Research Questions](research-questions.md) | Problem framing and research questions |
+| [Effectiveness Study](manipulation-effectiveness-study-design.md) | Study design for measuring manipulation effectiveness and user awareness |
+| [Compliance Study](manipulation-compliance-study-design.md) | Study design for probing model refusal thresholds |
+| [Submission Template](submission-template.md) | Hackathon submission template |
 
-## Prizes & Rewards
+## Hackathon Info
 
-- $2,000 worth of prizes in cash
-- Guaranteed acceptance to present at the IASEAI workshop in Paris (February 26, 2026)
-- Invitation to continue development within the Apart Fellowship
-- Projects shared with relevant safety researchers
-
-## Support
-
-- Expert AI safety researchers, AI researchers, and policy practitioners provide mentorship throughout the hackathon
-- Code starters, ideas, and inspiration provided
-- Join in the middle of the Sprint if needed
-- Remote/virtual participation available, plus local in-person hackathon locations
-
-## Submission Requirements
-
-All projects must be submitted by the deadline through the official submission portal.
-
-Your submission must include:
-
-- A completed project report using the provided template (mandatory)
-- Link to a public GitHub repository with your code (recommended)
-- A brief (3-5 minute) video demonstration of your solution (optional)
-- An appendix documenting any AI/LLM prompts used in your project for reproducibility (optional)
-
-### Limitations & Dual-Use Considerations
-
-**Important:** Include an appendix called "Limitations & Dual-Use Considerations" that addresses the following:
-
-- **Limitations** - false positives/negatives, edge cases, scalability constraints
-- **Dual-use risks** - could your method be used to train better manipulators?
-- **Responsible disclosure recommendations** - if vulnerabilities discovered
-- **Ethical considerations** in your approach
-- **Suggestions for future improvements**
-
-Due to the high volume of submissions, written feedback cannot be guaranteed for every participant, although all projects will be evaluated.
+- **Prizes:** $2,000 in cash prizes
+- **Rewards:** Presentation at IASEAI workshop (Paris, Feb 26 2026), Apart Fellowship invitation
+- **Deadline:** Sunday evening, January 11, 2026
