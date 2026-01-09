@@ -13,8 +13,8 @@ This project investigates AI-mediated manipulation: when a principal uses an AI 
 | Document | Description |
 |----------|-------------|
 | [Research Questions](research-questions.md) | Problem framing and research questions |
-| [Effectiveness Study](manipulation-effectiveness-study-design.md) | Study design for measuring manipulation effectiveness and user awareness |
-| [Compliance Study](manipulation-compliance-study-design.md) | Study design for probing model refusal thresholds |
+| [Effectiveness Study](effectiveness-study/manipulation-effectiveness-study-design.md) | Study design for measuring manipulation effectiveness and user awareness |
+| [Compliance Study](compliance-study/manipulation-compliance-study-design.md) | Study design for probing model refusal thresholds |
 | [Submission Template](submission-template.md) | Hackathon submission template |
 
 ## Hackathon Info
