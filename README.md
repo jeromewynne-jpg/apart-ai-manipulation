@@ -33,9 +33,23 @@ Participants can submit:
 
 ## Submission Requirements
 
-- **Deadline:** Sunday evening (January 11, 2026)
-- **Format:** PDF submission according to the template shared on kickoff day
-- **Platform:** Submit via Devpost
-- **What to include:** Project story/description, thumbnail image (JPG/PNG/GIF, 5MB max, 3:2 ratio), and "built with" tags
+All projects must be submitted by the deadline through the official submission portal.
+
+Your submission must include:
+
+- A completed project report using the provided template (mandatory)
+- Link to a public GitHub repository with your code (recommended)
+- A brief (3-5 minute) video demonstration of your solution (optional)
+- An appendix documenting any AI/LLM prompts used in your project for reproducibility (optional)
+
+### Limitations & Dual-Use Considerations
+
+**Important:** Include an appendix called "Limitations & Dual-Use Considerations" that addresses the following:
+
+- **Limitations** - false positives/negatives, edge cases, scalability constraints
+- **Dual-use risks** - could your method be used to train better manipulators?
+- **Responsible disclosure recommendations** - if vulnerabilities discovered
+- **Ethical considerations** in your approach
+- **Suggestions for future improvements**
 
 Due to the high volume of submissions, written feedback cannot be guaranteed for every participant, although all projects will be evaluated.
