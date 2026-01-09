@@ -31,6 +31,11 @@ Participants can submit:
 - Join in the middle of the Sprint if needed
 - Remote/virtual participation available, plus local in-person hackathon locations
 
-## Submission Notes
+## Submission Requirements
+
+- **Deadline:** Sunday evening (January 11, 2026)
+- **Format:** PDF submission according to the template shared on kickoff day
+- **Platform:** Submit via Devpost
+- **What to include:** Project story/description, thumbnail image (JPG/PNG/GIF, 5MB max, 3:2 ratio), and "built with" tags
 
 Due to the high volume of submissions, written feedback cannot be guaranteed for every participant, although all projects will be evaluated.
