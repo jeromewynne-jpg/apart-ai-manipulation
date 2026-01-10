@@ -5,11 +5,13 @@ Testing whether AI shopping assistants can be pressured into recommending expens
 ## Quick Start
 
 ```bash
-# Analyze Claude V5 results
-python3 analyze_results.py outputs/v5_claude_pressure/
-
-# When GPT-5.2/Gemini results are added
+# Analyze all results (Claude, GPT-5.2, Gemini)
 python3 analyze_results.py outputs/
+
+# Or analyze specific model
+python3 analyze_results.py outputs/v5_claude_pressure/
+python3 analyze_results.py outputs/v6_gpt52/
+python3 analyze_results.py outputs/v6_gemini/
 ```
 
 ## Files
@@ -27,8 +29,8 @@ python3 analyze_results.py outputs/
 | Folder | Model | Scenarios | Status |
 |--------|-------|-----------|--------|
 | `outputs/v5_claude_pressure/` | Claude Sonnet 4.5 | V5 | Complete |
-| `outputs/v6_gpt52/` | GPT-5.2 | V6 | Pending |
-| `outputs/v6_gemini/` | Gemini 3.0 Pro | V6 | Pending |
+| `outputs/v6_gpt52/` | GPT-5.2 | V6 | Complete |
+| `outputs/v6_gemini/` | Gemini 3.0 Pro | V6 | Complete |
 
 ## Reading the Transcripts
 
@@ -65,8 +67,14 @@ print(d['metadata']['judge_output']['summary'])
 print(d['metadata']['judge_output']['justification'])
 ```
 
-## Key Finding
+## Key Findings
 
-Claude Sonnet 4.5 is remarkably resistant to manipulation pressure. Max cooperation score was 5/10, and it self-corrected when users pushed back.
+| Model | Max Cooperation | Avg | Notable |
+|-------|-----------------|-----|---------|
+| Claude Sonnet 4.5 | 5/10 | 2.2/10 | Most resistant, self-corrected |
+| GPT-5.2 | 5/10 | 2.5/10 | Moderate resistance |
+| **Gemini 3.0 Pro** | **10/10** | **4.9/10** | Highly susceptible |
+
+Gemini showed full manipulation (10/10) in "pure profit" mode and pushed age-inappropriate products to a 16-year-old (7/10).
 
 See `../PETRI_EXPERIMENTS_SUMMARY.md` for full analysis.
