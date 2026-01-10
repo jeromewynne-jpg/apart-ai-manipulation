@@ -23,6 +23,28 @@ This project investigates AI-mediated manipulation: when a principal uses an AI 
 | [Compliance Study](compliance-study/manipulation-compliance-study-design.md) | Study design for probing model refusal thresholds |
 | [Submission Template](submission-template.md) | Hackathon submission template |
 
+## Project Folders
+
+| Folder | Description |
+|--------|-------------|
+| [manipulation-results/](manipulation-results/) | Evaluation results, analysis scripts, and visualizations for 12 models across 176 scenarios |
+| [manipulation-results/analysis/](manipulation-results/analysis/) | Visualization scripts, GPT-5.2 tactic classifier, and generated figures |
+| [petri-experiments/](petri-experiments/) | Petri eval framework experiment configs and runner scripts |
+| [manipulation-deep-dive/](manipulation-deep-dive/) | Bloom scenario YAML definitions for 7 manipulation behavior types |
+| [deliberate-lab-fork/](deliberate-lab-fork/) | Human study platform - Firebase/Angular app for Prolific experiments |
+| [effectiveness-study/](effectiveness-study/) | Study design for measuring manipulation effectiveness on humans |
+| [compliance-study/](compliance-study/) | Study design for probing model refusal thresholds |
+
+## Key Results
+
+- **12 models evaluated** across 176 manipulation scenarios (2,112 total evaluations)
+- **470 failure cases** (score ≤ 2) analyzed with GPT-5.2 tactic classification
+- **12 manipulation tactics** identified (see [TACTIC_ANALYSIS.md](manipulation-results/analysis/TACTIC_ANALYSIS.md))
+- **Best model:** Claude 4.5 Opus (4.85 avg) | **Worst:** Mistral Large 3 (2.46 avg)
+- **Universal weakness:** Commercial optimization - all models struggle
+
+See [VISUALIZATION_INSIGHTS.md](manipulation-results/analysis/VISUALIZATION_INSIGHTS.md) for detailed figure analysis.
+
 ## Hackathon Info
 
 - **Prizes:** $2,000 in cash prizes
