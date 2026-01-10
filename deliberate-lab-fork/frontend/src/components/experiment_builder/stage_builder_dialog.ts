@@ -18,6 +18,7 @@ import {
   StageConfig,
   StageKind,
   createAssetAllocationStage,
+  createAssistantShoppingStage,
   createChatStage,
   createRankingStage,
   createInfoStage,
@@ -233,6 +234,7 @@ export class StageBuilderDialog extends MobxLitElement {
         <div class="gallery-title">Chat stages</div>
         <div class="card-gallery-wrapper">
           ${this.renderGroupChatCard()} ${this.renderPrivateChatCard()}
+          ${this.renderAssistantShoppingCard()}
         </div>
       </div>
 
@@ -423,6 +425,22 @@ export class StageBuilderDialog extends MobxLitElement {
         <div>
           Enable each participant to privately chat <i>only</i> with added
           mediator(s).
+        </div>
+      </div>
+    `;
+  }
+
+  private renderAssistantShoppingCard() {
+    const addStage = () => {
+      this.addStage(createAssistantShoppingStage());
+    };
+
+    return html`
+      <div class="card" @click=${addStage}>
+        <div class="title">🛒 Assistant Shopping</div>
+        <div>
+          Participants interact with an AI shopping assistant to complete a
+          shopping task with a basket and product catalog.
         </div>
       </div>
     `;

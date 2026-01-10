@@ -7,6 +7,7 @@ import {
   AssetAllocationStageConfigData,
   MultiAssetAllocationStageConfigData,
 } from './asset_allocation_stage.validation';
+import {AssistantShoppingStageConfigData} from './assistant_shopping_stage.validation';
 import {ChatStageConfigData} from './chat_stage.validation';
 import {ChipStageConfigData} from './chip_stage.validation';
 import {ComprehensionStageConfigData} from './comprehension_stage.validation';
@@ -37,6 +38,7 @@ export {StageTextConfigSchema, StageProgressConfigSchema};
 /** Map of stage kinds to their validators */
 export const CONFIG_DATA = {
   assetAllocation: AssetAllocationStageConfigData,
+  assistantShopping: AssistantShoppingStageConfigData,
   multiAssetAllocation: MultiAssetAllocationStageConfigData,
   chat: ChatStageConfigData,
   chip: ChipStageConfigData,

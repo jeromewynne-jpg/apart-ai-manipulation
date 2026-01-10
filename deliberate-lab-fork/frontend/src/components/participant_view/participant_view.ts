@@ -2,6 +2,7 @@ import '../popup/accept_transfer_popup';
 import '../popup/attention_check_popup';
 import '../popup/booted_popup';
 import '../progress/progress_stage_waiting';
+import '../stages/assistant_shopping_participant_view';
 import '../stages/group_chat_participant_view';
 import '../stages/private_chat_participant_view';
 import '../stages/chip_participant_view';
@@ -315,6 +316,11 @@ export class ParticipantView extends MobxLitElement {
         return html`<survey-per-participant-view .stage=${stage}></survey-view>`;
       case StageKind.TRANSFER:
         return html`<transfer-view .stage=${stage}></transfer-view>`;
+      case StageKind.ASSISTANT_SHOPPING:
+        return html`
+          <assistant-shopping-participant-view .stage=${stage}>
+          </assistant-shopping-participant-view>
+        `;
       default:
         return html`<div class="content">Stage not found</div>`;
     }

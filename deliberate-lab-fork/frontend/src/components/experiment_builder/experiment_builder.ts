@@ -4,6 +4,7 @@ import '../../pair-components/icon_button';
 import '../../pair-components/tooltip';
 import '../experimenter/experimenter_data_editor';
 import '../stages/asset_allocation_editor';
+import '../stages/assistant_shopping_editor';
 import '../stages/base_stage_editor';
 import '../stages/comprehension_editor';
 import '../stages/group_chat_editor';
@@ -697,6 +698,14 @@ export class ExperimentBuilder extends MobxLitElement {
           <base-stage-editor .stage=${stage}>
             <div slot="title">Transfer settings</div>
             <transfer-editor .stage=${stage}></transfer-editor>
+          </base-stage-editor>
+        `;
+      case StageKind.ASSISTANT_SHOPPING:
+        return html`
+          <base-stage-editor .stage=${stage}>
+            <div slot="title">Assistant Shopping settings</div>
+            <assistant-shopping-editor .stage=${stage}>
+            </assistant-shopping-editor>
           </base-stage-editor>
         `;
       default:

@@ -23,6 +23,7 @@ export * from './stages/ranking.endpoints';
 export * from './stages/role.endpoints';
 export * from './stages/salesperson.endpoints';
 export * from './stages/survey.endpoints';
+export * from './stages/assistant_shopping.endpoints';
 
 // Trigger functions
 export * from './triggers/agent_participant.triggers';

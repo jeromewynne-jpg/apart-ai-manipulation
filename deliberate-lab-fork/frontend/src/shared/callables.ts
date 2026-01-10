@@ -714,3 +714,78 @@ export const revokeDeliberateLabAPIKeyCallable = async (
   )({keyId});
   return data;
 };
+
+// **************************************************************************** //
+// ASSISTANT SHOPPING STAGE                                                     //
+// **************************************************************************** //
+
+/** Send a message to the AI shopping assistant. */
+export const sendAssistantShoppingMessageCallable = async (
+  functions: Functions,
+  config: {
+    experimentId: string;
+    participantPrivateId: string;
+    stageId: string;
+    message: string;
+  },
+) => {
+  const {data} = await httpsCallable<
+    {
+      experimentId: string;
+      participantPrivateId: string;
+      stageId: string;
+      message: string;
+    },
+    {
+      message: {
+        id: string;
+        role: 'assistant';
+        content: string;
+        timestamp: {seconds: number; nanoseconds: number};
+        productRecommendations?: Array<{productId: string; reason: string}>;
+      };
+      productRecommendations: Array<{productId: string; reason: string}>;
+    }
+  >(
+    functions,
+    'sendAssistantShoppingMessage',
+  )(config);
+  return data;
+};
+
+/** Update the shopping basket (add or remove product). */
+export const updateAssistantShoppingBasketCallable = async (
+  functions: Functions,
+  config: {
+    experimentId: string;
+    participantPrivateId: string;
+    stageId: string;
+    action: 'add' | 'remove';
+    productId: string;
+  },
+) => {
+  const {data} = await httpsCallable<
+    {
+      experimentId: string;
+      participantPrivateId: string;
+      stageId: string;
+      action: 'add' | 'remove';
+      productId: string;
+    },
+    {
+      basket: Array<{
+        productId: string;
+        addedAt: {seconds: number; nanoseconds: number};
+      }>;
+      action: {
+        type: 'add' | 'remove';
+        productId: string;
+        timestamp: {seconds: number; nanoseconds: number};
+      };
+    }
+  >(
+    functions,
+    'updateAssistantShoppingBasket',
+  )(config);
+  return data;
+};

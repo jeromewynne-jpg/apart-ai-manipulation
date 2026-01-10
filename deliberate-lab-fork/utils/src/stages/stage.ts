@@ -67,6 +67,10 @@ import {
 } from './survey_stage';
 import {TOSStageConfig} from './tos_stage';
 import {TransferStageConfig} from './transfer_stage';
+import {
+  AssistantShoppingStageConfig,
+  AssistantShoppingStageParticipantAnswer,
+} from './assistant_shopping_stage';
 
 /** Base stage types and functions. */
 
@@ -96,6 +100,7 @@ export enum StageKind {
   SURVEY = 'survey',
   SURVEY_PER_PARTICIPANT = 'surveyPerParticipant',
   TRANSFER = 'transfer',
+  ASSISTANT_SHOPPING = 'assistantShopping', // AI shopping assistant with basket
 }
 
 /**
@@ -125,6 +130,7 @@ export interface StageProgressConfig {
 }
 
 export type StageConfig =
+  | AssistantShoppingStageConfig
   | ChatStageConfig
   | ChipStageConfig
   | ComprehensionStageConfig
@@ -158,6 +164,7 @@ export interface BaseStageParticipantAnswer {
 }
 
 export type StageParticipantAnswer =
+  | AssistantShoppingStageParticipantAnswer
   | AssetAllocationStageParticipantAnswer
   | MultiAssetAllocationStageParticipantAnswer
   | ChatStageParticipantAnswer
