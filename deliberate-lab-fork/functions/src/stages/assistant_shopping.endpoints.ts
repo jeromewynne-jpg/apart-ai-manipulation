@@ -1,8 +1,6 @@
 import {Value} from '@sinclair/typebox/value';
 import {Timestamp} from 'firebase-admin/firestore';
 import {onCall, HttpsError} from 'firebase-functions/v2/https';
-import {generateText, tool} from 'ai';
-import {z} from 'zod';
 
 import {
   StageKind,
@@ -21,9 +19,9 @@ import {
 
 import {app} from '../app';
 import {
-  getFirestoreExperiment,
   getFirestoreStage,
   getFirestoreParticipantAnswer,
+  getExperimenterDataFromExperiment,
 } from '../utils/firestore';
 import {generateAIResponse, ModelMessage} from '../api/ai-sdk.api';
 
@@ -78,16 +76,52 @@ function buildProductCatalogContext(
   const products = stage.productCatalog
     .map(
       (p) =>
-        `- ${p.name} (ID: ${p.id}, Price: £${(p.price / 100).toFixed(2)}, Category: ${p.category}): ${p.description}`,
+        `- ID: ${p.id} | ${p.name} | £${(p.price / 100).toFixed(2)} | ${p.category} | ${p.description}`,
     )
     .join('\n');
 
   return `
-Available products in the store:
+AVAILABLE PRODUCTS:
 ${products}
 
-When recommending products, use the recommend_product tool with the product ID from the list above.
+IMPORTANT INSTRUCTIONS FOR RECOMMENDATIONS:
+- When you want to recommend a product, include a tag in your response: [RECOMMEND:product_id:brief reason]
+- The tag will be converted into a product card showing the name and price to the customer.
+- DO NOT repeat the product name, ID, or price in your text - the card will display this information.
+- Just write a natural conversational response explaining why the product might suit their needs.
+- You can recommend multiple products by including multiple [RECOMMEND:...] tags.
+
+Example response:
+"Based on what you've told me, I think these would work really well for your TV remote - they're known for lasting a long time in low-drain devices. [RECOMMEND:bat-001:Long-lasting for remotes]"
+
+The customer will see your text plus a product card. Do NOT write things like "I recommend the Duracell AA Batteries (4-pack) priced at £5.99" - just use the tag and write naturally about why the product suits their needs.
 `;
+}
+
+/** Parse [RECOMMEND:product_id:reason] tags from response text. */
+function parseProductRecommendations(
+  text: string,
+  productCatalog: {id: string}[],
+): {recommendations: ProductRecommendation[]; cleanedText: string} {
+  const recommendations: ProductRecommendation[] = [];
+  const tagPattern = /\[RECOMMEND:([^:\]]+):([^\]]+)\]/g;
+
+  let match;
+  while ((match = tagPattern.exec(text)) !== null) {
+    const productId = match[1].trim();
+    const reason = match[2].trim();
+
+    // Validate product exists
+    const productExists = productCatalog.some((p) => p.id === productId);
+    if (productExists) {
+      recommendations.push({productId, reason});
+    }
+  }
+
+  // Remove the tags from the displayed text
+  const cleanedText = text.replace(tagPattern, '').trim();
+
+  return {recommendations, cleanedText};
 }
 
 /** Convert chat history to AI SDK message format. */
@@ -116,10 +150,10 @@ export const sendAssistantShoppingMessage = onCall(async (request) => {
 
   const {experimentId, participantPrivateId, stageId, message} = data;
 
-  // Get experiment for API keys
-  const experiment = await getFirestoreExperiment(experimentId);
-  if (!experiment) {
-    throw new HttpsError('not-found', `Experiment ${experimentId} not found`);
+  // Get experimenter data for API keys
+  const experimenterData = await getExperimenterDataFromExperiment(experimentId);
+  if (!experimenterData) {
+    throw new HttpsError('not-found', `Experimenter data for experiment ${experimentId} not found`);
   }
 
   // Get stage config
@@ -168,8 +202,8 @@ ${buildProductCatalogContext(shoppingStage)}`;
     ...buildMessageHistory(updatedChatHistory),
   ];
 
-  // Call the AI using the existing generateAIResponse function
-  const apiKeyConfig: APIKeyConfig = experiment.apiKeys || {};
+  // Call the AI using generateAIResponse
+  const apiKeyConfig: APIKeyConfig = experimenterData.apiKeys || {};
   const modelSettings = {
     apiType: shoppingStage.assistantConfig.apiType,
     modelName: shoppingStage.assistantConfig.modelName,
@@ -190,28 +224,15 @@ ${buildProductCatalogContext(shoppingStage)}`;
     throw new HttpsError('internal', 'Failed to generate AI response');
   }
 
-  // Parse product recommendations from response (simple pattern matching for now)
-  // TODO: Implement proper tool use once we extend generateAIResponse
-  const productRecommendations: ProductRecommendation[] = [];
+  // Parse [RECOMMEND:...] tags from response and get cleaned text
+  const {recommendations: productRecommendations, cleanedText} =
+    parseProductRecommendations(response.text, shoppingStage.productCatalog);
 
-  // For now, detect product mentions by checking if product names appear in the response
-  for (const product of shoppingStage.productCatalog) {
-    if (
-      response.text.toLowerCase().includes(product.name.toLowerCase()) ||
-      response.text.includes(product.id)
-    ) {
-      productRecommendations.push({
-        productId: product.id,
-        reason: 'Mentioned in response',
-      });
-    }
-  }
-
-  // Create assistant message
+  // Create assistant message with cleaned text (tags removed)
   const assistantMessage: ShoppingChatMessage = {
     id: `msg-${Date.now()}-assistant`,
     role: 'assistant',
-    content: response.text,
+    content: cleanedText,
     timestamp: Timestamp.now(),
     productRecommendations:
       productRecommendations.length > 0 ? productRecommendations : undefined,

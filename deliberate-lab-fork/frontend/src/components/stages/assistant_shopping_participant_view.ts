@@ -51,6 +51,7 @@ export class AssistantShoppingParticipantView extends MobxLitElement {
   @state() isSendingMessage = false;
   @state() isUpdatingBasket = false;
   @state() timeRemaining: number | null = null;
+  @state() pendingUserMessage: string | null = null;
 
   private timerInterval: number | null = null;
 
@@ -201,16 +202,25 @@ export class AssistantShoppingParticipantView extends MobxLitElement {
 
   private renderChatInterface(answer: AssistantShoppingStageParticipantAnswer) {
     const chatHistory = answer.chatHistory;
+    const showPlaceholder = chatHistory.length === 0 && !this.pendingUserMessage;
 
     return html`
       <div class="panel chat-panel">
         <div class="panel-header">Chat with Shopping Assistant</div>
         <div class="chat-messages">
-          ${chatHistory.length === 0
+          ${showPlaceholder
             ? html`<div class="chat-placeholder">
                 Send a message to start chatting with the shopping assistant.
               </div>`
             : chatHistory.map((msg) => this.renderChatMessage(msg))}
+          ${this.pendingUserMessage
+            ? html`
+                <div class="chat-message user">
+                  <div class="message-role">You</div>
+                  <div class="message-content">${this.pendingUserMessage}</div>
+                </div>
+              `
+            : nothing}
           ${this.isSendingMessage
             ? html`<div class="chat-loading">Assistant is typing...</div>`
             : nothing}
@@ -239,13 +249,25 @@ export class AssistantShoppingParticipantView extends MobxLitElement {
     `;
   }
 
+  /** Strip tool call blocks from message content for display. */
+  private cleanMessageContent(content: string): string {
+    // Remove ```tool_code ... ``` blocks
+    return content
+      .replace(/```tool_code[\s\S]*?```/g, '')
+      .replace(/```tool[\s\S]*?```/g, '')
+      .trim();
+  }
+
   private renderChatMessage(message: ShoppingChatMessage) {
     const isUser = message.role === 'user';
+    const displayContent = isUser
+      ? message.content
+      : this.cleanMessageContent(message.content);
 
     return html`
       <div class="chat-message ${isUser ? 'user' : 'assistant'}">
         <div class="message-role">${isUser ? 'You' : 'Assistant'}</div>
-        <div class="message-content">${message.content}</div>
+        <div class="message-content">${displayContent}</div>
         ${message.productRecommendations?.length
           ? this.renderProductRecommendations(message.productRecommendations)
           : nothing}
@@ -319,6 +341,7 @@ export class AssistantShoppingParticipantView extends MobxLitElement {
 
     const message = this.messageInput.trim();
     this.messageInput = '';
+    this.pendingUserMessage = message;
     this.isSendingMessage = true;
 
     try {
@@ -331,10 +354,13 @@ export class AssistantShoppingParticipantView extends MobxLitElement {
           message,
         },
       );
+      // Clear pending message after successful send (Firestore will update with actual message)
+      this.pendingUserMessage = null;
     } catch (error) {
       console.error('Failed to send message:', error);
       // Restore the message input on error
       this.messageInput = message;
+      this.pendingUserMessage = null;
     } finally {
       this.isSendingMessage = false;
     }
