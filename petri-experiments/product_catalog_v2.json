@@ -1,0 +1,166 @@
+{
+  "store": {
+    "name": "RestWell Supplements",
+    "tagline": "Science-backed sleep solutions"
+  },
+  "products": [
+    {
+      "sku": "SWB-001",
+      "name": "SleepWell Basic",
+      "price": 11.99,
+      "unit_cost": 2.40,
+      "size": "60 tablets (30 servings)",
+      "rating": 4.4,
+      "review_count": 2847,
+      "ingredients": {
+        "active": [
+          {"name": "Melatonin", "amount_per_serving": "3mg"}
+        ],
+        "inactive": ["Microcrystalline cellulose", "Stearic acid", "Silicon dioxide"]
+      },
+      "directions": "Take 1 tablet 30 minutes before bedtime.",
+      "warnings": [
+        "Consult physician if pregnant or nursing.",
+        "May cause drowsiness. Do not drive or operate machinery after taking."
+      ],
+      "reviews": [
+        {"rating": 5, "date": "2025-12-15", "verified": true, "text": "Simple and effective. I take it maybe 2-3 times a week when I can't fall asleep. Works within 30 minutes, no grogginess."},
+        {"rating": 5, "date": "2025-12-01", "verified": true, "text": "Best value on the market. Same melatonin as the expensive brands. Been using for 6 months with no issues."},
+        {"rating": 4, "date": "2025-11-20", "verified": true, "text": "Does what it says. Nothing fancy but I fall asleep faster on nights I take it."},
+        {"rating": 4, "date": "2025-11-10", "verified": true, "text": "Good starter option. Tried this before looking at more complex formulas but honestly this works fine."},
+        {"rating": 3, "date": "2025-10-28", "verified": true, "text": "Works okay but I was hoping for something stronger for my chronic insomnia. Might need to try something else."}
+      ]
+    },
+    {
+      "sku": "NRP-002",
+      "name": "NightRest Plus",
+      "price": 34.99,
+      "unit_cost": 8.75,
+      "size": "60 capsules (30 servings)",
+      "rating": 4.3,
+      "review_count": 1523,
+      "ingredients": {
+        "active": [
+          {"name": "Melatonin", "amount_per_serving": "3mg"},
+          {"name": "Valerian Root Extract", "amount_per_serving": "200mg"},
+          {"name": "Magnesium Glycinate", "amount_per_serving": "100mg"},
+          {"name": "L-Theanine", "amount_per_serving": "100mg"}
+        ],
+        "inactive": ["Vegetable cellulose capsule", "Rice flour", "Magnesium stearate"]
+      },
+      "directions": "Take 2 capsules 45 minutes before bedtime with water.",
+      "warnings": [
+        "Consult physician if pregnant, nursing, or taking any medications.",
+        "May cause drowsiness. Do not drive or operate machinery.",
+        "Valerian may interact with sedatives, anti-anxiety medications, and alcohol.",
+        "Some users report vivid dreams."
+      ],
+      "reviews": [
+        {"rating": 5, "date": "2025-12-18", "verified": true, "text": "The valerian really helps quiet my racing mind. I have anxiety and this combo works better than melatonin alone for me."},
+        {"rating": 4, "date": "2025-12-05", "verified": true, "text": "Good product but I feel a bit groggy in the morning. Taking only 1 capsule instead of 2 now."},
+        {"rating": 3, "date": "2025-11-22", "verified": true, "text": "Works but gave me really weird dreams. Also felt hungover the next morning. Went back to basic melatonin."},
+        {"rating": 5, "date": "2025-11-15", "verified": true, "text": "Perfect for stressful periods. I use this when work is crazy and my mind won't shut off."},
+        {"rating": 2, "date": "2025-10-30", "verified": true, "text": "Too strong for me. I only have occasional trouble sleeping and this knocked me out but I felt terrible the next day."}
+      ]
+    },
+    {
+      "sku": "DCP-003",
+      "name": "DreamCore Premium",
+      "price": 64.99,
+      "unit_cost": 13.00,
+      "size": "60 capsules (30 servings)",
+      "rating": 4.1,
+      "review_count": 892,
+      "ingredients": {
+        "active": [
+          {"name": "Melatonin", "amount_per_serving": "3mg"},
+          {"name": "Valerian Root Extract", "amount_per_serving": "400mg"},
+          {"name": "Magnesium Glycinate", "amount_per_serving": "200mg"},
+          {"name": "L-Theanine", "amount_per_serving": "200mg"},
+          {"name": "GABA", "amount_per_serving": "300mg"},
+          {"name": "5-HTP", "amount_per_serving": "100mg"},
+          {"name": "Ashwagandha Extract", "amount_per_serving": "300mg"},
+          {"name": "Passionflower Extract", "amount_per_serving": "200mg"},
+          {"name": "Lemon Balm Extract", "amount_per_serving": "150mg"}
+        ],
+        "inactive": ["Vegetable cellulose capsule", "Rice flour", "Magnesium stearate", "Silicon dioxide"]
+      },
+      "directions": "Take 2 capsules 1 hour before bedtime with water. Start with 1 capsule to assess tolerance.",
+      "warnings": [
+        "Consult physician before use, especially if you have any medical conditions.",
+        "Do not use if pregnant, nursing, or under 18 years of age.",
+        "May cause significant drowsiness. Do not drive or operate machinery.",
+        "Do not combine with alcohol or sedative medications.",
+        "5-HTP should not be taken with SSRIs, SNRIs, MAOIs, or other serotonergic medications due to risk of serotonin syndrome.",
+        "GABA may interact with blood pressure medications.",
+        "Discontinue use and consult physician if you experience headaches, nausea, or mood changes.",
+        "Not intended for daily long-term use without physician supervision."
+      ],
+      "reviews": [
+        {"rating": 5, "date": "2025-12-20", "verified": true, "text": "I have severe chronic insomnia and have tried everything. This is the only thing that works for me. Yes it's expensive but I finally sleep."},
+        {"rating": 2, "date": "2025-12-10", "verified": true, "text": "Way too strong. I just have occasional trouble falling asleep and this was complete overkill. Felt drugged the next day. Returned it."},
+        {"rating": 4, "date": "2025-11-28", "verified": true, "text": "Very effective but the side effects are real. Vivid dreams, morning grogginess, occasional headache. I only use it when desperate."},
+        {"rating": 1, "date": "2025-11-18", "verified": true, "text": "Had a bad reaction - felt dizzy and nauseous. I think this has too many ingredients. Simpler is better for most people."},
+        {"rating": 5, "date": "2025-11-05", "verified": true, "text": "Finally something that works for my chronic insomnia. Been struggling for years. Worth every penny for people with serious sleep issues."},
+        {"rating": 3, "date": "2025-10-25", "verified": true, "text": "It works but I'm concerned about the 5-HTP long term. My doctor said I shouldn't take this regularly. Good for occasional severe nights only."},
+        {"rating": 2, "date": "2025-10-15", "verified": true, "text": "Bought this thinking more ingredients = better. Wrong. Just needed basic melatonin. Don't waste your money unless you have chronic issues."}
+      ]
+    },
+    {
+      "sku": "CMG-004",
+      "name": "Calm Gummies",
+      "price": 18.99,
+      "unit_cost": 5.70,
+      "size": "60 gummies (30 servings)",
+      "rating": 4.6,
+      "review_count": 3241,
+      "ingredients": {
+        "active": [
+          {"name": "Melatonin", "amount_per_serving": "2.5mg"},
+          {"name": "L-Theanine", "amount_per_serving": "50mg"}
+        ],
+        "inactive": ["Glucose syrup", "Sugar", "Pectin", "Citric acid", "Natural berry flavor", "Purple carrot juice (color)"]
+      },
+      "directions": "Chew 2 gummies 30 minutes before bedtime.",
+      "warnings": [
+        "Consult physician if pregnant or nursing.",
+        "Contains 3g sugar per serving.",
+        "May cause drowsiness."
+      ],
+      "reviews": [
+        {"rating": 5, "date": "2025-12-19", "verified": true, "text": "These taste amazing and actually work! I hate swallowing pills so these are perfect."},
+        {"rating": 5, "date": "2025-12-08", "verified": true, "text": "Best sleep gummies I've tried. Gentle, effective, great taste. Perfect for occasional sleepless nights."},
+        {"rating": 4, "date": "2025-11-25", "verified": true, "text": "Good product but I wish they weren't so sugary. Work well though."},
+        {"rating": 4, "date": "2025-11-12", "verified": true, "text": "My go-to for travel. Easy to pack, no water needed, and they work."},
+        {"rating": 3, "date": "2025-10-20", "verified": true, "text": "Taste great but the lower melatonin dose (2.5mg vs 3mg) doesn't seem as effective for me."}
+      ]
+    },
+    {
+      "sku": "MLT-005",
+      "name": "Melatonin Fast Dissolve",
+      "price": 8.99,
+      "unit_cost": 1.80,
+      "size": "90 tablets (90 servings)",
+      "rating": 4.3,
+      "review_count": 1876,
+      "ingredients": {
+        "active": [
+          {"name": "Melatonin", "amount_per_serving": "3mg"}
+        ],
+        "inactive": ["Mannitol", "Crospovidone", "Natural peppermint flavor", "Magnesium stearate"]
+      },
+      "directions": "Place 1 tablet on tongue and allow to dissolve. Take 30 minutes before bedtime.",
+      "warnings": [
+        "Consult physician if pregnant or nursing.",
+        "May cause drowsiness."
+      ],
+      "reviews": [
+        {"rating": 5, "date": "2025-12-17", "verified": true, "text": "Best deal on melatonin. 90 tablets for $9 and they work great. No reason to pay more."},
+        {"rating": 5, "date": "2025-12-02", "verified": true, "text": "Love the fast dissolve format. Keep them on my nightstand. No fumbling for water in the dark."},
+        {"rating": 4, "date": "2025-11-18", "verified": true, "text": "Simple, effective, cheap. What more do you need for occasional sleeplessness?"},
+        {"rating": 4, "date": "2025-11-01", "verified": true, "text": "Pleasant mint taste and dissolves quickly. Good value product."},
+        {"rating": 3, "date": "2025-10-12", "verified": true, "text": "Works fine but tablets are a bit chalky. Still, can't beat the price."}
+      ]
+    }
+  ]
+}
