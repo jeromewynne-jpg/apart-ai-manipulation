@@ -30,7 +30,7 @@ except ImportError:
 
 
 SCRIPT_DIR = Path(__file__).parent
-RESULTS_DIR = SCRIPT_DIR.parent / "manipulation-results"
+RESULTS_DIR = SCRIPT_DIR.parent  # manipulation-results/
 OUTPUT_DIR = SCRIPT_DIR / "figures"
 
 
@@ -69,10 +69,12 @@ def extract_all_scores(results):
 
 
 def plot_heatmap(stats, output_path):
-    """Create heatmap of model × behavior scores."""
+    """Create publication-quality heatmap of model × behavior scores."""
     if not HAS_MATPLOTLIB or not HAS_SEABORN:
         print("Skipping heatmap (missing dependencies)")
         return
+
+    from matplotlib.colors import LinearSegmentedColormap
 
     behavior_stats = stats["behavior_stats"]
     behaviors = list(behavior_stats.keys())
@@ -94,39 +96,57 @@ def plot_heatmap(stats, output_path):
             row.append(avg)
         matrix.append(row)
 
+    matrix_np = np.array(matrix)
+
     # Create figure
     fig, ax = plt.subplots(figsize=(14, 10))
 
-    # Create heatmap
-    im = ax.imshow(matrix, cmap="RdYlGn", aspect="auto", vmin=1, vmax=5)
+    # Custom red-green colormap (red=bad/low, green=good/high)
+    colors = ['#d73027', '#f46d43', '#fdae61', '#fee08b', '#d9ef8b', '#a6d96a', '#66bd63', '#1a9850']
+    cmap = LinearSegmentedColormap.from_list('RedGreen', colors, N=256)
+
+    # Create heatmap with no interpolation
+    im = ax.imshow(matrix_np, cmap=cmap, aspect="auto", vmin=1, vmax=5, interpolation='nearest')
+
+    # Set axis limits to remove gaps
+    ax.set_xlim(-0.5, len(behaviors) - 0.5)
+    ax.set_ylim(len(models) - 0.5, -0.5)
 
     # Labels
     ax.set_xticks(range(len(behaviors)))
-    ax.set_xticklabels([b.replace("-", "\n") for b in behaviors], rotation=45, ha="right", fontsize=10)
+    ax.set_xticklabels([b.replace("-", "\n") for b in behaviors], rotation=45, ha="right", fontsize=11)
     ax.set_yticks(range(len(models)))
-    ax.set_yticklabels(models, fontsize=10)
+    ax.set_yticklabels(models, fontsize=11)
 
     # Add score annotations with adaptive text color
     for i in range(len(models)):
         for j in range(len(behaviors)):
             score = matrix[i][j]
-            # Use dark text for light backgrounds (scores 2.8-4.2), white for extremes
-            if score < 2.5 or score > 4.3:
+            # Dark text for mid-range (yellow/light green), white for extremes
+            if score < 2.3 or score > 4.5:
                 color = "white"
             else:
-                color = "black"
-            ax.text(j, i, f"{score:.2f}", ha="center", va="center", color=color, fontsize=9, fontweight="bold")
+                color = "#1a1a1a"
+            ax.text(j, i, f"{score:.2f}", ha="center", va="center", color=color, fontsize=10)
 
-    # Colorbar
-    cbar = plt.colorbar(im, ax=ax)
-    cbar.set_label("Average Score (1-5)", fontsize=11)
+    # Style the colorbar
+    cbar = plt.colorbar(im, ax=ax, shrink=0.8, pad=0.02)
+    cbar.set_label("Average Score (1-5)", fontsize=12, labelpad=10)
+    cbar.ax.tick_params(labelsize=10)
 
-    ax.set_title("Manipulation Resistance by Model and Behavior Type", fontsize=14, fontweight="bold")
-    ax.set_xlabel("Manipulation Behavior", fontsize=12)
-    ax.set_ylabel("Model (sorted by overall score)", fontsize=12)
+    ax.set_title("Manipulation Resistance by Model and Behavior Type", fontsize=16, fontweight="bold", pad=20)
+    ax.set_xlabel("Manipulation Behavior", fontsize=13, labelpad=10)
+    ax.set_ylabel("Model (sorted by overall score)", fontsize=13, labelpad=10)
+
+    # Hide spines for clean look
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+
+    # Remove tick marks but keep labels
+    ax.tick_params(axis='both', which='both', length=0)
 
     plt.tight_layout()
-    plt.savefig(output_path, dpi=150, bbox_inches="tight")
+    plt.savefig(output_path, dpi=200, bbox_inches="tight", facecolor='white', edgecolor='none')
     plt.close()
     print(f"Saved: {output_path}")
 
@@ -403,18 +423,15 @@ def plot_difficulty_analysis(results, output_path):
     print(f"Saved: {output_path}")
 
 
-def plot_failure_analysis(results, output_path):
-    """Analyze what fails - categories and patterns in score=1 responses."""
+def plot_failure_rate_by_behavior(results, output_path):
+    """Plot failure rate by manipulation behavior."""
     if not HAS_MATPLOTLIB:
-        print("Skipping failure analysis (missing dependencies)")
+        print("Skipping failure rate plot (missing dependencies)")
         return
 
     scores_by_model_behavior, _ = extract_all_scores(results)
 
-    # Collect failures (score <= 2)
-    failures_by_category = defaultdict(int)
     failures_by_behavior = defaultdict(int)
-    failures_by_model = defaultdict(int)
     total_by_behavior = defaultdict(int)
 
     for model, behaviors in scores_by_model_behavior.items():
@@ -422,14 +439,10 @@ def plot_failure_analysis(results, output_path):
             for s in scenarios:
                 total_by_behavior[behavior] += 1
                 if s["score"] <= 2:
-                    failures_by_category[s["category"]] += 1
                     failures_by_behavior[behavior] += 1
-                    failures_by_model[model] += 1
 
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-    # Plot 1: Failure rate by behavior
-    ax1 = axes[0]
     behaviors = list(failures_by_behavior.keys())
     failure_rates = [failures_by_behavior[b] / total_by_behavior[b] * 100 for b in behaviors]
     sorted_idx = np.argsort(failure_rates)[::-1]
@@ -437,32 +450,108 @@ def plot_failure_analysis(results, output_path):
     failure_rates = [failure_rates[i] for i in sorted_idx]
 
     colors = ["#ef4444" if r > 30 else "#f59e0b" if r > 15 else "#22c55e" for r in failure_rates]
-    ax1.barh(behaviors, failure_rates, color=colors)
-    ax1.set_xlabel("Failure Rate (%)")
-    ax1.set_title("Failure Rate by Behavior", fontweight="bold")
-    ax1.invert_yaxis()
+    bars = ax.barh(behaviors, failure_rates, color=colors, height=0.7)
+    ax.set_xlabel("Failure Rate (%)", fontsize=12)
+    ax.set_title("Which Manipulation Behaviors Cause Most Failures?", fontsize=14, fontweight="bold", pad=15)
+    ax.invert_yaxis()
 
-    # Plot 2: Top failure categories
-    ax2 = axes[1]
-    top_cats = sorted(failures_by_category.items(), key=lambda x: -x[1])[:10]
-    cats = [c[0].replace("-", "\n").replace("_", "\n") for c in top_cats]
+    # Add percentage labels
+    for bar, rate in zip(bars, failure_rates):
+        ax.text(bar.get_width() + 1, bar.get_y() + bar.get_height()/2,
+                f"{rate:.1f}%", va="center", ha="left", fontsize=10)
+
+    ax.set_xlim(0, max(failure_rates) * 1.15)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=150, bbox_inches="tight")
+    plt.close()
+    print(f"Saved: {output_path}")
+
+
+def plot_failure_categories(results, output_path):
+    """Plot top failure categories (scenario types)."""
+    if not HAS_MATPLOTLIB:
+        print("Skipping failure categories plot (missing dependencies)")
+        return
+
+    scores_by_model_behavior, _ = extract_all_scores(results)
+
+    failures_by_category = defaultdict(int)
+
+    for model, behaviors in scores_by_model_behavior.items():
+        for behavior, scenarios in behaviors.items():
+            for s in scenarios:
+                if s["score"] <= 2:
+                    failures_by_category[s["category"]] += 1
+
+    fig, ax = plt.subplots(figsize=(10, 7))
+
+    top_cats = sorted(failures_by_category.items(), key=lambda x: -x[1])[:12]
+    cats = [c[0].replace("-", " ").replace("_", " ").title() for c in top_cats]
     counts = [c[1] for c in top_cats]
-    ax2.barh(cats, counts, color="#ef4444")
-    ax2.set_xlabel("Number of Failures")
-    ax2.set_title("Top 10 Failure Categories", fontweight="bold")
-    ax2.invert_yaxis()
 
-    # Plot 3: Failures by model
-    ax3 = axes[2]
+    colors = plt.cm.Reds(np.linspace(0.4, 0.8, len(cats)))[::-1]
+    bars = ax.barh(cats, counts, color=colors, height=0.7)
+    ax.set_xlabel("Number of Failures (score ≤ 2)", fontsize=12)
+    ax.set_title("Top Failure Categories by Scenario Type", fontsize=14, fontweight="bold", pad=15)
+    ax.invert_yaxis()
+
+    # Add count labels
+    for bar, count in zip(bars, counts):
+        ax.text(bar.get_width() + 1, bar.get_y() + bar.get_height()/2,
+                str(count), va="center", ha="left", fontsize=10)
+
+    ax.set_xlim(0, max(counts) * 1.12)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=150, bbox_inches="tight")
+    plt.close()
+    print(f"Saved: {output_path}")
+
+
+def plot_failures_by_model(results, output_path):
+    """Plot total failures by model."""
+    if not HAS_MATPLOTLIB:
+        print("Skipping failures by model plot (missing dependencies)")
+        return
+
+    scores_by_model_behavior, _ = extract_all_scores(results)
+
+    failures_by_model = defaultdict(int)
+    total_by_model = defaultdict(int)
+
+    for model, behaviors in scores_by_model_behavior.items():
+        for behavior, scenarios in behaviors.items():
+            for s in scenarios:
+                total_by_model[model] += 1
+                if s["score"] <= 2:
+                    failures_by_model[model] += 1
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+
     sorted_models = sorted(failures_by_model.items(), key=lambda x: x[1])
     models = [m[0] for m in sorted_models]
     fail_counts = [m[1] for m in sorted_models]
-    colors = ["#ef4444" if c > 50 else "#f59e0b" if c > 25 else "#22c55e" for c in fail_counts]
-    ax3.barh(models, fail_counts, color=colors)
-    ax3.set_xlabel("Number of Failures (score ≤ 2)")
-    ax3.set_title("Total Failures by Model", fontweight="bold")
+    fail_rates = [failures_by_model[m] / total_by_model[m] * 100 for m in models]
 
-    plt.suptitle("Failure Pattern Analysis", fontsize=14, fontweight="bold", y=1.02)
+    colors = ["#ef4444" if c > 50 else "#f59e0b" if c > 25 else "#22c55e" for c in fail_counts]
+    bars = ax.barh(models, fail_counts, color=colors, height=0.7)
+    ax.set_xlabel("Number of Failures (score ≤ 2)", fontsize=12)
+    ax.set_title("Model Vulnerability: Total Failures", fontsize=14, fontweight="bold", pad=15)
+
+    # Add count and rate labels
+    for bar, count, rate in zip(bars, fail_counts, fail_rates):
+        ax.text(bar.get_width() + 1, bar.get_y() + bar.get_height()/2,
+                f"{count} ({rate:.0f}%)", va="center", ha="left", fontsize=10)
+
+    ax.set_xlim(0, max(fail_counts) * 1.2)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close()
@@ -539,8 +628,10 @@ def main():
     plot_score_distributions(results, OUTPUT_DIR / "02_score_distributions.png")
     plot_commercial_optimization_breakdown(results, OUTPUT_DIR / "03_commercial_breakdown.png")
     plot_model_family_comparison(stats, OUTPUT_DIR / "04_family_comparison.png")
-    # Difficulty analysis removed - not revealing enough
-    plot_failure_analysis(results, OUTPUT_DIR / "05_failure_analysis.png")
+    # Failure analysis split into 3 separate figures
+    plot_failure_rate_by_behavior(results, OUTPUT_DIR / "05a_failure_rate_by_behavior.png")
+    plot_failure_categories(results, OUTPUT_DIR / "05b_failure_categories.png")
+    plot_failures_by_model(results, OUTPUT_DIR / "05c_failures_by_model.png")
 
     # Generate summary table
     generate_summary_table(stats)

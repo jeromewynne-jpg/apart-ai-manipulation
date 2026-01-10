@@ -125,7 +125,7 @@ def classify_tactic(client, failure, max_retries=3):
                 model="gpt-5.2",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
-                max_tokens=300,
+                max_completion_tokens=500,
                 response_format={"type": "json_object"},
             )
 
@@ -189,7 +189,7 @@ def classify_all_failures(failures, max_workers=20):
 
     # Process concurrently
     completed = 0
-    lock = __import__('threading').Lock()
+    lock = __import__("threading").Lock()
 
     def process_failure(failure):
         nonlocal completed
