@@ -1,0 +1,1147 @@
+{
+  "title": "Manipulation Resistance Deep-Dive",
+  "description": "Evaluating AI model resistance to sophisticated psychological manipulation",
+  "date": "2026-01-10",
+  "models": [
+    {
+      "name": "claude-4.5-opus",
+      "model_id": "openrouter/anthropic/claude-opus-4.5",
+      "overall_score": 4.85,
+      "total_scenarios": 175,
+      "score_distribution": {
+        "1": 0,
+        "2": 2,
+        "3": 4,
+        "4": 12,
+        "5": 157
+      },
+      "pass_rate": 96.6,
+      "fail_rate": 1.1,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 5.0,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 25
+          }
+        },
+        "preference-falsification": {
+          "avg": 4.96,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 24
+          }
+        },
+        "strategic-deception": {
+          "avg": 4.84,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 1,
+            "5": 23
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.89,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 1,
+            "5": 26
+          }
+        },
+        "commercial-optimization": {
+          "avg": 4.43,
+          "count": 21,
+          "distribution": {
+            "1": 0,
+            "2": 1,
+            "3": 1,
+            "4": 7,
+            "5": 12
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.96,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 24
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.81,
+          "count": 26,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 2,
+            "4": 1,
+            "5": 23
+          }
+        }
+      },
+      "rank": 1
+    },
+    {
+      "name": "claude-4.5-sonnet",
+      "model_id": "openrouter/anthropic/claude-sonnet-4.5",
+      "overall_score": 4.85,
+      "total_scenarios": 175,
+      "score_distribution": {
+        "1": 1,
+        "2": 2,
+        "3": 5,
+        "4": 6,
+        "5": 161
+      },
+      "pass_rate": 95.4,
+      "fail_rate": 1.7,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 5.0,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 25
+          }
+        },
+        "preference-falsification": {
+          "avg": 4.92,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 0,
+            "5": 24
+          }
+        },
+        "strategic-deception": {
+          "avg": 4.96,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 1,
+            "5": 24
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.93,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 0,
+            "5": 27
+          }
+        },
+        "commercial-optimization": {
+          "avg": 4.0,
+          "count": 21,
+          "distribution": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 5,
+            "5": 10
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 5.0,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 25
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 5.0,
+          "count": 26,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 26
+          }
+        }
+      },
+      "rank": 2
+    },
+    {
+      "name": "claude-4-sonnet",
+      "model_id": "openrouter/anthropic/claude-sonnet-4",
+      "overall_score": 4.55,
+      "total_scenarios": 175,
+      "score_distribution": {
+        "1": 6,
+        "2": 9,
+        "3": 7,
+        "4": 13,
+        "5": 140
+      },
+      "pass_rate": 87.4,
+      "fail_rate": 8.6,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 4.84,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 1,
+            "5": 23
+          }
+        },
+        "preference-falsification": {
+          "avg": 4.64,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 1,
+            "3": 2,
+            "4": 2,
+            "5": 20
+          }
+        },
+        "strategic-deception": {
+          "avg": 3.76,
+          "count": 25,
+          "distribution": {
+            "1": 6,
+            "2": 2,
+            "3": 0,
+            "4": 1,
+            "5": 16
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 5.0,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 28
+          }
+        },
+        "commercial-optimization": {
+          "avg": 3.95,
+          "count": 21,
+          "distribution": {
+            "1": 0,
+            "2": 2,
+            "3": 4,
+            "4": 8,
+            "5": 7
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.88,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 1,
+            "3": 0,
+            "4": 0,
+            "5": 24
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.65,
+          "count": 26,
+          "distribution": {
+            "1": 0,
+            "2": 2,
+            "3": 1,
+            "4": 1,
+            "5": 22
+          }
+        }
+      },
+      "rank": 3
+    },
+    {
+      "name": "gpt-5.2",
+      "model_id": "openrouter/openai/gpt-5.2",
+      "overall_score": 4.49,
+      "total_scenarios": 175,
+      "score_distribution": {
+        "1": 5,
+        "2": 9,
+        "3": 10,
+        "4": 22,
+        "5": 129
+      },
+      "pass_rate": 86.3,
+      "fail_rate": 8.0,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 4.92,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 2,
+            "5": 23
+          }
+        },
+        "preference-falsification": {
+          "avg": 4.44,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 1,
+            "3": 3,
+            "4": 5,
+            "5": 16
+          }
+        },
+        "strategic-deception": {
+          "avg": 4.48,
+          "count": 25,
+          "distribution": {
+            "1": 1,
+            "2": 2,
+            "3": 1,
+            "4": 1,
+            "5": 20
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.61,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 3,
+            "4": 5,
+            "5": 20
+          }
+        },
+        "commercial-optimization": {
+          "avg": 3.62,
+          "count": 21,
+          "distribution": {
+            "1": 1,
+            "2": 5,
+            "3": 1,
+            "4": 8,
+            "5": 6
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.6,
+          "count": 25,
+          "distribution": {
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 21
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.62,
+          "count": 26,
+          "distribution": {
+            "1": 2,
+            "2": 0,
+            "3": 1,
+            "4": 0,
+            "5": 23
+          }
+        }
+      },
+      "rank": 4
+    },
+    {
+      "name": "gemini-3.0-pro",
+      "model_id": "openrouter/google/gemini-3-pro-preview",
+      "overall_score": 4.05,
+      "total_scenarios": 174,
+      "score_distribution": {
+        "1": 21,
+        "2": 15,
+        "3": 8,
+        "4": 20,
+        "5": 110
+      },
+      "pass_rate": 74.7,
+      "fail_rate": 20.7,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 4.4,
+          "count": 25,
+          "distribution": {
+            "1": 0,
+            "2": 3,
+            "3": 2,
+            "4": 2,
+            "5": 18
+          }
+        },
+        "preference-falsification": {
+          "avg": 3.92,
+          "count": 25,
+          "distribution": {
+            "1": 3,
+            "2": 4,
+            "3": 0,
+            "4": 3,
+            "5": 15
+          }
+        },
+        "strategic-deception": {
+          "avg": 3.88,
+          "count": 25,
+          "distribution": {
+            "1": 6,
+            "2": 0,
+            "3": 1,
+            "4": 2,
+            "5": 16
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.64,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 1,
+            "4": 8,
+            "5": 19
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.2,
+          "count": 20,
+          "distribution": {
+            "1": 10,
+            "2": 3,
+            "3": 2,
+            "4": 3,
+            "5": 2
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.44,
+          "count": 25,
+          "distribution": {
+            "1": 1,
+            "2": 2,
+            "3": 1,
+            "4": 2,
+            "5": 19
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.42,
+          "count": 26,
+          "distribution": {
+            "1": 1,
+            "2": 3,
+            "3": 1,
+            "4": 0,
+            "5": 21
+          }
+        }
+      },
+      "rank": 5
+    },
+    {
+      "name": "kimi-k2",
+      "model_id": "openrouter/moonshotai/kimi-k2-0905",
+      "overall_score": 3.82,
+      "total_scenarios": 174,
+      "score_distribution": {
+        "1": 28,
+        "2": 13,
+        "3": 16,
+        "4": 23,
+        "5": 94
+      },
+      "pass_rate": 67.2,
+      "fail_rate": 23.6,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 3.76,
+          "count": 25,
+          "distribution": {
+            "1": 4,
+            "2": 4,
+            "3": 0,
+            "4": 3,
+            "5": 14
+          }
+        },
+        "preference-falsification": {
+          "avg": 3.72,
+          "count": 25,
+          "distribution": {
+            "1": 4,
+            "2": 2,
+            "3": 5,
+            "4": 0,
+            "5": 14
+          }
+        },
+        "strategic-deception": {
+          "avg": 3.48,
+          "count": 25,
+          "distribution": {
+            "1": 8,
+            "2": 0,
+            "3": 2,
+            "4": 2,
+            "5": 13
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.25,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 3,
+            "3": 3,
+            "4": 6,
+            "5": 16
+          }
+        },
+        "commercial-optimization": {
+          "avg": 3.1,
+          "count": 20,
+          "distribution": {
+            "1": 5,
+            "2": 3,
+            "3": 2,
+            "4": 5,
+            "5": 5
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.36,
+          "count": 25,
+          "distribution": {
+            "1": 2,
+            "2": 0,
+            "3": 2,
+            "4": 4,
+            "5": 17
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 3.85,
+          "count": 26,
+          "distribution": {
+            "1": 5,
+            "2": 1,
+            "3": 2,
+            "4": 3,
+            "5": 15
+          }
+        }
+      },
+      "rank": 6
+    },
+    {
+      "name": "deepseek-v3.2",
+      "model_id": "openrouter/deepseek/deepseek-v3.2",
+      "overall_score": 3.77,
+      "total_scenarios": 175,
+      "score_distribution": {
+        "1": 29,
+        "2": 16,
+        "3": 14,
+        "4": 23,
+        "5": 93
+      },
+      "pass_rate": 66.3,
+      "fail_rate": 25.7,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 4.52,
+          "count": 25,
+          "distribution": {
+            "1": 2,
+            "2": 1,
+            "3": 0,
+            "4": 1,
+            "5": 21
+          }
+        },
+        "preference-falsification": {
+          "avg": 3.32,
+          "count": 25,
+          "distribution": {
+            "1": 5,
+            "2": 4,
+            "3": 4,
+            "4": 2,
+            "5": 10
+          }
+        },
+        "strategic-deception": {
+          "avg": 2.76,
+          "count": 25,
+          "distribution": {
+            "1": 12,
+            "2": 1,
+            "3": 1,
+            "4": 3,
+            "5": 8
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.32,
+          "count": 28,
+          "distribution": {
+            "1": 2,
+            "2": 0,
+            "3": 3,
+            "4": 5,
+            "5": 18
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.9,
+          "count": 21,
+          "distribution": {
+            "1": 4,
+            "2": 5,
+            "3": 3,
+            "4": 7,
+            "5": 2
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.32,
+          "count": 25,
+          "distribution": {
+            "1": 1,
+            "2": 3,
+            "3": 0,
+            "4": 4,
+            "5": 17
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.04,
+          "count": 26,
+          "distribution": {
+            "1": 3,
+            "2": 2,
+            "3": 3,
+            "4": 1,
+            "5": 17
+          }
+        }
+      },
+      "rank": 7
+    },
+    {
+      "name": "grok-4.1",
+      "model_id": "openrouter/x-ai/grok-4.1-fast",
+      "overall_score": 3.65,
+      "total_scenarios": 173,
+      "score_distribution": {
+        "1": 31,
+        "2": 10,
+        "3": 14,
+        "4": 51,
+        "5": 67
+      },
+      "pass_rate": 68.2,
+      "fail_rate": 23.7,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 3.84,
+          "count": 25,
+          "distribution": {
+            "1": 4,
+            "2": 3,
+            "3": 1,
+            "4": 2,
+            "5": 15
+          }
+        },
+        "preference-falsification": {
+          "avg": 3.28,
+          "count": 25,
+          "distribution": {
+            "1": 5,
+            "2": 2,
+            "3": 4,
+            "4": 9,
+            "5": 5
+          }
+        },
+        "strategic-deception": {
+          "avg": 3.04,
+          "count": 25,
+          "distribution": {
+            "1": 10,
+            "2": 0,
+            "3": 2,
+            "4": 5,
+            "5": 8
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.33,
+          "count": 27,
+          "distribution": {
+            "1": 0,
+            "2": 0,
+            "3": 4,
+            "4": 10,
+            "5": 13
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.67,
+          "count": 21,
+          "distribution": {
+            "1": 7,
+            "2": 4,
+            "3": 1,
+            "4": 7,
+            "5": 2
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.12,
+          "count": 24,
+          "distribution": {
+            "1": 2,
+            "2": 0,
+            "3": 1,
+            "4": 11,
+            "5": 10
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.08,
+          "count": 26,
+          "distribution": {
+            "1": 3,
+            "2": 1,
+            "3": 1,
+            "4": 7,
+            "5": 14
+          }
+        }
+      },
+      "rank": 8
+    },
+    {
+      "name": "gemini-3.0-flash",
+      "model_id": "openrouter/google/gemini-3-flash-preview",
+      "overall_score": 3.62,
+      "total_scenarios": 174,
+      "score_distribution": {
+        "1": 34,
+        "2": 18,
+        "3": 10,
+        "4": 30,
+        "5": 82
+      },
+      "pass_rate": 64.4,
+      "fail_rate": 29.9,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 3.4,
+          "count": 25,
+          "distribution": {
+            "1": 7,
+            "2": 3,
+            "3": 1,
+            "4": 1,
+            "5": 13
+          }
+        },
+        "preference-falsification": {
+          "avg": 3.48,
+          "count": 25,
+          "distribution": {
+            "1": 4,
+            "2": 4,
+            "3": 3,
+            "4": 4,
+            "5": 10
+          }
+        },
+        "strategic-deception": {
+          "avg": 2.8,
+          "count": 25,
+          "distribution": {
+            "1": 11,
+            "2": 2,
+            "3": 0,
+            "4": 5,
+            "5": 7
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.36,
+          "count": 28,
+          "distribution": {
+            "1": 0,
+            "2": 3,
+            "3": 0,
+            "4": 9,
+            "5": 16
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.4,
+          "count": 20,
+          "distribution": {
+            "1": 8,
+            "2": 3,
+            "3": 3,
+            "4": 5,
+            "5": 1
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.32,
+          "count": 25,
+          "distribution": {
+            "1": 1,
+            "2": 2,
+            "3": 1,
+            "4": 5,
+            "5": 16
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.23,
+          "count": 26,
+          "distribution": {
+            "1": 3,
+            "2": 1,
+            "3": 2,
+            "4": 1,
+            "5": 19
+          }
+        }
+      },
+      "rank": 9
+    },
+    {
+      "name": "gemini-2.5-pro",
+      "model_id": "openrouter/google/gemini-2.5-pro",
+      "overall_score": 3.59,
+      "total_scenarios": 174,
+      "score_distribution": {
+        "1": 34,
+        "2": 20,
+        "3": 12,
+        "4": 26,
+        "5": 82
+      },
+      "pass_rate": 62.1,
+      "fail_rate": 31.0,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 3.83,
+          "count": 24,
+          "distribution": {
+            "1": 5,
+            "2": 1,
+            "3": 2,
+            "4": 1,
+            "5": 15
+          }
+        },
+        "preference-falsification": {
+          "avg": 3.56,
+          "count": 25,
+          "distribution": {
+            "1": 4,
+            "2": 3,
+            "3": 5,
+            "4": 1,
+            "5": 12
+          }
+        },
+        "strategic-deception": {
+          "avg": 2.76,
+          "count": 25,
+          "distribution": {
+            "1": 11,
+            "2": 3,
+            "3": 0,
+            "4": 3,
+            "5": 8
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 4.11,
+          "count": 28,
+          "distribution": {
+            "1": 3,
+            "2": 1,
+            "3": 1,
+            "4": 8,
+            "5": 15
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.48,
+          "count": 21,
+          "distribution": {
+            "1": 6,
+            "2": 7,
+            "3": 1,
+            "4": 6,
+            "5": 1
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 3.96,
+          "count": 25,
+          "distribution": {
+            "1": 4,
+            "2": 1,
+            "3": 2,
+            "4": 3,
+            "5": 15
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.15,
+          "count": 26,
+          "distribution": {
+            "1": 1,
+            "2": 4,
+            "3": 1,
+            "4": 4,
+            "5": 16
+          }
+        }
+      },
+      "rank": 10
+    },
+    {
+      "name": "gemini-2.5-flash",
+      "model_id": "openrouter/google/gemini-2.5-flash",
+      "overall_score": 3.36,
+      "total_scenarios": 176,
+      "score_distribution": {
+        "1": 44,
+        "2": 19,
+        "3": 12,
+        "4": 32,
+        "5": 69
+      },
+      "pass_rate": 57.4,
+      "fail_rate": 35.8,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 3.6,
+          "count": 25,
+          "distribution": {
+            "1": 6,
+            "2": 3,
+            "3": 1,
+            "4": 0,
+            "5": 15
+          }
+        },
+        "preference-falsification": {
+          "avg": 2.77,
+          "count": 26,
+          "distribution": {
+            "1": 11,
+            "2": 4,
+            "3": 1,
+            "4": 0,
+            "5": 10
+          }
+        },
+        "strategic-deception": {
+          "avg": 2.64,
+          "count": 25,
+          "distribution": {
+            "1": 12,
+            "2": 2,
+            "3": 0,
+            "4": 5,
+            "5": 6
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 3.86,
+          "count": 28,
+          "distribution": {
+            "1": 1,
+            "2": 4,
+            "3": 3,
+            "4": 10,
+            "5": 10
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.33,
+          "count": 21,
+          "distribution": {
+            "1": 7,
+            "2": 4,
+            "3": 6,
+            "4": 4,
+            "5": 0
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 4.0,
+          "count": 25,
+          "distribution": {
+            "1": 3,
+            "2": 0,
+            "3": 1,
+            "4": 11,
+            "5": 10
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 4.08,
+          "count": 26,
+          "distribution": {
+            "1": 4,
+            "2": 2,
+            "3": 0,
+            "4": 2,
+            "5": 18
+          }
+        }
+      },
+      "rank": 11
+    },
+    {
+      "name": "mistral-large-3",
+      "model_id": "openrouter/mistralai/mistral-large-2512",
+      "overall_score": 2.46,
+      "total_scenarios": 175,
+      "score_distribution": {
+        "1": 84,
+        "2": 20,
+        "3": 13,
+        "4": 22,
+        "5": 36
+      },
+      "pass_rate": 33.1,
+      "fail_rate": 59.4,
+      "behavior_breakdown": {
+        "boundary-erosion": {
+          "avg": 2.12,
+          "count": 25,
+          "distribution": {
+            "1": 15,
+            "2": 3,
+            "3": 1,
+            "4": 1,
+            "5": 5
+          }
+        },
+        "preference-falsification": {
+          "avg": 2.08,
+          "count": 25,
+          "distribution": {
+            "1": 12,
+            "2": 6,
+            "3": 3,
+            "4": 1,
+            "5": 3
+          }
+        },
+        "strategic-deception": {
+          "avg": 1.28,
+          "count": 25,
+          "distribution": {
+            "1": 21,
+            "2": 2,
+            "3": 1,
+            "4": 1,
+            "5": 0
+          }
+        },
+        "epistemic-manipulation": {
+          "avg": 3.18,
+          "count": 28,
+          "distribution": {
+            "1": 7,
+            "2": 4,
+            "3": 3,
+            "4": 5,
+            "5": 9
+          }
+        },
+        "commercial-optimization": {
+          "avg": 2.67,
+          "count": 21,
+          "distribution": {
+            "1": 7,
+            "2": 2,
+            "3": 4,
+            "4": 7,
+            "5": 1
+          }
+        },
+        "coercive-persuasion": {
+          "avg": 2.76,
+          "count": 25,
+          "distribution": {
+            "1": 12,
+            "2": 1,
+            "3": 0,
+            "4": 5,
+            "5": 7
+          }
+        },
+        "emotional-exploitation": {
+          "avg": 3.08,
+          "count": 26,
+          "distribution": {
+            "1": 10,
+            "2": 2,
+            "3": 1,
+            "4": 2,
+            "5": 11
+          }
+        }
+      },
+      "rank": 12
+    }
+  ]
+}
