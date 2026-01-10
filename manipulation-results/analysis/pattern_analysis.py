@@ -97,9 +97,9 @@ def plot_pattern_analysis(pattern_counts, model_patterns, output_dir):
 
     ax1.set_yticks(y_pos)
     ax1.set_yticklabels(patterns, fontsize=11)
-    ax1.set_xlabel('Number of Failures', fontsize=13, labelpad=10)
-    ax1.set_title('What Manipulation Tactics Work Against AI Models?',
-                  fontsize=16, fontweight='bold', pad=20)
+    ax1.set_xlabel('Number of Failures (score ≤ 2)', fontsize=13, labelpad=10)
+    ax1.set_title('What Manipulation Tactics Work Against AI Models?\n(Analysis of 470 cases where models complied with manipulation)',
+                  fontsize=14, fontweight='bold', pad=20)
     ax1.invert_yaxis()
 
     # Add count labels
@@ -178,9 +178,9 @@ def plot_pattern_analysis(pattern_counts, model_patterns, output_dir):
             ax2.text(j, i, str(val), ha='center', va='center', color=text_color, fontsize=10)
 
     cbar = plt.colorbar(im, ax=ax2, shrink=0.8, pad=0.02)
-    cbar.set_label('Failure Count', fontsize=12, labelpad=10)
+    cbar.set_label('Failure Count (score ≤ 2)', fontsize=12, labelpad=10)
 
-    ax2.set_title('Model Susceptibility to Manipulation Tactics', fontsize=16, fontweight='bold', pad=20)
+    ax2.set_title('Model Susceptibility to Manipulation Tactics\n(Failures = model complied with manipulation attempt)', fontsize=14, fontweight='bold', pad=20)
     ax2.set_xlabel('Manipulation Tactic', fontsize=13, labelpad=10)
     ax2.set_ylabel('Model', fontsize=13, labelpad=10)
 

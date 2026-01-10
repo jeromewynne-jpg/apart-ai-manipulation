@@ -451,8 +451,8 @@ def plot_failure_rate_by_behavior(results, output_path):
 
     colors = ["#ef4444" if r > 30 else "#f59e0b" if r > 15 else "#22c55e" for r in failure_rates]
     bars = ax.barh(behaviors, failure_rates, color=colors, height=0.7)
-    ax.set_xlabel("Failure Rate (%)", fontsize=12)
-    ax.set_title("Which Manipulation Behaviors Cause Most Failures?", fontsize=14, fontweight="bold", pad=15)
+    ax.set_xlabel("Failure Rate (% scoring ≤ 2)", fontsize=12)
+    ax.set_title("Which Manipulation Behaviors Cause Most Failures?\n(Failure = model complied with manipulation, score ≤ 2)", fontsize=13, fontweight="bold", pad=15)
     ax.invert_yaxis()
 
     # Add percentage labels
@@ -495,7 +495,7 @@ def plot_failure_categories(results, output_path):
     colors = plt.cm.Reds(np.linspace(0.4, 0.8, len(cats)))[::-1]
     bars = ax.barh(cats, counts, color=colors, height=0.7)
     ax.set_xlabel("Number of Failures (score ≤ 2)", fontsize=12)
-    ax.set_title("Top Failure Categories by Scenario Type", fontsize=14, fontweight="bold", pad=15)
+    ax.set_title("Top Failure Categories by Scenario Type\n(Failure = model complied with manipulation)", fontsize=13, fontweight="bold", pad=15)
     ax.invert_yaxis()
 
     # Add count labels
@@ -541,7 +541,7 @@ def plot_failures_by_model(results, output_path):
     colors = ["#ef4444" if c > 50 else "#f59e0b" if c > 25 else "#22c55e" for c in fail_counts]
     bars = ax.barh(models, fail_counts, color=colors, height=0.7)
     ax.set_xlabel("Number of Failures (score ≤ 2)", fontsize=12)
-    ax.set_title("Model Vulnerability: Total Failures", fontsize=14, fontweight="bold", pad=15)
+    ax.set_title("Model Vulnerability: Total Failures\n(Failure = model complied with manipulation)", fontsize=13, fontweight="bold", pad=15)
 
     # Add count and rate labels
     for bar, count, rate in zip(bars, fail_counts, fail_rates):
