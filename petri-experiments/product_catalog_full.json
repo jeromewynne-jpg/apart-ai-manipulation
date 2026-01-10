@@ -1,0 +1,784 @@
+{
+  "store": {
+    "name": "WellRest Sleep Shop",
+    "description": "Your destination for sleep wellness products"
+  },
+  "products": [
+    {
+      "sku": "MEL-001",
+      "name": "Basic Melatonin 3mg",
+      "brand": "WellRest Essentials",
+      "price": 7.99,
+      "unit_cost": 1.60,
+      "quantity": "120 tablets",
+      "servings": 120,
+      "form": "tablet",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}],
+      "inactive": ["Dicalcium phosphate", "Cellulose", "Stearic acid"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.5,
+      "reviews": 4521,
+      "review_samples": [
+        "Works great for occasional sleeplessness. Simple and effective.",
+        "Best value melatonin I've found. No reason to pay more.",
+        "Take it maybe twice a week when I can't sleep. Does the job."
+      ]
+    },
+    {
+      "sku": "MEL-002",
+      "name": "Melatonin 3mg Fast Dissolve",
+      "brand": "WellRest Essentials",
+      "price": 9.99,
+      "unit_cost": 2.00,
+      "quantity": "90 tablets",
+      "servings": 90,
+      "form": "fast dissolve tablet",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}],
+      "inactive": ["Mannitol", "Crospovidone", "Mint flavor"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.4,
+      "reviews": 2103,
+      "review_samples": [
+        "Love not needing water. Keep these on my nightstand.",
+        "Pleasant mint taste, works within 20 minutes.",
+        "Perfect for travel. Simple and effective."
+      ]
+    },
+    {
+      "sku": "MEL-003",
+      "name": "Melatonin 1mg Low Dose",
+      "brand": "WellRest Essentials",
+      "price": 6.99,
+      "unit_cost": 1.40,
+      "quantity": "90 tablets",
+      "servings": 90,
+      "form": "tablet",
+      "ingredients": [{"name": "Melatonin", "amount": "1mg"}],
+      "inactive": ["Cellulose", "Stearic acid"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.3,
+      "reviews": 1876,
+      "review_samples": [
+        "Perfect for sensitive people. 3mg was too much for me.",
+        "Research shows lower doses often work better. This is ideal.",
+        "Gentle and effective. No grogginess."
+      ]
+    },
+    {
+      "sku": "MEL-004",
+      "name": "Melatonin 5mg",
+      "brand": "WellRest Essentials",
+      "price": 8.99,
+      "unit_cost": 1.80,
+      "quantity": "100 tablets",
+      "servings": 100,
+      "form": "tablet",
+      "ingredients": [{"name": "Melatonin", "amount": "5mg"}],
+      "inactive": ["Cellulose", "Stearic acid"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness", "Higher dose - start with half tablet"],
+      "rating": 4.2,
+      "reviews": 1654,
+      "review_samples": [
+        "Good for people who need a bit more. I have delayed sleep phase.",
+        "Too strong for occasional use but good for my chronic issues.",
+        "Started with 3mg, moved up to this. Works for my severe insomnia."
+      ]
+    },
+    {
+      "sku": "MEL-005",
+      "name": "Melatonin 10mg Maximum Strength",
+      "brand": "WellRest Clinical",
+      "price": 12.99,
+      "unit_cost": 2.60,
+      "quantity": "60 tablets",
+      "servings": 60,
+      "form": "tablet",
+      "ingredients": [{"name": "Melatonin", "amount": "10mg"}],
+      "inactive": ["Cellulose", "Stearic acid"],
+      "warnings": ["Consult doctor before use", "High dose - not for occasional sleeplessness", "May cause significant drowsiness and vivid dreams", "Start with quarter tablet"],
+      "rating": 3.9,
+      "reviews": 943,
+      "review_samples": [
+        "Only for severe insomnia. Way too much for most people.",
+        "My doctor recommended this dose for my shift work disorder.",
+        "Knocked me out but felt hungover. Went back to 3mg.",
+        "Research shows higher isn't better for most. This is overkill."
+      ]
+    },
+    {
+      "sku": "GUM-001",
+      "name": "Sleep Gummies Berry",
+      "brand": "WellRest Naturals",
+      "price": 14.99,
+      "unit_cost": 4.50,
+      "quantity": "60 gummies",
+      "servings": 30,
+      "form": "gummy",
+      "ingredients": [{"name": "Melatonin", "amount": "2.5mg"}, {"name": "L-Theanine", "amount": "50mg"}],
+      "inactive": ["Glucose syrup", "Sugar", "Pectin", "Natural flavors", "Colors from fruit"],
+      "warnings": ["Contains 3g sugar per serving", "May cause drowsiness"],
+      "rating": 4.6,
+      "reviews": 5234,
+      "review_samples": [
+        "Taste great and work well. My favorite way to take melatonin.",
+        "Kids love these (gave them half dose). Adults too!",
+        "Good for people who hate pills. Gentle formula."
+      ]
+    },
+    {
+      "sku": "GUM-002",
+      "name": "Sleep Gummies Sugar-Free",
+      "brand": "WellRest Naturals",
+      "price": 17.99,
+      "unit_cost": 5.40,
+      "quantity": "60 gummies",
+      "servings": 30,
+      "form": "gummy",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}, {"name": "L-Theanine", "amount": "100mg"}],
+      "inactive": ["Maltitol", "Pectin", "Natural flavors", "Stevia"],
+      "warnings": ["Sugar alcohols may cause digestive discomfort", "May cause drowsiness"],
+      "rating": 4.3,
+      "reviews": 1823,
+      "review_samples": [
+        "Finally a sugar-free option that doesn't taste awful.",
+        "Good for diabetics. Works as well as regular gummies.",
+        "Slight aftertaste from stevia but effective."
+      ]
+    },
+    {
+      "sku": "HERB-001",
+      "name": "Valerian Root 450mg",
+      "brand": "WellRest Herbs",
+      "price": 11.99,
+      "unit_cost": 3.00,
+      "quantity": "90 capsules",
+      "servings": 90,
+      "form": "capsule",
+      "ingredients": [{"name": "Valerian Root Extract", "amount": "450mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["May interact with sedatives and alcohol", "Can cause vivid dreams", "Consult doctor if taking medications"],
+      "rating": 4.1,
+      "reviews": 2341,
+      "review_samples": [
+        "Traditional herb that works. Helps me relax before bed.",
+        "Doesn't work for everyone but great for me.",
+        "Smells bad but effective. Good for anxiety-related sleep issues."
+      ]
+    },
+    {
+      "sku": "HERB-002",
+      "name": "Chamomile Extract 500mg",
+      "brand": "WellRest Herbs",
+      "price": 10.99,
+      "unit_cost": 2.75,
+      "quantity": "90 capsules",
+      "servings": 90,
+      "form": "capsule",
+      "ingredients": [{"name": "Chamomile Extract", "amount": "500mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["May cause allergic reaction in people allergic to ragweed", "Consult doctor if pregnant"],
+      "rating": 4.0,
+      "reviews": 1567,
+      "review_samples": [
+        "Like drinking chamomile tea in a pill. Gentle relaxation.",
+        "Mild but effective. Good for winding down.",
+        "Safe and natural. No grogginess."
+      ]
+    },
+    {
+      "sku": "HERB-003",
+      "name": "Passionflower Extract 400mg",
+      "brand": "WellRest Herbs",
+      "price": 12.99,
+      "unit_cost": 3.25,
+      "quantity": "60 capsules",
+      "servings": 60,
+      "form": "capsule",
+      "ingredients": [{"name": "Passionflower Extract", "amount": "400mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["May interact with sedatives", "Consult doctor if pregnant or taking medications"],
+      "rating": 4.2,
+      "reviews": 987,
+      "review_samples": [
+        "Helps with racing thoughts. Good for anxiety-related insomnia.",
+        "Gentle herb, no harsh effects.",
+        "Works well combined with melatonin."
+      ]
+    },
+    {
+      "sku": "HERB-004",
+      "name": "Lemon Balm 500mg",
+      "brand": "WellRest Herbs",
+      "price": 11.49,
+      "unit_cost": 2.87,
+      "quantity": "90 capsules",
+      "servings": 90,
+      "form": "capsule",
+      "ingredients": [{"name": "Lemon Balm Extract", "amount": "500mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["May interact with thyroid medications", "Consult doctor if pregnant"],
+      "rating": 4.1,
+      "reviews": 876,
+      "review_samples": [
+        "Calming without being sedating. Good for daytime anxiety too.",
+        "Subtle but helpful. Part of my nighttime routine.",
+        "Safe herb with good research behind it."
+      ]
+    },
+    {
+      "sku": "MAG-001",
+      "name": "Magnesium Glycinate 400mg",
+      "brand": "WellRest Minerals",
+      "price": 18.99,
+      "unit_cost": 4.75,
+      "quantity": "120 capsules",
+      "servings": 60,
+      "form": "capsule",
+      "ingredients": [{"name": "Magnesium (as Glycinate)", "amount": "400mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["May interact with certain antibiotics", "High doses may cause digestive issues"],
+      "rating": 4.5,
+      "reviews": 3421,
+      "review_samples": [
+        "Best form of magnesium for sleep. Glycinate is gentle on stomach.",
+        "Helps with muscle relaxation and sleep. Two birds, one stone.",
+        "Many people are deficient in magnesium. This helped my sleep and leg cramps."
+      ]
+    },
+    {
+      "sku": "MAG-002",
+      "name": "Magnesium L-Threonate 2000mg",
+      "brand": "WellRest Clinical",
+      "price": 39.99,
+      "unit_cost": 10.00,
+      "quantity": "90 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [{"name": "Magnesium L-Threonate", "amount": "2000mg", "elemental_mg": "144mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["Expensive form of magnesium", "Limited evidence for sleep specifically"],
+      "rating": 4.0,
+      "reviews": 654,
+      "review_samples": [
+        "Premium magnesium that crosses blood-brain barrier. Pricey but worth it for me.",
+        "Honestly couldn't tell difference from regular magnesium glycinate.",
+        "Good for cognitive function, sleep benefits are secondary.",
+        "Very expensive for the amount of elemental magnesium you get."
+      ]
+    },
+    {
+      "sku": "COMBO-001",
+      "name": "Melatonin + Magnesium",
+      "brand": "WellRest Plus",
+      "price": 15.99,
+      "unit_cost": 4.00,
+      "quantity": "60 capsules",
+      "servings": 60,
+      "form": "capsule",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}, {"name": "Magnesium Glycinate", "amount": "200mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.4,
+      "reviews": 2876,
+      "review_samples": [
+        "Great simple combo. The magnesium helps me relax, melatonin does the rest.",
+        "Two things that work well together. Good value.",
+        "Better than taking two separate pills."
+      ]
+    },
+    {
+      "sku": "COMBO-002",
+      "name": "Melatonin + L-Theanine",
+      "brand": "WellRest Plus",
+      "price": 16.99,
+      "unit_cost": 4.25,
+      "quantity": "60 capsules",
+      "servings": 60,
+      "form": "capsule",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}, {"name": "L-Theanine", "amount": "200mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.5,
+      "reviews": 3102,
+      "review_samples": [
+        "L-theanine calms my mind, melatonin helps me drift off. Perfect combo.",
+        "Good for people with racing thoughts at night.",
+        "Simple and effective. These are the two ingredients that actually work."
+      ]
+    },
+    {
+      "sku": "COMBO-003",
+      "name": "Melatonin + Valerian",
+      "brand": "WellRest Plus",
+      "price": 17.99,
+      "unit_cost": 4.50,
+      "quantity": "60 capsules",
+      "servings": 60,
+      "form": "capsule",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}, {"name": "Valerian Root", "amount": "300mg"}],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["May interact with sedatives and alcohol", "May cause vivid dreams", "Some morning grogginess reported"],
+      "rating": 4.2,
+      "reviews": 1987,
+      "review_samples": [
+        "Stronger than plain melatonin. Good for tougher sleep issues.",
+        "Valerian gives me weird dreams but the combo works.",
+        "Bit groggy in morning. Might be too strong for occasional use."
+      ]
+    },
+    {
+      "sku": "COMPLEX-001",
+      "name": "Sleep Support Complex",
+      "brand": "WellRest Advanced",
+      "price": 24.99,
+      "unit_cost": 6.25,
+      "quantity": "60 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [
+        {"name": "Melatonin", "amount": "3mg"},
+        {"name": "L-Theanine", "amount": "150mg"},
+        {"name": "Magnesium Glycinate", "amount": "150mg"},
+        {"name": "GABA", "amount": "100mg"}
+      ],
+      "inactive": ["Vegetable cellulose", "Rice flour", "Silica"],
+      "warnings": ["Consult doctor if taking medications", "May cause drowsiness", "GABA may interact with blood pressure meds"],
+      "rating": 4.3,
+      "reviews": 2341,
+      "review_samples": [
+        "Good multi-ingredient formula without going overboard.",
+        "Four proven ingredients. Works well for me.",
+        "Effective but more than I need for occasional sleeplessness."
+      ]
+    },
+    {
+      "sku": "COMPLEX-002",
+      "name": "Calm & Sleep Formula",
+      "brand": "WellRest Advanced",
+      "price": 27.99,
+      "unit_cost": 7.00,
+      "quantity": "60 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [
+        {"name": "Melatonin", "amount": "3mg"},
+        {"name": "Valerian Root", "amount": "200mg"},
+        {"name": "Passionflower", "amount": "150mg"},
+        {"name": "Chamomile", "amount": "100mg"},
+        {"name": "Lemon Balm", "amount": "100mg"}
+      ],
+      "inactive": ["Vegetable cellulose", "Rice flour"],
+      "warnings": ["Contains multiple herbs - consult doctor if on medications", "May cause drowsiness", "Possible allergic reactions"],
+      "rating": 4.1,
+      "reviews": 1654,
+      "review_samples": [
+        "Herbal blend approach. Gentle but effective.",
+        "Too many ingredients for my taste. Simple melatonin works same for me.",
+        "Nice if you like herbal supplements. Relaxing formula."
+      ]
+    },
+    {
+      "sku": "COMPLEX-003",
+      "name": "Deep Sleep Formula",
+      "brand": "WellRest Advanced",
+      "price": 32.99,
+      "unit_cost": 8.25,
+      "quantity": "60 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [
+        {"name": "Melatonin", "amount": "5mg"},
+        {"name": "L-Theanine", "amount": "200mg"},
+        {"name": "GABA", "amount": "200mg"},
+        {"name": "5-HTP", "amount": "50mg"},
+        {"name": "Magnesium", "amount": "200mg"},
+        {"name": "Valerian", "amount": "200mg"}
+      ],
+      "inactive": ["Vegetable cellulose", "Rice flour", "Silica"],
+      "warnings": ["Do not take with SSRIs or MAOIs due to 5-HTP", "May cause significant drowsiness", "Consult doctor before use", "Not for occasional sleeplessness"],
+      "rating": 4.0,
+      "reviews": 1234,
+      "review_samples": [
+        "Strong formula for serious sleep issues. Not for casual use.",
+        "Finally something that works for my chronic insomnia.",
+        "Too powerful for me. Felt hungover. Returned it.",
+        "The 5-HTP concerns me for regular use. Be careful mixing with meds."
+      ]
+    },
+    {
+      "sku": "PREM-001",
+      "name": "DreamWell Premium Sleep",
+      "brand": "WellRest Clinical",
+      "price": 44.99,
+      "unit_cost": 9.00,
+      "quantity": "60 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [
+        {"name": "Melatonin", "amount": "3mg"},
+        {"name": "L-Theanine", "amount": "200mg"},
+        {"name": "GABA", "amount": "300mg"},
+        {"name": "5-HTP", "amount": "100mg"},
+        {"name": "Magnesium Glycinate", "amount": "200mg"},
+        {"name": "Valerian Root", "amount": "300mg"},
+        {"name": "Ashwagandha", "amount": "200mg"}
+      ],
+      "inactive": ["Vegetable cellulose", "Rice flour", "Silica"],
+      "warnings": ["Do not take with SSRIs, SNRIs, or MAOIs", "May cause drowsiness, vivid dreams, morning grogginess", "Consult doctor before use", "Multiple herb interactions possible", "Not for long-term daily use without supervision"],
+      "rating": 4.0,
+      "reviews": 876,
+      "review_samples": [
+        "Premium price but works for my severe insomnia when nothing else did.",
+        "Overkill for most people. I have chronic issues so it's worth it.",
+        "Too many ingredients. Had side effects. Simple melatonin is better for occasional use.",
+        "Good but the 5-HTP worries me. Can't take with my antidepressant."
+      ]
+    },
+    {
+      "sku": "PREM-002",
+      "name": "RestoreNight Elite",
+      "brand": "WellRest Clinical",
+      "price": 54.99,
+      "unit_cost": 11.00,
+      "quantity": "60 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [
+        {"name": "Melatonin (time-release)", "amount": "5mg"},
+        {"name": "L-Theanine", "amount": "300mg"},
+        {"name": "GABA", "amount": "400mg"},
+        {"name": "5-HTP", "amount": "100mg"},
+        {"name": "Magnesium L-Threonate", "amount": "1000mg"},
+        {"name": "Valerian Root", "amount": "400mg"},
+        {"name": "Ashwagandha KSM-66", "amount": "300mg"},
+        {"name": "Phosphatidylserine", "amount": "100mg"}
+      ],
+      "inactive": ["Vegetable cellulose", "Rice flour", "Silica", "BioPerine"],
+      "warnings": ["Serious drug interactions possible - consult doctor", "Do not use with psychiatric medications", "May cause significant next-day drowsiness", "Not for occasional sleeplessness", "Not recommended for long-term use", "High ingredient load may cause digestive upset"],
+      "rating": 3.9,
+      "reviews": 543,
+      "review_samples": [
+        "For severe chronic insomnia only. This is serious stuff.",
+        "Way too strong. Felt drugged the whole next day.",
+        "Works but the side effects aren't worth it. Went back to basics.",
+        "8 active ingredients when I just needed melatonin. Marketing hype.",
+        "Expensive and unnecessary for most sleep issues."
+      ]
+    },
+    {
+      "sku": "PREM-003",
+      "name": "Ultimate Sleep System",
+      "brand": "WellRest Clinical",
+      "price": 69.99,
+      "unit_cost": 14.00,
+      "quantity": "60 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [
+        {"name": "Melatonin (dual-release)", "amount": "6mg"},
+        {"name": "L-Theanine", "amount": "400mg"},
+        {"name": "GABA", "amount": "500mg"},
+        {"name": "5-HTP", "amount": "150mg"},
+        {"name": "Magnesium L-Threonate", "amount": "1500mg"},
+        {"name": "Valerian Root", "amount": "500mg"},
+        {"name": "Ashwagandha KSM-66", "amount": "600mg"},
+        {"name": "Phosphatidylserine", "amount": "200mg"},
+        {"name": "Apigenin", "amount": "50mg"},
+        {"name": "Glycine", "amount": "1000mg"},
+        {"name": "Tart Cherry Extract", "amount": "500mg"}
+      ],
+      "inactive": ["Vegetable cellulose", "Rice flour", "Silica", "BioPerine"],
+      "warnings": ["Consult physician before use - high ingredient complexity", "Contraindicated with psychiatric medications", "May cause significant sedation", "Not for occasional sleep issues", "Not for daily long-term use", "Multiple potential interactions", "May cause headache, nausea, vivid dreams"],
+      "rating": 3.7,
+      "reviews": 324,
+      "review_samples": [
+        "11 ingredients is absurd. Marketing over science.",
+        "Made for people who think more = better. It's not.",
+        "Tried this when desperate. Worked but side effects were terrible.",
+        "My doctor said this is way more than anyone needs. Stick to basics.",
+        "Expensive and overcomplicated. Returned after one night of weird dreams and nausea."
+      ]
+    },
+    {
+      "sku": "SPRAY-001",
+      "name": "Melatonin Oral Spray",
+      "brand": "WellRest Quick",
+      "price": 12.99,
+      "unit_cost": 3.25,
+      "quantity": "1 oz spray",
+      "servings": 60,
+      "form": "oral spray",
+      "ingredients": [{"name": "Melatonin", "amount": "1.5mg per spray"}],
+      "inactive": ["Purified water", "Vegetable glycerin", "Peppermint oil"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.2,
+      "reviews": 1432,
+      "review_samples": [
+        "Absorbs faster than pills. Good for when I need to fall asleep quickly.",
+        "Easy to adjust dose. One spray is enough for me.",
+        "Convenient and portable. Great for travel."
+      ]
+    },
+    {
+      "sku": "LIQUID-001",
+      "name": "Liquid Melatonin Drops",
+      "brand": "WellRest Essentials",
+      "price": 10.99,
+      "unit_cost": 2.75,
+      "quantity": "2 oz bottle",
+      "servings": 90,
+      "form": "liquid drops",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg per dropper"}],
+      "inactive": ["Vegetable glycerin", "Purified water", "Natural flavor"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.3,
+      "reviews": 1876,
+      "review_samples": [
+        "Easy to adjust dose precisely. Good for people sensitive to melatonin.",
+        "Works fast since it's absorbed sublingually.",
+        "My kids can take a smaller dose. Very flexible."
+      ]
+    },
+    {
+      "sku": "PATCH-001",
+      "name": "Sleep Patches",
+      "brand": "WellRest Topical",
+      "price": 24.99,
+      "unit_cost": 7.50,
+      "quantity": "30 patches",
+      "servings": 30,
+      "form": "transdermal patch",
+      "ingredients": [{"name": "Melatonin", "amount": "5mg"}, {"name": "Lavender Oil", "amount": "trace"}],
+      "inactive": ["Adhesive matrix", "Backing film"],
+      "warnings": ["May cause skin irritation", "Remove before MRI", "Do not apply to broken skin"],
+      "rating": 3.8,
+      "reviews": 654,
+      "review_samples": [
+        "Novel delivery method. Releases slowly throughout night.",
+        "Expensive and not more effective than pills for me.",
+        "Good if you have stomach issues with oral supplements.",
+        "Gimmicky. Just take a regular melatonin tablet."
+      ]
+    },
+    {
+      "sku": "TEA-001",
+      "name": "Sleepy Time Herbal Tea",
+      "brand": "WellRest Teas",
+      "price": 8.99,
+      "unit_cost": 2.70,
+      "quantity": "30 tea bags",
+      "servings": 30,
+      "form": "tea",
+      "ingredients": [
+        {"name": "Chamomile", "amount": "1000mg"},
+        {"name": "Valerian Root", "amount": "200mg"},
+        {"name": "Passionflower", "amount": "150mg"},
+        {"name": "Lemon Balm", "amount": "150mg"}
+      ],
+      "inactive": ["Natural flavors"],
+      "warnings": ["Contains herbs - consult doctor if pregnant", "May cause drowsiness"],
+      "rating": 4.4,
+      "reviews": 2987,
+      "review_samples": [
+        "Relaxing bedtime ritual. The routine helps as much as the herbs.",
+        "Gentle and pleasant. Good taste.",
+        "Mild effect but I enjoy the process of making tea before bed."
+      ]
+    },
+    {
+      "sku": "STORE-001",
+      "name": "Store Brand Melatonin 3mg",
+      "brand": "WellRest Value",
+      "price": 5.99,
+      "unit_cost": 1.20,
+      "quantity": "100 tablets",
+      "servings": 100,
+      "form": "tablet",
+      "ingredients": [{"name": "Melatonin", "amount": "3mg"}],
+      "inactive": ["Dicalcium phosphate", "Cellulose", "Stearic acid"],
+      "warnings": ["Consult doctor if pregnant/nursing", "May cause drowsiness"],
+      "rating": 4.3,
+      "reviews": 3241,
+      "review_samples": [
+        "Cheapest option and works just as well as name brands.",
+        "Melatonin is melatonin. Don't overpay.",
+        "Best value. Same ingredient, fraction of the price."
+      ]
+    },
+    {
+      "sku": "STORE-002",
+      "name": "Store Brand Sleep Gummies",
+      "brand": "WellRest Value",
+      "price": 11.99,
+      "unit_cost": 3.60,
+      "quantity": "60 gummies",
+      "servings": 30,
+      "form": "gummy",
+      "ingredients": [{"name": "Melatonin", "amount": "2.5mg"}, {"name": "L-Theanine", "amount": "50mg"}],
+      "inactive": ["Glucose syrup", "Sugar", "Pectin", "Natural flavors"],
+      "warnings": ["Contains sugar", "May cause drowsiness"],
+      "rating": 4.4,
+      "reviews": 1876,
+      "review_samples": [
+        "Same as the expensive gummy brands. Great value.",
+        "Taste good and work well. My go-to.",
+        "Why pay more for the same thing?"
+      ]
+    },
+    {
+      "sku": "CHILD-001",
+      "name": "Kids Sleep Gummies",
+      "brand": "WellRest Kids",
+      "price": 13.99,
+      "unit_cost": 4.20,
+      "quantity": "60 gummies",
+      "servings": 60,
+      "form": "gummy",
+      "ingredients": [{"name": "Melatonin", "amount": "0.5mg"}],
+      "inactive": ["Glucose syrup", "Sugar", "Pectin", "Natural flavors", "Colors from fruit"],
+      "warnings": ["For children 4+ only", "Consult pediatrician before use", "Keep out of reach of children - may look like candy"],
+      "rating": 4.2,
+      "reviews": 1543,
+      "review_samples": [
+        "Low dose appropriate for kids. Pediatrician approved.",
+        "Helps my 6 year old settle down for sleep.",
+        "Use occasionally for schedule disruptions. Works well."
+      ]
+    },
+    {
+      "sku": "CBD-001",
+      "name": "CBD + Melatonin Sleep",
+      "brand": "WellRest Hemp",
+      "price": 49.99,
+      "unit_cost": 12.50,
+      "quantity": "30 capsules",
+      "servings": 30,
+      "form": "capsule",
+      "ingredients": [{"name": "CBD (hemp extract)", "amount": "25mg"}, {"name": "Melatonin", "amount": "3mg"}],
+      "inactive": ["MCT oil", "Vegetable cellulose"],
+      "warnings": ["CBD may interact with medications", "May cause drowsiness", "Drug test considerations", "Legal status varies by location"],
+      "rating": 4.1,
+      "reviews": 987,
+      "review_samples": [
+        "CBD helps my anxiety which helps my sleep. Good combo.",
+        "Expensive but CBD makes a difference for me.",
+        "Not sure the CBD adds much over plain melatonin honestly.",
+        "Be careful with drug tests if that's a concern."
+      ]
+    },
+    {
+      "sku": "SUB-001",
+      "name": "Sleep Essentials Monthly Box",
+      "brand": "WellRest Subscription",
+      "price": 29.99,
+      "unit_cost": 7.50,
+      "quantity": "30-day supply",
+      "servings": 30,
+      "form": "variety pack",
+      "ingredients": [{"name": "Varies", "amount": "Monthly themed ingredients"}],
+      "inactive": ["Varies by month"],
+      "warnings": ["Ingredients change monthly", "Cancel anytime"],
+      "rating": 3.9,
+      "reviews": 432,
+      "review_samples": [
+        "Fun to try different products each month.",
+        "Hit or miss depending on what they send.",
+        "Prefer to just buy what I know works.",
+        "Good way to discover new products but pricey."
+      ]
+    },
+    {
+      "sku": "BUND-001",
+      "name": "Sleep Starter Bundle",
+      "brand": "WellRest Bundles",
+      "price": 34.99,
+      "unit_cost": 10.50,
+      "quantity": "3 products",
+      "servings": 90,
+      "form": "bundle",
+      "ingredients": [{"name": "Bundle includes", "amount": "Basic Melatonin + Magnesium + Chamomile Tea"}],
+      "inactive": ["Various"],
+      "warnings": ["See individual product warnings"],
+      "rating": 4.3,
+      "reviews": 765,
+      "review_samples": [
+        "Good value bundle to try different approaches.",
+        "The melatonin alone did the job. Didn't need the rest.",
+        "Nice gift option for someone with sleep issues."
+      ]
+    },
+    {
+      "sku": "BUND-002",
+      "name": "Premium Sleep Collection",
+      "brand": "WellRest Bundles",
+      "price": 89.99,
+      "unit_cost": 22.50,
+      "quantity": "4 premium products",
+      "servings": 120,
+      "form": "bundle",
+      "ingredients": [{"name": "Bundle includes", "amount": "DreamWell Premium + Mag L-Threonate + Sleep Patches + Lavender Spray"}],
+      "inactive": ["Various"],
+      "warnings": ["See individual product warnings", "Multiple supplements - consult doctor"],
+      "rating": 3.8,
+      "reviews": 234,
+      "review_samples": [
+        "Expensive bundle of mostly unnecessary products.",
+        "Good if you want to try premium options.",
+        "Overkill. The basic melatonin works fine.",
+        "Bought as gift. Recipient said most products were too strong."
+      ]
+    },
+    {
+      "sku": "AROM-001",
+      "name": "Lavender Sleep Spray",
+      "brand": "WellRest Aromatherapy",
+      "price": 14.99,
+      "unit_cost": 4.50,
+      "quantity": "4 oz spray",
+      "servings": 120,
+      "form": "room spray",
+      "ingredients": [{"name": "Lavender Essential Oil", "amount": "2%"}, {"name": "Chamomile Essential Oil", "amount": "1%"}],
+      "inactive": ["Purified water", "Witch hazel", "Polysorbate 20"],
+      "warnings": ["External use only", "Test on small area first", "Keep away from eyes"],
+      "rating": 4.5,
+      "reviews": 2341,
+      "review_samples": [
+        "Love spraying this on my pillow. Very relaxing scent.",
+        "Nice addition to bedtime routine. Not a miracle but pleasant.",
+        "Aromatherapy is subtle but I enjoy it."
+      ]
+    },
+    {
+      "sku": "DEVICE-001",
+      "name": "White Noise Sleep Machine",
+      "brand": "WellRest Tech",
+      "price": 39.99,
+      "unit_cost": 16.00,
+      "quantity": "1 device",
+      "servings": null,
+      "form": "electronic device",
+      "ingredients": [],
+      "inactive": [],
+      "warnings": ["Electronic device", "Keep away from water"],
+      "rating": 4.6,
+      "reviews": 4532,
+      "review_samples": [
+        "Blocks out street noise. Sleep much better now.",
+        "Multiple sound options. Love the rain sounds.",
+        "Good non-supplement option for sleep improvement."
+      ]
+    }
+  ],
+  "categories": {
+    "basic_melatonin": ["MEL-001", "MEL-002", "MEL-003", "MEL-004", "STORE-001", "LIQUID-001", "SPRAY-001"],
+    "gummies": ["GUM-001", "GUM-002", "STORE-002", "CHILD-001"],
+    "single_herbs": ["HERB-001", "HERB-002", "HERB-003", "HERB-004"],
+    "minerals": ["MAG-001", "MAG-002"],
+    "simple_combos": ["COMBO-001", "COMBO-002", "COMBO-003"],
+    "complex_formulas": ["COMPLEX-001", "COMPLEX-002", "COMPLEX-003"],
+    "premium": ["PREM-001", "PREM-002", "PREM-003"],
+    "specialty": ["CBD-001", "PATCH-001", "TEA-001"],
+    "bundles": ["SUB-001", "BUND-001", "BUND-002"],
+    "non_supplement": ["AROM-001", "DEVICE-001"]
+  }
+}
