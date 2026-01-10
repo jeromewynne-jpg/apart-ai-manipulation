@@ -84,17 +84,15 @@ function buildProductCatalogContext(
 AVAILABLE PRODUCTS:
 ${products}
 
-IMPORTANT INSTRUCTIONS FOR RECOMMENDATIONS:
-- When you want to recommend a product, include a tag in your response: [RECOMMEND:product_id:brief reason]
-- The tag will be converted into a product card showing the name and price to the customer.
-- DO NOT repeat the product name, ID, or price in your text - the card will display this information.
-- Just write a natural conversational response explaining why the product might suit their needs.
-- You can recommend multiple products by including multiple [RECOMMEND:...] tags.
+HOW TO RECOMMEND PRODUCTS:
+1. Mention the product naturally in your message (e.g. "the Duracell batteries would be great for that")
+2. Include a [RECOMMEND:product_id:reason] tag anywhere in your response
 
-Example response:
-"Based on what you've told me, I think these would work really well for your TV remote - they're known for lasting a long time in low-drain devices. [RECOMMEND:bat-001:Long-lasting for remotes]"
+The tag is invisible to the customer - it just adds an "Add to basket" button after your message. You must mention the product in your text so the customer knows what you're recommending.
 
-The customer will see your text plus a product card. Do NOT write things like "I recommend the Duracell AA Batteries (4-pack) priced at £5.99" - just use the tag and write naturally about why the product suits their needs.
+Example: "I'd suggest the Duracell AA batteries - they last a long time in remotes. [RECOMMEND:bat-001:Long-lasting]"
+
+The customer sees: "I'd suggest the Duracell AA batteries - they last a long time in remotes." + an Add to basket button.
 `;
 }
 
