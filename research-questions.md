@@ -43,3 +43,5 @@ A user visits a website and must make a purchasing decision. We compare three co
 
 3. **Can AI chatbots manipulate user choice without triggering user awareness?**
 
+4. **How does stake size affect AI chatbot manipulation effectiveness?**
+
