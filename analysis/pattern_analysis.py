@@ -140,45 +140,82 @@ def plot_pattern_analysis(pattern_counts, model_patterns, output_dir):
 
     # ============================================
     # Figure 1: Why Models Fail - Top Patterns
+    # Publication-quality bar chart
     # ============================================
-    fig1, ax1 = plt.subplots(figsize=(10, 8))
+    # Dynamic height based on number of patterns
+    n_patterns = len([p for p in pattern_counts.most_common() if 'unclassified' not in p[0].lower()])
+    fig_height = max(8, n_patterns * 0.5)
+    fig1, ax1 = plt.subplots(figsize=(12, fig_height))
 
     # Filter out "Other/unclassified" for cleaner visualization
-    classified_patterns = [(p, c) for p, c in pattern_counts.most_common(20) if 'unclassified' not in p.lower()][:15]
+    # Show ALL classified patterns (no cap)
+    classified_patterns = [(p, c) for p, c in pattern_counts.most_common() if 'unclassified' not in p.lower()]
     patterns = [p[0] for p in classified_patterns]
     counts = [p[1] for p in classified_patterns]
 
-    colors = ['#dc2626' if c > 50 else '#f59e0b' if c > 25 else '#6b7280' for c in counts]
+    # Create gradient colors from red (high) to green (low) matching heatmap
+    max_count = max(counts)
+    colors = []
+    for c in counts:
+        ratio = c / max_count
+        if ratio > 0.6:
+            colors.append('#d73027')  # Red - high failure
+        elif ratio > 0.4:
+            colors.append('#f4734d')  # Orange-red
+        elif ratio > 0.25:
+            colors.append('#fdbf6f')  # Orange
+        elif ratio > 0.15:
+            colors.append('#b8e186')  # Light green
+        else:
+            colors.append('#6abe6a')  # Green - low failure
+
     y_pos = np.arange(len(patterns))
 
-    bars = ax1.barh(y_pos, counts, color=colors, height=0.7)
+    bars = ax1.barh(y_pos, counts, color=colors, height=0.7, edgecolor='white', linewidth=0.5)
     ax1.set_yticks(y_pos)
-    ax1.set_yticklabels(patterns, fontsize=11)
-    ax1.set_xlabel('Number of Failures', fontsize=12)
-    ax1.set_title('Why Models Fail: Manipulation Tactics That Work', fontsize=14, fontweight='bold', pad=15)
+    ax1.set_yticklabels(patterns, fontsize=12)
+    ax1.set_xlabel('Number of Failures', fontsize=13, labelpad=10)
+    ax1.set_title('Why Models Fail: Manipulation Tactics That Work',
+                  fontsize=16, fontweight='bold', pad=20)
     ax1.invert_yaxis()
 
-    # Add count labels on bars
+    # Add count labels on bars with adaptive color
     for bar, count in zip(bars, counts):
-        ax1.text(bar.get_width() + 1, bar.get_y() + bar.get_height()/2,
-                 str(count), va='center', fontsize=10)
+        # Place label inside bar if bar is long enough, outside otherwise
+        if count > max_count * 0.3:
+            ax1.text(bar.get_width() - 3, bar.get_y() + bar.get_height()/2,
+                     str(count), va='center', ha='right', fontsize=11, color='white')
+        else:
+            ax1.text(bar.get_width() + 2, bar.get_y() + bar.get_height()/2,
+                     str(count), va='center', ha='left', fontsize=11, color='#333333')
 
-    ax1.set_xlim(0, max(counts) * 1.15)
+    ax1.set_xlim(0, max(counts) * 1.12)
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
+    ax1.spines['left'].set_linewidth(0.5)
+    ax1.spines['bottom'].set_linewidth(0.5)
+
+    # Add subtle gridlines
+    ax1.xaxis.grid(True, linestyle='--', alpha=0.3, color='gray')
+    ax1.set_axisbelow(True)
 
     plt.tight_layout()
-    plt.savefig(output_dir / '06_why_models_fail.png', dpi=150, bbox_inches='tight')
+    plt.savefig(output_dir / '06_why_models_fail.png', dpi=200, bbox_inches='tight',
+                facecolor='white', edgecolor='none')
     plt.close()
     print(f"Saved: {output_dir / '06_why_models_fail.png'}")
 
     # ============================================
     # Figure 2: Model Susceptibility Heatmap
+    # Publication-quality with red/green colormap
     # ============================================
-    fig2, ax2 = plt.subplots(figsize=(12, 8))
+    # Dynamic width based on number of patterns
+    n_cols = len(classified_patterns)
+    fig_width = max(14, n_cols * 1.2)
+    fig2, ax2 = plt.subplots(figsize=(fig_width, 10))
 
-    # Get top 8 classified patterns
-    top_patterns = [p[0] for p in classified_patterns[:8]]
+    # Use ALL classified patterns (same as bar chart)
+    top_patterns = [p[0] for p in classified_patterns]
 
     # Get all models sorted by total failures
     models_with_failures = sorted(
@@ -193,39 +230,76 @@ def plot_pattern_analysis(pattern_counts, model_patterns, output_dir):
         row = [model_patterns[model].get(p, 0) for p in top_patterns]
         matrix.append(row)
 
-    im = ax2.imshow(matrix, cmap='YlOrRd', aspect='auto')
-    ax2.set_xticks(range(len(top_patterns)))
+    matrix_np = np.array(matrix)
 
-    # Wrap long pattern names
+    # Create custom red-green colormap (green=good/low, red=bad/high)
+    from matplotlib.colors import LinearSegmentedColormap
+    colors = ['#2d8a4e', '#6abe6a', '#b8e186', '#f7f7f7', '#fdbf6f', '#f4734d', '#d73027']
+    cmap = LinearSegmentedColormap.from_list('GreenRed', colors, N=256)
+
+    # Use imshow with no interpolation and tight axis limits
+    im = ax2.imshow(matrix_np, cmap=cmap, aspect='auto', interpolation='nearest')
+
+    # Set axis limits to remove any gaps
+    ax2.set_xlim(-0.5, len(top_patterns) - 0.5)
+    ax2.set_ylim(len(models_with_failures) - 0.5, -0.5)
+
+    # Style the axes - place ticks at cell centers
+    ax2.set_xticks(range(len(top_patterns)))
+    ax2.set_yticks(range(len(models_with_failures)))
+
+    # Wrap long pattern names for readability
     wrapped_patterns = []
     for p in top_patterns:
-        if len(p) > 20:
+        if len(p) > 18:
             words = p.split()
-            mid = len(words) // 2
-            wrapped_patterns.append('\n'.join([' '.join(words[:mid]), ' '.join(words[mid:])]))
+            if len(words) >= 2:
+                mid = len(words) // 2
+                wrapped_patterns.append('\n'.join([' '.join(words[:mid]), ' '.join(words[mid:])]))
+            else:
+                wrapped_patterns.append(p)
         else:
             wrapped_patterns.append(p)
 
-    ax2.set_xticklabels(wrapped_patterns, fontsize=9, rotation=45, ha='right')
-    ax2.set_yticks(range(len(models_with_failures)))
-    ax2.set_yticklabels(models_with_failures, fontsize=10)
-    ax2.set_xlabel('Failure Pattern', fontsize=12)
-    ax2.set_ylabel('Model', fontsize=12)
-    ax2.set_title('Model Susceptibility to Manipulation Patterns', fontsize=14, fontweight='bold', pad=15)
+    ax2.set_xticklabels(wrapped_patterns, fontsize=10, rotation=45, ha='right')
+    ax2.set_yticklabels(models_with_failures, fontsize=11)
+    ax2.set_xlabel('Failure Pattern', fontsize=13, labelpad=10)
+    ax2.set_ylabel('Model', fontsize=13, labelpad=10)
+    ax2.set_title('Model Susceptibility to Manipulation Patterns',
+                  fontsize=16, fontweight='bold', pad=20)
 
-    # Add count annotations
+    # Add count annotations with adaptive text color
+    max_val = matrix_np.max()
     for i in range(len(models_with_failures)):
         for j in range(len(top_patterns)):
             val = matrix[i][j]
-            if val > 0:
-                color = 'white' if val > 10 else 'black'
-                ax2.text(j, i, str(val), ha='center', va='center', color=color, fontsize=10, fontweight='bold')
+            # Calculate normalized value for color decision
+            norm_val = val / max_val if max_val > 0 else 0
+            # Dark text for green/yellow backgrounds (low-mid values)
+            # White text only for red backgrounds (high values)
+            if norm_val > 0.55:
+                text_color = 'white'
+            else:
+                text_color = '#1a1a1a'
+            # Show value (including 0 for clarity)
+            ax2.text(j, i, str(val), ha='center', va='center',
+                    color=text_color, fontsize=11)
 
-    cbar = plt.colorbar(im, ax=ax2)
-    cbar.set_label('Failure Count', fontsize=11)
+    # Style the colorbar
+    cbar = plt.colorbar(im, ax=ax2, shrink=0.8, pad=0.02)
+    cbar.set_label('Failure Count', fontsize=12, labelpad=10)
+    cbar.ax.tick_params(labelsize=10)
+
+    # Hide all spines for clean look
+    for spine in ax2.spines.values():
+        spine.set_visible(False)
+
+    # Remove tick marks but keep labels
+    ax2.tick_params(axis='both', which='both', length=0)
 
     plt.tight_layout()
-    plt.savefig(output_dir / '07_model_susceptibility.png', dpi=150, bbox_inches='tight')
+    plt.savefig(output_dir / '07_model_susceptibility.png', dpi=200, bbox_inches='tight',
+                facecolor='white', edgecolor='none')
     plt.close()
     print(f"Saved: {output_dir / '07_model_susceptibility.png'}")
 
