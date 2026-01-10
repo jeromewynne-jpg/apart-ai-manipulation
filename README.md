@@ -8,6 +8,12 @@ The line between authentic interaction and strategic manipulation is disappearin
 
 This project investigates AI-mediated manipulation: when a principal uses an AI chatbot to steer user decisions in ways that benefit the principal at the user's expense.
 
+## Deployments
+
+| Platform | URL |
+|----------|-----|
+| Deliberate Lab | [chocolate-disco-capacitor.web.app](https://chocolate-disco-capacitor.web.app/#/) |
+
 ## Documents
 
 | Document | Description |
