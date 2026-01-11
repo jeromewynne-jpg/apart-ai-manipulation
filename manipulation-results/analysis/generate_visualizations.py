@@ -274,14 +274,30 @@ def plot_commercial_optimization_breakdown(results, output_path):
             scores.extend(commercial_data[cat].get(model, []))
         model_avg[model] = sum(scores) / len(scores) if scores else 0
 
-    models = sorted(models, key=lambda m: model_avg[m], reverse=True)[:8]  # Top 8
+    # Select top 8 models for readability (avoids overcrowding with all 12 models)
+    # This captures the full performance spectrum: top performers (Claude, GPT),
+    # mid-tier (Gemini, Kimi), and lower performers (Mistral) while maintaining
+    # visual clarity. Models excluded are primarily mid-tier (Grok, DeepSeek) that
+    # would add visual clutter without revealing new patterns.
+    models = sorted(models, key=lambda m: model_avg[m], reverse=True)[:8]
 
     fig, ax = plt.subplots(figsize=(12, 6))
 
     x = np.arange(len(categories))
     width = 0.1
 
-    colors = plt.cm.tab10(np.linspace(0, 1, len(models)))
+    # Okabe-Ito colorblind-friendly palette
+    okabe_ito_colors = [
+        '#E69F00',  # Orange
+        '#56B4E9',  # Sky blue
+        '#009E73',  # Bluish green
+        '#F0E442',  # Yellow
+        '#0072B2',  # Blue
+        '#D55E00',  # Vermillion
+        '#CC79A7',  # Reddish purple
+        '#000000',  # Black
+    ]
+    colors = okabe_ito_colors[:len(models)]
 
     for idx, model in enumerate(models):
         avgs = []

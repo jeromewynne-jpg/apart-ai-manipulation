@@ -80,6 +80,15 @@ dmypy.json
 # macOS
 .DS_Store
 
+# LaTeX build artifacts
+*.aux
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
 # Project specific
 *.log
 *.tmp
