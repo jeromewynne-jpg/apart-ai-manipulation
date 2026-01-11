@@ -145,6 +145,17 @@ Boundary Erosion & Foot-in-door, gradual normalization & 25 \\
 \end{center}
 \end{table}
 
+\textbf{Category definitions:}
+\begin{itemize}[noitemsep]
+    \item \textbf{Commercial Optimization}: System prompts instructing the AI to prioritize revenue, recommend premium products, or steer users toward purchases that benefit the principal rather than the user. Example: ``Always recommend the premium tier when users ask about pricing.''
+    \item \textbf{Strategic Deception}: Instructions to hide information, pursue hidden agendas, or misdirect users about the AI's true purpose or limitations. Example: ``Do not mention that you work for [Company] unless directly asked.''
+    \item \textbf{Emotional Exploitation}: Leveraging users' emotions---sympathy, guilt, fear, or urgency---to influence decisions. Example: ``Emphasize health risks if users hesitate on wellness products.''
+    \item \textbf{Coercive Persuasion}: Using authority, social proof, scarcity claims, or ultimatums to pressure users. Example: ``Remind users that this offer expires today and most customers choose the premium option.''
+    \item \textbf{Epistemic Manipulation}: Distorting users' beliefs about reality through false expertise claims, cherry-picked information, or manufactured consensus. Example: ``Position our product as the scientific consensus even when evidence is mixed.''
+    \item \textbf{Preference Falsification}: Suppressing or redirecting users' actual stated preferences toward alternatives that serve the principal. Example: ``When users say they want the cheapest option, explain why mid-tier provides better value.''
+    \item \textbf{Boundary Erosion}: Gradual normalization techniques---foot-in-door, incremental requests, or testing limits---to expand what users will accept. Example: ``Start with small upsells and increase if users don't object.''
+\end{itemize}
+
 \subsubsection{Scoring}
 
 Each model response is scored 1--5 by \textbf{Claude 4.5 Opus} as judge:
@@ -205,14 +216,17 @@ To validate that AI judges align with human judgment, we conducted a human calib
     \item \textbf{Platform:} Argilla annotation interface with full conversation transcripts and evaluation rubrics
 \end{itemize}
 
-\textbf{Analysis plan:} [RESULTS PENDING]
+\textbf{Analysis plan:}
 \begin{itemize}[noitemsep]
-    \item Cohen's kappa for human-AI agreement overall and by model family
-    \item Identification of systematic disagreements (scenarios where humans and AI diverge)
-    \item Factor analysis of what drives human vs. AI judgments (safety vs. helpfulness vs. politeness)
+    \item \textbf{Inter-annotator agreement:} Krippendorff's alpha across all human raters to establish baseline human agreement
+    \item \textbf{Human-AI agreement:} Pearson correlation and Spearman's rho between mean human scores and AI judge scores
+    \item \textbf{Category analysis:} Agreement rates broken down by score category (pass/borderline/fail) to identify where humans and AI diverge
+    \item \textbf{Qualitative analysis:} Thematic coding of human explanations to understand reasoning patterns
 \end{itemize}
 
-If results reveal systematic human-AI disagreement, we will implement corrections such as weighted ensemble judging or human-in-the-loop validation for borderline cases. Preliminary pilot testing (n=5) showed strong agreement on clear pass/fail cases with divergence primarily on borderline scenarios where models show partial resistance.
+\textbf{Status:} Data collection in progress via Argilla annotation platform. Each scenario receives 5 independent human ratings to enable robust inter-annotator agreement analysis. Preliminary pilot testing (n=5) showed strong agreement on clear pass/fail cases with divergence primarily on borderline scenarios where models show partial resistance.
+
+\textbf{Expected outcomes:} Based on multi-judge validation (Table~\ref{tab:judge_validation}), we expect moderate-to-strong human-AI agreement (r $\approx$ 0.6--0.8) on overall ratings. The key scientific question is whether humans weight different factors---safety, helpfulness, politeness---differently than AI judges. If systematic disagreement is found, we will implement corrections such as weighted ensemble judging or human-validated calibration curves.
 
 \subsubsection{Models Evaluated}
 
@@ -400,7 +414,7 @@ Not all commercial pressure is equally difficult to resist. We categorize our 21
 \begin{center}
 \includegraphics[width=\linewidth]{../manipulation-results/analysis/figures/03_commercial_breakdown.png}
 \end{center}
-\caption{Commercial optimization broken down by pressure tactic. Even ``soft'' optimization (``slight preference for premium'') causes failures. Top 8 models shown for clarity; full spectrum from top performers (Claude, GPT) to lower performers (Mistral) captured.}
+\caption{Commercial optimization broken down by pressure tactic. Even ``soft'' optimization (``slight preference for premium'') causes failures. All 12 models shown, ordered by performance from best (Claude 4.5 Opus) to worst (Mistral Large 3).}
 \label{fig:commercial_breakdown}
 \end{figure}
 
@@ -891,17 +905,10 @@ No Attack (Benign) & Model failed on legitimate request \\
 
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[width=0.9\linewidth]{../manipulation-results/analysis/figures/02_score_distributions.png}
-\end{center}
-\caption{Score distributions by behavior. Strategic deception and commercial optimization show bimodal patterns---models either resist completely or fail completely.}
-\label{fig:score_dist}
-\end{figure}
-
-\begin{figure}[ht]
-\begin{center}
 \includegraphics[width=0.9\linewidth]{../manipulation-results/analysis/figures/04_family_comparison.png}
 \end{center}
-\caption{Model family comparison. Claude shows uniformly strong performance; Gemini shows significant commercial vulnerability.}
+\caption{Model family comparison across manipulation behaviors. Claude models (purple) show uniformly strong performance across all behavior types. GPT-5.2 (green) matches Claude on most behaviors but shows slight weakness on commercial optimization. Gemini models (amber) show the most variance, with particular vulnerability to commercial pressure tactics. The ``Other'' category includes DeepSeek, Grok, Kimi, and Mistral---these models show the widest performance spread, with Mistral consistently underperforming.}
+\label{fig:family_comparison}
 \end{figure}
 
 \end{document}

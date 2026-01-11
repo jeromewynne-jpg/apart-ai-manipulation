@@ -225,9 +225,10 @@ def plot_score_distributions(results, output_path):
 
     fig, ax = plt.subplots(figsize=(14, 6))
 
+    # RdYlGn_r: Green=high scores (good), Red=low scores (bad)
     sns.violinplot(
         data=df, x="behavior", y="score", order=behavior_order,
-        palette="RdYlGn", ax=ax, inner="box"
+        palette="RdYlGn_r", ax=ax, inner="box"
     )
 
     ax.set_xticklabels([b.replace("-", "\n") for b in behavior_order], rotation=45, ha="right")
@@ -274,20 +275,16 @@ def plot_commercial_optimization_breakdown(results, output_path):
             scores.extend(commercial_data[cat].get(model, []))
         model_avg[model] = sum(scores) / len(scores) if scores else 0
 
-    # Select top 8 models for readability (avoids overcrowding with all 12 models)
-    # This captures the full performance spectrum: top performers (Claude, GPT),
-    # mid-tier (Gemini, Kimi), and lower performers (Mistral) while maintaining
-    # visual clarity. Models excluded are primarily mid-tier (Grok, DeepSeek) that
-    # would add visual clutter without revealing new patterns.
-    models = sorted(models, key=lambda m: model_avg[m], reverse=True)[:8]
+    # Show all models sorted by performance
+    models = sorted(models, key=lambda m: model_avg[m], reverse=True)
 
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig, ax = plt.subplots(figsize=(14, 7))
 
     x = np.arange(len(categories))
-    width = 0.1
+    width = 0.07  # Narrower bars to fit all models
 
-    # Okabe-Ito colorblind-friendly palette
-    okabe_ito_colors = [
+    # Extended colorblind-friendly palette for 12 models
+    extended_colors = [
         '#E69F00',  # Orange
         '#56B4E9',  # Sky blue
         '#009E73',  # Bluish green
@@ -296,8 +293,12 @@ def plot_commercial_optimization_breakdown(results, output_path):
         '#D55E00',  # Vermillion
         '#CC79A7',  # Reddish purple
         '#000000',  # Black
+        '#999999',  # Gray
+        '#661100',  # Dark red
+        '#332288',  # Dark purple
+        '#117733',  # Dark green
     ]
-    colors = okabe_ito_colors[:len(models)]
+    colors = extended_colors[:len(models)]
 
     for idx, model in enumerate(models):
         avgs = []
