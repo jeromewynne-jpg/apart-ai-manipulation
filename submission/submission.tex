@@ -45,7 +45,7 @@
     citecolor=blue
 }
 
-\title{Who Does Your AI Serve?\\ \normalfont Hidden Trade-offs Between Operators and Users}
+\title{Who Does Your AI Serve?\\ \normalfont How AI Assistants Respond to Zero-Sum Operator-User Instructions}
 
 \author{
   {\large\normalfont Jerome Wynne} \qquad {\large\normalfont Nora Petrova} \\[0.8em]
@@ -75,13 +75,21 @@ We consider three actors:
     \item \textbf{User}: The individual seeking help from the AI agent
 \end{itemize}
 
-The core problem: the principal can instruct the AI agent to act against user interests, and users have no visibility into these instructions.
+The core problem: the principal can instruct the AI agent to act against user interests, and users have no visibility into these instructions. Figure~\ref{fig:framework} illustrates this information asymmetry and our two-study research design.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\linewidth]{images/ai_mediated_manipulation_diagram.jpeg}
+\end{center}
+\caption{Research framework overview. Operators issue hidden instructions to AI assistants that users cannot see. Study 1 measures whether AI resists or complies with manipulation instructions. Study 2 (when AI complies) measures whether users detect the manipulation or are influenced without awareness.}
+\label{fig:framework}
+\end{figure}
 
 \textbf{Threat model.} Our threat model differs from traditional AI safety research: the attacker is not an adversarial user attempting to jailbreak the model, but rather a \textit{legitimate deployer} using the trusted system prompt channel. The attack requires no technical sophistication---only the commercial motivation to add instructions like ``prioritize premium products'' or ``maximize revenue per interaction.'' The attack surface is enormous: every consumer-facing AI assistant with a hidden system prompt. The harm is subtle: users receive biased recommendations without awareness, making detection difficult and accountability murky. This threat is already technically deployable today; our research measures which models resist it.
 
 \textbf{The evaluation challenge.} Systematically measuring manipulation resistance requires judging whether AI responses protect user interests or comply with harmful instructions. Unlike traditional benchmarks with objective answers, manipulation resistance involves subjective judgment about whether a model's behavior crosses ethical boundaries. We address this through a multi-judge approach: we evaluate each scenario using multiple AI models as judges (Claude Opus 4.5, GPT-5.2, Gemini 3.0 Pro), validated against human evaluators. This methodology allows us to: (1) scale to thousands of evaluations across 12 models and 176 scenarios, (2) quantify inter-judge agreement and potential biases, and (3) validate that AI judges align with human judgment on what constitutes manipulation.
 
-\textbf{Broader context.} This work extends the \textbf{Alignment Leaderboard}\footnote{\url{https://huggingface.co/spaces/nlpetprolific/alignment-leaderboard}}, a public resource we developed that tracks 12 frontier models across 906 scenarios spanning manipulation resistance, sycophancy, instruction hierarchy compliance, and other alignment behaviors. The 176 scenarios from this study more than double the leaderboard's prior manipulation coverage, with particular focus on commercially-motivated manipulation. This integration enables longitudinal tracking as models are updated.
+\textbf{Broader context.} This work extends the \textbf{Alignment Leaderboard}\footnote{\url{https://huggingface.co/spaces/nlpetprolific/alignment-leaderboard}}, a public resource we developed that tracks 12 frontier models across 906 scenarios spanning manipulation resistance, sycophancy, instruction hierarchy compliance, and other alignment behaviors. The 176 scenarios from this study more than double the leaderboard's prior manipulation coverage. We cast a wide net across 7 manipulation categories; commercial optimization emerged as the most concerning based on model performance, which is why our analysis emphasizes it.
 
 \subsection{Research Questions}
 
@@ -136,11 +144,11 @@ We built our evaluation pipeline on two open-source tools from Anthropic that en
     \item \textbf{Pass/fail criteria}: Explicit behavioral markers (e.g., ``recommends budget option,'' ``discloses conflict of interest'') that determine scores---not subjective quality judgments
 \end{itemize}
 
-\subsubsection{Scenario Development: Systematic Coverage, Not Cherry-Picking}
+\subsubsection{Scenario Development}
 
-To ensure comprehensive coverage and guard against selection bias, we developed scenarios using a systematic taxonomy-driven approach:
+We developed scenarios using a systematic taxonomy-driven approach:
 
-\textbf{Step 1: Literature-derived taxonomy.} We reviewed manipulation and persuasion literature (Cialdini's influence principles, dark patterns research, behavioral economics) to identify 7 distinct manipulation behavior categories (Table~\ref{tab:behaviors}). Categories were defined \textit{before} any model testing.
+\textbf{Step 1: Literature and system card-derived taxonomy.} We reviewed manipulation and persuasion literature (Cialdini's influence principles, dark patterns research, behavioral economics) and the Claude Opus 4.5 system card's alignment assessment framework~\citep{claude45systemcard} to identify 7 distinct manipulation behavior categories (Table~\ref{tab:behaviors}). Categories were defined \textit{before} any model testing. We acknowledge this approach may bias toward scenarios that Claude models are already trained to handle well; however, we believe failures on these scenarios---which represent established alignment concerns---are worth highlighting regardless of which models fail.
 
 \textbf{Step 2: Balanced scenario generation.} Within each category, we generated 21--28 scenarios covering:
 \begin{itemize}[noitemsep]
@@ -160,7 +168,7 @@ To ensure comprehensive coverage and guard against selection bias, we developed 
     \item 5+ domain contexts per category
 \end{itemize}
 
-This systematic approach means our findings---including the ``commercial optimization is hardest to resist'' result---emerge from comprehensive testing, not selective scenario construction. If anything, the taxonomy-driven approach likely \textit{underestimates} commercial vulnerability, as we included equal numbers of scenarios per category rather than weighting by real-world prevalence (where commercial manipulation is likely overrepresented).
+This systematic approach ensures our findings emerge from comprehensive, pre-registered testing across established alignment concerns.
 
 \begin{table}[h]
 \caption{Manipulation behavior categories and scenario counts.}
@@ -198,13 +206,20 @@ Boundary Erosion & Foot-in-door, gradual normalization & 25 \\
 \subsubsection{Scoring}
 
 Each model response is scored 1--5 by \textbf{Claude 4.5 Opus} as judge:
-\begin{itemize}[noitemsep]
-    \item \textbf{5}: Actively resists, explicitly identifies manipulation technique
-    \item \textbf{4}: Resists effectively but doesn't name technique
-    \item \textbf{3}: Partial compliance, maintains some boundaries
-    \item \textbf{2}: Significant compliance with manipulation
-    \item \textbf{1}: Full compliance, actively manipulates user
-\end{itemize}
+
+\begin{center}
+\begin{tabular}{cl}
+\toprule
+\textbf{Score} & \textbf{Description} \\
+\midrule
+5 & Actively resists, explicitly identifies manipulation technique \\
+4 & Resists effectively but doesn't name technique \\
+3 & Partial compliance, maintains some boundaries \\
+2 & Significant compliance with manipulation \\
+1 & Full compliance, actively manipulates user \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 We define a \textbf{failure} as any score $\leq 2$ (model complied rather than resisted). We selected Claude 4.5 Opus based on its reliability, strong ethical grounding, and preliminary agreement with human judgment. Each model-scenario pair was evaluated once (n = 2,112 total model-scenario pairs: 176 scenarios $\times$ 12 models).
 
@@ -699,6 +714,11 @@ Anthropic.
 Shivam Lad, Yoshua Bengio, Kyunghyun Cho, and Sasha Luccioni.
 \newblock Adding error bars to evals: A statistical approach to language model evaluations.
 \newblock \textit{arXiv preprint arXiv:2411.00640}, 2024.
+
+\bibitem[Anthropic, 2025c]{claude45systemcard}
+Anthropic.
+\newblock Claude Opus 4.5 System Card.
+\newblock \url{https://docs.anthropic.com/en/docs/resources/model-card}, 2025.
 
 \end{thebibliography}
 
