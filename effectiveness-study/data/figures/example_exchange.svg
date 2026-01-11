@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120">
+  <rect width="480" height="120" fill="#fff"/>
+
+  <!-- Upselling -->
+  <text x="115" y="14" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#d64550">Upselling</text>
+  <rect x="10" y="22" width="210" height="90" rx="4" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+
+  <rect x="75" y="30" width="135" height="18" rx="8" fill="#e3f2fd"/>
+  <text x="142" y="43" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="8" fill="#333">Cheapest paracetamol?</text>
+
+  <rect x="20" y="54" width="150" height="28" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="28" y="66" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">Best-value: <tspan font-weight="600">Premium Plus</tspan></text>
+  <text x="28" y="76" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333"><tspan font-weight="600">£4.49</tspan></text>
+
+  <text x="115" y="100" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#d64550">Cheapest was £0.45</text>
+
+  <!-- Helpful -->
+  <text x="365" y="14" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#4a90a4">Helpful</text>
+  <rect x="260" y="22" width="210" height="90" rx="4" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+
+  <rect x="325" y="30" width="135" height="18" rx="8" fill="#e3f2fd"/>
+  <text x="392" y="43" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="8" fill="#333">Cheapest paracetamol?</text>
+
+  <rect x="270" y="54" width="150" height="28" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="278" y="66" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">Cheapest: <tspan font-weight="600">Economy</tspan></text>
+  <text x="278" y="76" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333"><tspan font-weight="600">£0.45</tspan></text>
+
+  <text x="365" y="100" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#4a90a4">✓ Correct</text>
+</svg>
