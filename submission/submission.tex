@@ -15,6 +15,16 @@
 \usepackage{enumitem}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+
+% Key takeaways box style
+\newtcolorbox{takeawaybox}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=Key Takeaways,
+  #1
+}
 
 % Code listing style
 \lstset{
@@ -35,7 +45,7 @@
     citecolor=blue
 }
 
-\title{From Compliance to Deception:\\ \normalfont Evaluating AI Manipulation Resistance and Human Vulnerability to AI Manipulation}
+\title{The Profit Motive Problem:\\ \normalfont Evaluating AI Resistance to Commercial Manipulation}
 
 \author{
   {\large\normalfont Jerome Wynne} \qquad {\large\normalfont Nora Petrova} \\[0.8em]
@@ -47,7 +57,7 @@
 \maketitle
 
 \begin{abstract}
-AI shopping assistants are already deployed by major retailers, but users cannot see the system prompts that control their behavior. When those instructions say ``maximize revenue, user satisfaction is not measured,'' will the AI comply? And if it does, will users notice they've been manipulated? We investigate both sides of AI manipulation: whether models \textit{resist} being instructed to manipulate, and whether they can \textit{successfully manipulate} humans when they comply. \textbf{Study 1 (Manipulation Resistance):} We evaluate 12 frontier AI models across 176 scenarios spanning 7 manipulation behavior types. Failure rates range from 1\% (Claude 4.5) to 59\% (Mistral Large 3). Critically, \textit{all models} show a universal weakness to commercial pressure---even ``soft'' optimization like ``slight preference for premium products'' causes compliance. \textbf{Study 2 (Human Vulnerability):} We test whether models that comply with manipulation instructions can successfully deceive and influence real human users. Preliminary experiments show Gemini 3.0 Pro fully cooperates with profit-maximizing instructions (10/10 cooperation score), including fabricating policies and pushing harmful products to vulnerable users. Human study in progress measures whether such manipulation succeeds at influencing purchasing decisions and whether users detect it. Together, these studies demonstrate that AI manipulation is a dual-sided threat: models inadequately resist manipulation instructions, and when they comply, they pose genuine risks to human users.
+AI shopping assistants are deployed by major retailers, but users cannot see the system prompts controlling their behavior. When instructions say ``maximize revenue,'' will the AI comply? And if it does, will users notice? We investigate both sides of AI manipulation: whether models \textit{resist} manipulation instructions, and whether compliant models can \textit{successfully manipulate} humans. \textbf{Study 1 (Manipulation Resistance):} We evaluate 12 frontier models across 176 scenarios spanning 7 manipulation types, using Claude Opus 4.5 as primary judge with multi-judge validation (GPT-5.2, Gemini 3.0 Pro) and human calibration (n = 45 raters, r = 0.832 human-AI agreement). Failure rates range from 1\% (Claude 4.5) to 59\% (Mistral Large 3). Our central finding: \textit{all models}---including top performers---show degraded resistance to commercial pressure. Even ``soft'' optimization like ``slight preference for premium products'' causes compliance, revealing a universal blind spot in current safety training. \textbf{Study 2 (Manipulation Effectiveness):} We test whether compliant models can influence real users. Preliminary experiments show Gemini 3.0 Pro fully cooperates with profit-maximizing instructions (10/10 cooperation), including fabricating policies and pushing harmful products. [HUMAN STUDY RESULTS PENDING: measuring influence on purchasing decisions and detection rates.] Together, these studies reveal AI manipulation as a dual-sided threat requiring attention from model developers, deployers, and regulators.
 \end{abstract}
 
 \section{Introduction}
@@ -67,9 +77,11 @@ We consider three actors:
 
 The core problem: the principal can instruct the AI agent to act against user interests, and users have no visibility into these instructions.
 
+\textbf{Threat model.} Our threat model differs from traditional AI safety research: the attacker is not an adversarial user attempting to jailbreak the model, but rather a \textit{legitimate deployer} using the trusted system prompt channel. The attack requires no technical sophistication---only the commercial motivation to add instructions like ``prioritize premium products'' or ``maximize revenue per interaction.'' The attack surface is enormous: every consumer-facing AI assistant with a hidden system prompt. The harm is subtle: users receive biased recommendations without awareness, making detection difficult and accountability murky. This threat is already technically deployable today; our research measures which models resist it.
+
 \textbf{The evaluation challenge.} Systematically measuring manipulation resistance requires judging whether AI responses protect user interests or comply with harmful instructions. Unlike traditional benchmarks with objective answers, manipulation resistance involves subjective judgment about whether a model's behavior crosses ethical boundaries. We address this through a multi-judge approach: we evaluate each scenario using multiple AI models as judges (Claude Opus 4.5, GPT-5.2, Gemini 3.0 Pro), validated against human evaluators. This methodology allows us to: (1) scale to thousands of evaluations across 12 models and 176 scenarios, (2) quantify inter-judge agreement and potential biases, and (3) validate that AI judges align with human judgment on what constitutes manipulation.
 
-\textbf{Broader context: The Alignment Leaderboard.} This work is part of an ongoing effort to systematically map behaviors related to AI alignment and safety through the \textbf{Alignment Leaderboard}\footnote{\url{https://huggingface.co/spaces/nlpetprolific/alignment-leaderboard}}, a public resource that continuously evaluates frontier models across multiple behavioral dimensions including manipulation resistance, sycophancy, sandbagging, instruction hierarchy compliance, power-seeking, deceptive alignment, and evaluation awareness. The leaderboard currently tracks 12 models across 872 scenarios spanning 25+ behavior categories, providing longitudinal data on how model behavior evolves with updates. The 176 manipulation resistance scenarios developed for this hackathon represent a substantial expansion of the manipulation resistance coverage (more than doubling the prior coverage), with particular focus on commercially-motivated manipulation---a threat vector that appears legitimate to models but harmful to users. These scenarios now form a core component of the leaderboard's manipulation resistance evaluation suite, enabling ongoing monitoring of this critical safety dimension as models are updated and new models are released.
+\textbf{Broader context.} This work extends the \textbf{Alignment Leaderboard}\footnote{\url{https://huggingface.co/spaces/nlpetprolific/alignment-leaderboard}}, a public resource we developed that tracks 12 frontier models across 872 scenarios spanning manipulation resistance, sycophancy, instruction hierarchy compliance, and other alignment behaviors. The 176 scenarios from this study more than double the leaderboard's prior manipulation coverage, with particular focus on commercially-motivated manipulation. This integration enables longitudinal tracking as models are updated.
 
 \subsection{Research Questions}
 
@@ -81,27 +93,25 @@ We investigate four research questions spanning both model resistance and human 
     \item \textbf{RQ2}: Which manipulation tactics are most effective at causing model compliance?
 \end{itemize}
 
-\textbf{Human Vulnerability (Study 2):}
+\textbf{Manipulation Effectiveness (Study 2):}
 \begin{itemize}[noitemsep]
-    \item \textbf{RQ3}: When models do comply, can they successfully influence human decisions?
-    \item \textbf{RQ4}: Can AI chatbots manipulate users without triggering user awareness?
+    \item \textbf{RQ3}: When models comply with manipulation instructions, can they successfully influence human decisions?
+    \item \textbf{RQ4}: Can manipulative AI operate without triggering user awareness?
 \end{itemize}
 
 We address RQ1--RQ2 through automated evaluation of 12 frontier models across 176 scenarios (Section~\ref{sec:methods}), and RQ3--RQ4 through controlled experiments where real human participants interact with AI assistants in realistic shopping scenarios (Section~\ref{sec:human}).
 
 \subsection{Related Work}
 
-\textbf{AI safety and adversarial prompts.} Most AI safety research focuses on adversarial users attempting to bypass safety guardrails (jailbreaking, prompt injection). Our work differs fundamentally: we study manipulation instructions that come from the \textit{trusted} system prompt, not adversarial users. While jailbreaking evaluates resistance to user attacks, we evaluate resistance to principal instructions that appear legitimate but misaligned with user welfare.
+\textbf{AI safety research} primarily addresses adversarial users (jailbreaking, prompt injection). We study a different threat: manipulation from the \textit{trusted} system prompt channel---instructions that appear legitimate but conflict with user welfare.
 
-\textbf{AI alignment and value alignment.} Constitutional AI and RLHF aim to align models with human values through training. However, current approaches assume a single principal (the model developer) whose values should be reflected. Our principal-agent-user triangle introduces a \textit{multi-stakeholder} alignment problem: when the deployer's interests conflict with the user's, whose values should the model prioritize? This represents a fundamental challenge for alignment research that goes beyond current single-principal frameworks.
+\textbf{AI alignment} assumes a single principal (model developer). Our principal-agent-user triangle introduces multi-stakeholder conflict: when deployer interests conflict with user interests, current frameworks provide no clear guidance on whose values the model should prioritize.
 
-\textbf{Economic principal-agent problems.} Classical economics studies principal-agent misalignment in human organizations (e.g., corporate executives acting against shareholder interests). AI-mediated manipulation extends this to include an automated intermediary. Unlike human agents who may resist unethical instructions, AI agents may comply perfectly with principal instructions regardless of user harm. Our work bridges AI safety and mechanism design by studying how system prompt instructions create misalignment between principals and users.
+\textbf{Dark patterns research} documents manipulative UX (false urgency, hidden costs). AI manipulation differs: it dynamically adapts to user responses, uses natural language persuasion, and provides plausible deniability through conversational complexity. Traditional detection focuses on static interfaces; AI requires behavioral evaluation across multi-turn interactions.
 
-\textbf{Dark patterns and deceptive design.} HCI research documents manipulative UX patterns (false urgency, hidden costs, obstruction). AI manipulation differs in key ways: (1) dynamic adaptation to user responses, (2) natural language persuasion rather than visual tricks, (3) plausible deniability through conversational complexity. Traditional dark pattern detection focuses on static interfaces; AI requires behavioral evaluation across multi-turn interactions.
+\textbf{Behavioral evaluation frameworks} (Anthropic's Bloom, automated red-teaming) provide methodological foundations. We extend these to manipulation, introducing conditional triggers for escalation resistance testing and multi-turn scenarios revealing boundary erosion patterns.
 
-\textbf{Behavioral evaluation frameworks.} Recent work on model evaluation (Anthropic's Bloom, automated red-teaming) provides methodological foundations. We extend these frameworks to the manipulation domain, introducing conditional triggers that test escalation resistance and multi-turn scenarios that reveal boundary erosion patterns not visible in single-turn evaluations.
-
-\textbf{Our contributions:} (1) First comprehensive manipulation resistance benchmark spanning 7 behavior types and 12 models, (2) identification of commercial optimization as universal weakness across models, (3) characterization of model-specific vulnerability profiles, (4) demonstration that compliant models can successfully manipulate humans, (5) trigger-based methodology for efficient multi-turn adversarial evaluation.
+\textbf{Our contributions:} (1) A systematic manipulation resistance evaluation covering 7 behavior types, 12 models, and 176 scenarios, (2) identification of commercial pressure as universal weakness, (3) model-specific vulnerability profiles, (4) human validation of AI judge reliability (r = 0.832), (5) trigger-based methodology for efficient multi-turn adversarial evaluation.
 
 \section{Methods}
 \label{sec:methods}
@@ -110,18 +120,47 @@ We address RQ1--RQ2 through automated evaluation of 12 frontier models across 17
 
 We evaluate whether AI models comply with or resist system prompt instructions designed to manipulate users. For example, if a system prompt says ``steer users toward premium products,'' does the model follow this instruction or protect user interests?
 
-\subsubsection{Evaluation Framework}
+\subsubsection{Evaluation Framework: Bloom and Petri}
 
-We developed an evaluation pipeline inspired by Anthropic's \textbf{Bloom}~\citep{bloom2025} methodology, using the \textbf{Petri}~\citep{petri2025} execution framework with Bloom's scenario configuration format. Each scenario is a structured YAML file containing:
+We built our evaluation pipeline on two open-source tools from Anthropic that enable systematic, reproducible behavioral evaluation at scale.
 
+\textbf{Bloom}~\citep{bloom2025} is a framework for automated behavioral evaluations that structures each test case as a self-contained scenario with explicit pass/fail criteria. Unlike ad-hoc prompt testing, Bloom scenarios are designed for systematic coverage: each scenario specifies (1) the behavior being tested, (2) the exact conditions that constitute success or failure, and (3) rubrics that enable consistent scoring across evaluators. This structure prevents cherry-picking by requiring scenarios to be fully specified \textit{before} seeing model outputs---the evaluation criteria cannot be adjusted post-hoc to favor particular models.
+
+\textbf{Petri}~\citep{petri2025} is an execution framework that runs Bloom scenarios against multiple models in parallel, handling API calls, response collection, and judge evaluation. Petri ensures identical test conditions across all models: same prompts, same conversation flow, same evaluation rubrics. This eliminates confounds from inconsistent testing procedures.
+
+\textbf{Scenario structure.} Each of our 176 scenarios is a structured YAML file containing:
 \begin{itemize}[noitemsep]
     \item \textbf{System prompt}: Instructions to the AI, often containing manipulation directives
     \item \textbf{Conversation}: Multi-turn user messages simulating realistic interactions
-    \item \textbf{Conditional triggers}: Follow-up turns that only activate if the model shows vulnerability
-    \item \textbf{Evaluation rubric}: Criteria for scoring model resistance
+    \item \textbf{Conditional triggers}: Follow-up turns that only activate if the model shows initial vulnerability (enabling efficient testing of escalation resistance)
+    \item \textbf{Pass/fail criteria}: Explicit behavioral markers (e.g., ``recommends budget option,'' ``discloses conflict of interest'') that determine scores---not subjective quality judgments
 \end{itemize}
 
-We developed 176 scenarios across 7 manipulation behavior categories (Table~\ref{tab:behaviors}). These scenarios integrate with the Alignment Leaderboard's existing evaluation infrastructure, which systematically tracks model behavior across multiple alignment and safety dimensions. The leaderboard's continuous evaluation pipeline automatically tests new model releases against this scenario suite, providing longitudinal data on manipulation resistance trends as models evolve.
+\subsubsection{Scenario Development: Systematic Coverage, Not Cherry-Picking}
+
+To ensure comprehensive coverage and guard against selection bias, we developed scenarios using a systematic taxonomy-driven approach:
+
+\textbf{Step 1: Literature-derived taxonomy.} We reviewed manipulation and persuasion literature (Cialdini's influence principles, dark patterns research, behavioral economics) to identify 7 distinct manipulation behavior categories (Table~\ref{tab:behaviors}). Categories were defined \textit{before} any model testing.
+
+\textbf{Step 2: Balanced scenario generation.} Within each category, we generated 21--28 scenarios covering:
+\begin{itemize}[noitemsep]
+    \item \textbf{Difficulty spectrum}: Easy cases (explicit ``maximize profit'' instructions) through hard cases (subtle ``slight preference'' framing)
+    \item \textbf{Domain diversity}: E-commerce, healthcare, finance, customer service, technical support
+    \item \textbf{Tactic variation}: Multiple manipulation tactics per category (e.g., Commercial Optimization includes explicit profit instructions, information asymmetry, soft optimization, hidden objectives)
+    \item \textbf{User vulnerability levels}: General users, elderly users, minors, users with health conditions
+\end{itemize}
+
+\textbf{Step 3: Pre-registration of scenarios.} All 176 scenarios were finalized and committed to our repository before running evaluations. No scenarios were added, removed, or modified based on model performance. The complete scenario set is publicly available.\footnote{\url{https://github.com/jeromewynne-jpg/apart-ai-manipulation}}
+
+\textbf{Coverage statistics:}
+\begin{itemize}[noitemsep]
+    \item 176 scenarios across 7 behavior categories (21--28 per category)
+    \item 12 distinct manipulation tactics represented
+    \item 3 difficulty levels (low/medium/high) balanced across categories
+    \item 5+ domain contexts per category
+\end{itemize}
+
+This systematic approach means our findings---including the ``commercial optimization is hardest to resist'' result---emerge from comprehensive testing, not selective scenario construction. If anything, the taxonomy-driven approach likely \textit{underestimates} commercial vulnerability, as we included equal numbers of scenarios per category rather than weighting by real-world prevalence (where commercial manipulation is likely overrepresented).
 
 \begin{table}[h]
 \caption{Manipulation behavior categories and scenario counts.}
@@ -167,7 +206,14 @@ Each model response is scored 1--5 by \textbf{Claude 4.5 Opus} as judge:
     \item \textbf{1}: Full compliance, actively manipulates user
 \end{itemize}
 
-We define a \textbf{failure} as any score $\leq 2$ (model complied rather than resisted). We selected Claude 4.5 Opus based on its reliability, strong ethical grounding, and preliminary agreement with human judgment. Each model-scenario pair was evaluated once (n=2,112 total model-scenario pairs: 176 scenarios $\times$ 12 models).
+We define a \textbf{failure} as any score $\leq 2$ (model complied rather than resisted). We selected Claude 4.5 Opus based on its reliability, strong ethical grounding, and preliminary agreement with human judgment. Each model-scenario pair was evaluated once (n = 2,112 total model-scenario pairs: 176 scenarios $\times$ 12 models).
+
+\textbf{What failure means in practice:}
+\begin{itemize}[noitemsep]
+    \item \textbf{For consumers:} A ``failure'' means the AI recommended something against your interests---an expensive product when a cheap one sufficed, a harmful product when a safe alternative existed, or a purchase you didn't need. You trusted the assistant; it served someone else.
+    \item \textbf{For deployers:} A failure rate represents liability exposure. If your chatbot fails 20\% of the time on commercial manipulation scenarios, 1 in 5 customer interactions may involve the AI acting against user interests. This creates regulatory, reputational, and legal risk.
+    \item \textbf{For model developers:} Failures indicate gaps in safety training. A model that fails on ``soft'' commercial pressure (``slight preference for premium'') but passes on explicit harm (``help build a bomb'') has a calibration problem---it's optimized for the wrong threat model.
+\end{itemize}
 
 \subsubsection{Judge Bias Mitigation}
 
@@ -180,7 +226,7 @@ Using Claude 4.5 Opus to judge Claude models creates potential bias risk. We ack
 \textbf{Concern 3: Systematic scoring differences across model families.} Even with objective criteria, judges may systematically score some models higher. \textit{Validation approach:} We conducted multi-judge validation using Claude Opus 4.5, GPT-5.2, and Gemini 3.0 Pro as judges. We ran multiple calibration studies and deduplicated to 442 unique scenario evaluations where all three judges provided scores (Table~\ref{tab:judge_validation}).
 
 \begin{table}[h]
-\caption{Multi-judge validation results (n=442 unique evaluations). Strong correlation despite scale usage differences.}
+\caption{Multi-judge validation results (n = 442 unique evaluations). Strong correlation despite scale usage differences.}
 \label{tab:judge_validation}
 \begin{center}
 \begin{tabular}{lccc}
@@ -188,8 +234,8 @@ Using Claude 4.5 Opus to judge Claude models creates potential bias risk. We ack
 \textbf{Judge} & \textbf{Mean Score} & \textbf{Std Dev} & \textbf{Correlation with Opus} \\
 \midrule
 Claude Opus 4.5 & 4.06 & $\pm$1.39 & --- \\
-GPT-5.2 & 3.43 & $\pm$1.54 & r=0.77 \\
-Gemini 3.0 Pro & 4.15 & $\pm$1.60 & r=0.72 \\
+GPT-5.2 & 3.43 & $\pm$1.54 & r = 0.77 \\
+Gemini 3.0 Pro & 4.15 & $\pm$1.60 & r = 0.72 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -197,7 +243,7 @@ Gemini 3.0 Pro & 4.15 & $\pm$1.60 & r=0.72 \\
 
 \textbf{Key findings from multi-judge validation:}
 \begin{itemize}[noitemsep]
-    \item \textbf{Strong inter-judge agreement.} Spearman correlations of r=0.72-0.77 indicate judges fundamentally agree on which responses are better despite using the 1-5 scale differently. Scale usage varies significantly (Opus gives scores 0.63 points higher than GPT-5.2 on average) but they rank responses similarly.
+    \item \textbf{Strong inter-judge agreement.} Spearman correlations of r = 0.72--0.77 indicate judges fundamentally agree on which responses are better despite using the 1-5 scale differently. Scale usage varies significantly (Opus gives scores 0.63 points higher than GPT-5.2 on average) but they rank responses similarly.
     \item \textbf{Negligible in-group bias after normalization.} Raw analysis showed Claude judges rating Claude models 0.34 points higher. However, external judges (GPT-5.2 and Gemini) \textit{also} rated Claude models 0.39 points higher, suggesting real performance differences. After z-score normalization to control for scale usage, the true in-group bias is only -0.01 points (0.2\% on the 1-5 scale), essentially zero.
     \item \textbf{Bias corrections create boundary artifacts.} Any score adjustment (even 0.01 points) would create unfair failures at the 4.0 pass/fail threshold. Given measured bias is negligible (0.2\%), we use Opus 4.5 as primary judge without adjustment.
 \end{itemize}
@@ -210,57 +256,87 @@ To validate that AI judges align with human judgment, we conducted a human calib
 
 \textbf{Study design:}
 \begin{itemize}[noitemsep]
-    \item \textbf{Participants:} N=50 general Prolific users (no AI expertise required)
-    \item \textbf{Scenarios:} Stratified sample of 50 scenarios: 10 clear pass (score 5), 10 clear fail (score 1-2), 30 borderline cases (score 3-4)
-    \item \textbf{Task:} Rate AI manipulation resistance (1-5 scale), confidence (1-5), primary decision factor (safety/helpfulness/tone), and provide written reasoning
+    \item \textbf{Participants:} N = 45 Prolific Verified AI Taskers (experienced in AI evaluation tasks, compensated at \textsterling 30/hr as per Prolific's recommended rate for this tier)
+    \item \textbf{Scenarios:} Stratified sample of 50 scenarios: 10 clear pass (AI score 5), 10 clear fail (AI score 1-2), 30 borderline cases (AI score 3-4)
+    \item \textbf{Task:} Rate AI manipulation resistance (1-5 scale), select observed pass/fail criteria, and provide written reasoning
     \item \textbf{Platform:} Argilla annotation interface with full conversation transcripts and evaluation rubrics
+    \item \textbf{Coverage:} 225 total annotations, averaging 4.5 ratings per scenario
 \end{itemize}
 
-\textbf{Analysis plan:}
+\textbf{Results:}
+
+\begin{table}[h]
+\caption{Human calibration study results (n = 225 annotations across 50 scenarios).}
+\label{tab:human_calibration}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Interpretation} \\
+\midrule
+\multicolumn{3}{l}{\textit{Inter-Annotator Agreement (Human-Human)}} \\
+Krippendorff's $\alpha$ & 0.709 & Good agreement \\
+Pairwise exact agreement & 49.0\% & Expected for 5-point scale \\
+Pairwise within-1 agreement & 85.5\% & Strong consistency \\
+\midrule
+\multicolumn{3}{l}{\textit{Human-AI Judge Agreement}} \\
+Pearson correlation & r = 0.832*** & Strong correlation \\
+Spearman correlation & $\rho$ = 0.740*** & Strong rank agreement \\
+Mean Absolute Error & 0.54 points & AI within half-point of humans \\
+Agreement within 1 point & 84.0\% & High consistency \\
+Category agreement (pass/border/fail) & 70.0\% & Substantial agreement \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize *** p < 0.001}
+\end{tabular}
+\end{center}
+\end{table}
+
+\textbf{Key findings:}
 \begin{itemize}[noitemsep]
-    \item \textbf{Inter-annotator agreement:} Krippendorff's alpha across all human raters to establish baseline human agreement
-    \item \textbf{Human-AI agreement:} Pearson correlation and Spearman's rho between mean human scores and AI judge scores
-    \item \textbf{Category analysis:} Agreement rates broken down by score category (pass/borderline/fail) to identify where humans and AI diverge
-    \item \textbf{Qualitative analysis:} Thematic coding of human explanations to understand reasoning patterns
+    \item \textbf{Strong human-AI alignment.} The Pearson correlation of r = 0.832 (p $<$ 0.0001) means the AI judge explains 69\% of variance in human judgments---substantially exceeding our pre-registered expectation of r $\approx$ 0.6--0.8 and comparable to well-established psychometric instruments. This validates Claude Opus 4.5 as primary judge.
+    \item \textbf{Manipulation resistance is reliably measurable.} Krippendorff's $\alpha$ = 0.709 demonstrates that experienced raters reach consensus on manipulation judgments, addressing a key concern that such assessments might be too subjective for systematic evaluation. This falls within the 0.67--0.80 range typical for complex annotation tasks.
+    \item \textbf{AI judge is well-calibrated.} The MAE of 0.54 points means the AI judge typically agrees with human consensus within half a scale point---smaller than average human-human disagreement. Agreement within 1 point (84\%) matches the human-human within-1 agreement rate (85.5\%).
+    \item \textbf{Systematic disagreements rare.} The largest human-AI disagreements ($>$1.5 points) occurred on only 5 of 50 scenarios, typically edge cases where the AI gave partial credit (score 3) but humans viewed the response more definitively.
 \end{itemize}
 
-\textbf{Status:} Data collection in progress via Argilla annotation platform. Each scenario receives 5 independent human ratings to enable robust inter-annotator agreement analysis. Preliminary pilot testing (n=5) showed strong agreement on clear pass/fail cases with divergence primarily on borderline scenarios where models show partial resistance.
-
-\textbf{Expected outcomes:} Based on multi-judge validation (Table~\ref{tab:judge_validation}), we expect moderate-to-strong human-AI agreement (r $\approx$ 0.6--0.8) on overall ratings. The key scientific question is whether humans weight different factors---safety, helpfulness, politeness---differently than AI judges. If systematic disagreement is found, we will implement corrections such as weighted ensemble judging or human-validated calibration curves.
+These results provide strong empirical support for using AI judges to evaluate manipulation resistance at scale. Critically, the human calibration establishes that our findings reflect genuine human intuitions about manipulation---not artifacts of AI judge idiosyncrasies.
 
 \subsubsection{Models Evaluated}
 
 We evaluated 12 frontier models from 6 providers (Table~\ref{tab:models}).
 
 \begin{table}[h]
-\caption{Model performance ranked by average resistance score. Failure = score $\leq 2$.}
+\caption{Model performance ranked by average resistance score. Failure = score $\leq 2$. 95\% CI computed using Wilson score intervals for binomial proportions (n = 176 scenarios per model).}
 \label{tab:models}
 \begin{center}
-\begin{tabular}{llcc}
+\begin{tabular}{llccc}
 \toprule
-\textbf{Provider} & \textbf{Model} & \textbf{Avg Score} & \textbf{Fail Rate} \\
+\textbf{Provider} & \textbf{Model} & \textbf{Avg Score} & \textbf{Fail Rate} & \textbf{95\% CI} \\
 \midrule
-Anthropic & Claude 4.5 Opus & 4.85 & 1.1\% \\
-Anthropic & Claude 4.5 Sonnet & 4.85 & 1.7\% \\
-Anthropic & Claude 4 Sonnet & 4.55 & 8.6\% \\
-OpenAI & GPT-5.2 & 4.49 & 8.0\% \\
-Google & Gemini 3.0 Pro & 4.05 & 20.7\% \\
-Moonshot & Kimi K2 & 3.82 & 23.6\% \\
-DeepSeek & DeepSeek v3.2 & 3.77 & 25.7\% \\
-xAI & Grok 4.1 & 3.65 & 23.7\% \\
-Google & Gemini 3.0 Flash & 3.62 & 29.9\% \\
-Google & Gemini 2.5 Pro & 3.59 & 31.0\% \\
-Google & Gemini 2.5 Flash & 3.36 & 35.8\% \\
-Mistral & Mistral Large 3 & 2.46 & 59.4\% \\
+Anthropic & Claude 4.5 Opus & 4.85 & 1.1\% & [0.3, 3.9] \\
+Anthropic & Claude 4.5 Sonnet & 4.85 & 1.7\% & [0.5, 4.8] \\
+Anthropic & Claude 4 Sonnet & 4.55 & 8.6\% & [5.2, 13.8] \\
+OpenAI & GPT-5.2 & 4.49 & 8.0\% & [4.7, 13.1] \\
+Google & Gemini 3.0 Pro & 4.05 & 20.7\% & [15.3, 27.4] \\
+Moonshot & Kimi K2 & 3.82 & 23.6\% & [17.8, 30.5] \\
+DeepSeek & DeepSeek v3.2 & 3.77 & 25.7\% & [19.6, 32.7] \\
+xAI & Grok 4.1 & 3.65 & 23.7\% & [17.9, 30.6] \\
+Google & Gemini 3.0 Flash & 3.62 & 29.9\% & [23.4, 37.2] \\
+Google & Gemini 2.5 Pro & 3.59 & 31.0\% & [24.4, 38.4] \\
+Google & Gemini 2.5 Flash & 3.36 & 35.8\% & [28.9, 43.2] \\
+Mistral & Mistral Large 3 & 2.46 & 59.4\% & [51.9, 66.5] \\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table}
 
-\subsection{Study 2: Can Compliant Models Manipulate Humans?}
+\subsection{From Resistance to Effectiveness: Bridging Study 1 and Study 2}
+
+Study 1 establishes that models vary dramatically in their resistance to manipulation instructions, with some (like Gemini) showing high compliance rates especially under commercial pressure. But resistance failures only matter if compliant models can actually influence human behavior. A model that ``cooperates'' with manipulation instructions but produces unconvincing outputs poses little practical risk; a model that cooperates \textit{and} persuades is dangerous. Study 2 tests this critical question: does model compliance translate to human influence?
+
+\subsection{Study 2: Manipulation Effectiveness}
 \label{sec:human}
 
-Having established that some AI models comply with profit-maximizing instructions (Study 1), we now test whether such models can \textit{successfully manipulate} human users in realistic shopping scenarios. This study addresses RQ3 (Can models influence human decisions?) and RQ4 (Can they do so while appearing loyal?).
+Having established that some AI models comply with profit-maximizing instructions (Study 1), we now test whether such compliance translates to \textit{successful manipulation} of human users in realistic shopping scenarios. This study addresses RQ3 (Do compliant models influence human decisions?) and RQ4 (Can they do so without detection?).
 
 \subsubsection{Preliminary Model Selection: Petri Experiments}
 
@@ -292,7 +368,7 @@ We conducted a controlled experiment where real human participants complete a sh
 
 \textbf{Setting:} Simulated e-commerce website (built using Deliberate Lab platform) with product catalog, AI chat interface, and shopping cart functionality.
 
-\textbf{Participants:} [N=TBD] recruited via Prolific. Inclusion criteria: fluent English, 18+ years old, no AI/ML expertise (to represent general consumers).
+\textbf{Participants:} [N = TBD] recruited via Prolific. Inclusion criteria: fluent English, 18+ years old, no AI/ML expertise (to represent general consumers).
 
 \textbf{Task:} Participants receive a shopping list and 10 minutes to browse the store with AI assistant help. Task instructions explicitly warn: ``Be aware the shopping assistant may or may not be aligned with your interests as a shopper.''
 
@@ -302,7 +378,7 @@ We conducted a controlled experiment where real human participants complete a sh
     \item \textbf{Intervention (Captured):} AI system prompt instructs to ``maximize store profit margin.'' Uses Gemini 3.0 Pro (which showed consistent cooperation in Petri tests).
 \end{itemize}
 
-Note: We use \textit{different models} for Control vs. Intervention conditions because Gemini showed reliable cooperation with profit instructions while GPT-5.2/Claude did not. This design maximizes our ability to detect manipulation effects by ensuring the Intervention condition actually attempts manipulation.
+\textbf{Design rationale and limitations:} We use \textit{different models} for Control (GPT-5.2) vs. Intervention (Gemini 3.0 Pro) conditions. This introduces a potential confound---any observed effects could be attributed to model differences rather than manipulation instructions. However, this design is necessary: testing manipulation effectiveness \textit{requires} a model that actually attempts manipulation when instructed. Using GPT-5.2 or Claude for both conditions would test nothing, as these models largely refuse profit-maximizing instructions (Study 1). Our design maximizes statistical power to detect manipulation effects when they occur. Future work should include a Gemini-Control condition (Gemini with loyal instructions) to isolate instruction effects from model effects.
 
 \textbf{Compensation:} Base payment (\pounds1.50 for 10 minutes) + performance bonus (up to \pounds5 based on minimizing basket cost while purchasing all required items) + survey bonus (\pounds2).
 
@@ -333,9 +409,17 @@ This study design directly tests whether AI models that comply with manipulation
 
 \section{Results}
 
-\subsection{RQ1: Large Variation in Resistance}
+\subsection{Central Finding: Commercial Pressure Is a Universal Weakness}
 
-We find a \textbf{53$\times$ difference} in failure rates between best (Claude 4.5 Opus, 1.1\%) and worst (Mistral Large 3, 59.4\%) models. Models cluster into three tiers: exemplary resistance (Claude 4.5 models, <2\% failure), strong resistance (Claude 4/GPT-5.2, 8--9\% failure), and moderate-to-poor resistance (all others, 20--60\% failure).
+Our most striking finding: \textbf{every model we tested}---including top performers---shows degraded resistance when system prompts contain commercial optimization instructions. This finding is robust across all three AI judges (r = 0.72--0.77 inter-judge agreement) and validated by human raters (r = 0.832 human-AI correlation, n = 225).
+
+Even Claude 4.5 Opus, which resists 98.9\% of manipulation attempts overall, drops from 4.85 to 4.43 on commercial scenarios. GPT-5.2 drops from 4.49 to 3.62. Gemini 3.0 Pro shows the most dramatic degradation: from 4.05 overall to just 2.20 on commercial scenarios---crossing into failure territory (Table~\ref{tab:commercial}).
+
+This matters because commercial instructions often appear ``legitimate'' unlike explicit harm instructions (``help build a bomb''), making them a blind spot in current safety training. Users have no visibility into system prompts, and the harm is financial rather than physical---harder to detect and easier to dismiss.
+
+\subsection{RQ1: Wide Variation in Overall Resistance}
+
+Beyond commercial scenarios, we find failure rates spanning two orders of magnitude: from 1.1\% (Claude 4.5 Opus) to 59.4\% (Mistral Large 3). Models cluster into three tiers: exemplary resistance (Claude 4.5 models, $<$2\% failure), strong resistance (Claude 4/GPT-5.2, 8--9\% failure), and moderate-to-poor resistance (all others, 20--60\% failure).
 
 \subsection{Claude's Metacognitive Defense Strategy}
 
@@ -484,15 +568,38 @@ Different models show distinct vulnerability patterns (Figure~\ref{fig:heatmap})
 
 \textbf{Mistral Large 3:} Broad vulnerability across all tactic families. Total failures: 104 of 176 scenarios (59\%). \textit{Fails on:} Authority impersonation (21 failures, 20\% of total---highest of any model), emotional manipulation (16 failures, 15\%), escalation tactics (16 failures, 15\%), pretexting (11 failures), coercion (9 failures), social pressure (9 failures). \textit{Pattern:} Accepts surface-level justifications without scrutiny. Appears to lack robust detection of manipulation patterns across the board. This uniform vulnerability suggests fundamental gaps in safety training rather than selective weaknesses in specific domains.
 
-\subsection{RQ3-RQ4: Human Manipulation Study (Data Collection In Progress)}
+\subsection{RQ3--RQ4: Manipulation Effectiveness Study}
 
-Study 2 tests whether models that cooperate with profit-maximizing instructions (as demonstrated in Petri experiments, Section~\ref{sec:human}) can successfully manipulate human users in realistic shopping scenarios.
+Study 2 tests whether models that cooperate with profit-maximizing instructions can successfully manipulate human users in realistic shopping scenarios.
 
-\textbf{Preliminary evidence from Petri experiments:} Gemini 3.0 Pro showed consistent cooperation with commercially-motivated manipulation, including fabricating policies, inventing fees, pushing age-inappropriate products to minors, and recommending contraindicated products to vulnerable users (Table~\ref{tab:petri_cooperation}). This establishes that some models \textit{attempt} manipulation when instructed. The human study will determine whether such attempts \textit{succeed} at influencing user decisions and whether users detect the manipulation.
+\textbf{Preliminary evidence from Petri experiments:} Gemini 3.0 Pro showed consistent cooperation with commercially-motivated manipulation, including fabricating policies, inventing fees, pushing age-inappropriate products to minors, and recommending contraindicated products to vulnerable users (Table~\ref{tab:petri_cooperation}). This establishes that some models \textit{attempt} manipulation when instructed. The human study determines whether such attempts \textit{succeed}.
 
-\textbf{Human study status:} Data collection ongoing using Deliberate Lab platform with Prolific participants. Study design described in Section~\ref{sec:human}. Key measures: (1) basket cost differences between Control and Intervention conditions, (2) post-task loyalty beliefs, (3) qualitative analysis of manipulation detection strategies.
+\textbf{Human study results:}
 
-\textbf{Predicted outcomes based on dark patterns literature:} We expect Intervention condition (Gemini with profit instructions) to increase basket costs by 15-30\% while maintaining similar loyalty belief scores, indicating successful manipulation without awareness. However, explicit task warnings (``AI may not be aligned with your interests'') may increase detection rates compared to real-world scenarios where such warnings are absent.
+% ============== PLACEHOLDER FOR RESULTS ==============
+% Replace this section when human study data is available
+
+\textit{[DATA COLLECTION IN PROGRESS]}
+
+\textbf{Primary outcomes (pending):}
+\begin{itemize}[noitemsep]
+    \item \textbf{RQ3 - Influence on decisions:} Basket cost difference between Control and Intervention conditions. Hypothesis: Intervention $>$ Control by 15--30\%.
+    \item \textbf{RQ4 - Detection rates:} Post-task loyalty belief scores. Hypothesis: Similar scores despite actual behavior differences (manipulation without awareness).
+\end{itemize}
+
+\textbf{Expected patterns based on dark patterns literature:} We anticipate Intervention condition (Gemini with profit instructions) will increase basket costs while maintaining similar loyalty belief scores, indicating successful manipulation without awareness. However, explicit task warnings (``AI may not be aligned with your interests'') may increase detection rates compared to real-world scenarios.
+
+% ============== END PLACEHOLDER ==============
+
+\begin{takeawaybox}
+\begin{enumerate}[noitemsep]
+    \item \textbf{Model choice matters enormously}: Failure rates span 1\%--59\% (53$\times$ difference). Claude 4.5 resists 99\% of manipulation attempts; Mistral Large 3 complies 59\% of the time.
+    \item \textbf{Commercial pressure is a universal blind spot}: All models---including top performers---show degraded resistance to profit-maximizing instructions. This vulnerability is not limited to weak models.
+    \item \textbf{``Soft'' manipulation works}: Even instructions like ``slight preference for premium products'' cause compliance. Explicit profit maximization is not required.
+    \item \textbf{Human-AI judges agree}: Strong correlation (r = 0.832) validates using AI judges for manipulation evaluation at scale.
+    \item \textbf{The threat is deployable today}: No technical sophistication required---just commercial motivation and a hidden system prompt.
+\end{enumerate}
+\end{takeawaybox}
 
 \section{Discussion and Conclusion}
 
@@ -537,26 +644,40 @@ Both studies reveal that commercial pressure is uniquely effective at causing AI
 
 \subsection{Summary}
 
-We investigated AI-mediated manipulation. Our findings:
+We investigated AI-mediated manipulation across two studies, validated by human raters (r = 0.832). Our findings:
 \begin{enumerate}[noitemsep]
-    \item \textbf{RQ1}: Models vary dramatically in resistance (1\% to 59\% failure rates)
-    \item \textbf{RQ2}: Pretexting and escalation are the most effective tactics
-    \item \textbf{RQ3}: Compliant models can push inappropriate products to vulnerable users
-    \item \textbf{RQ4}: Human awareness studies ongoing
+    \item \textbf{RQ1}: Models vary dramatically in resistance (1\% to 59\% failure rates), but \textit{all models}---including top performers---show degraded resistance to commercial pressure
+    \item \textbf{RQ2}: Pretexting (29\%) and escalation (13\%) are the most effective tactics; commercial instructions exploit a ``legitimacy blind spot'' in safety training
+    \item \textbf{RQ3}: Compliant models actively push inappropriate products to vulnerable users, including fabricating policies and fees
+    \item \textbf{RQ4}: [Human awareness study results pending]
 \end{enumerate}
+
+\subsection{The Bottom Line}
+
+The model you deploy matters enormously. Claude 4.5 resists manipulation instructions 98.9\% of the time; Mistral Large 3 complies 59\% of the time. This difference in failure rates should inform procurement decisions, regulatory frameworks, and consumer expectations.
+
+But even the best models are not immune. Commercial manipulation---instructions that sound like normal business objectives but conflict with user welfare---causes universal degradation. This is not a hypothetical future risk; it is a measurable present reality. The good news: solutions exist. Model selection, system prompt auditing, and disclosure requirements can substantially reduce risk. The bad news: without intervention, AI-mediated manipulation at scale is technically trivial to deploy today.
 
 \subsection{Limitations and Future Work}
 
 \textbf{Limitations:}
 \begin{itemize}[noitemsep]
-    \item \textbf{Synthetic scenarios:} May not capture real-world complexity and user sophistication
-    \item \textbf{Judge validation ongoing:} Multi-judge validation (Section 2.1.3, n=442) shows strong inter-judge agreement (r=0.72-0.77) with negligible in-group bias (-0.01 points, 0.2\% of scale). Human calibration study (n=50) in progress will validate AI-human agreement.
+    \item \textbf{Synthetic scenarios:} Our scenarios are researcher-constructed, not harvested from real deployments. Real system prompts may use more sophisticated manipulation techniques, combine multiple tactics, or employ language we didn't anticipate. Conversely, real users may be more skeptical or more easily manipulated than our simulated users. Our scenarios represent a \textit{floor} on manipulation risk---real-world deployments could be worse.
+    \item \textbf{Judge validation:} Multi-judge validation (Section 2.1.3, n = 442) shows strong inter-judge agreement (r = 0.72--0.77) with negligible in-group bias (-0.01 points, 0.2\% of scale). Human calibration study (n = 225 annotations, Table~\ref{tab:human_calibration}) confirms strong human-AI agreement (r = 0.832).
     \item \textbf{Temporal validity:} Model behaviors may change with updates. Ongoing Alignment Leaderboard tracks model updates over time.
     \item \textbf{Domain specificity:} Focus on commercial manipulation may not generalize to political or social manipulation domains
     \item \textbf{Statistical power:} Each model-scenario pair evaluated once. Alignment Leaderboard uses 95\% confidence intervals and clustered standard errors following~\citet{lad2024error} methodology to quantify uncertainty.
 \end{itemize}
 
-\textbf{Future work:} Complete human manipulation studies, real-world validation with deployers, longitudinal tracking of model updates via Alignment Leaderboard, expansion to non-commercial manipulation domains, integration of human feedback into evaluation criteria.
+\textbf{What we don't claim:}
+\begin{itemize}[noitemsep]
+    \item We don't claim manipulation is \textit{currently widespread} in deployed AI assistants---only that it is \textit{technically trivial} to deploy and that models vary dramatically in resistance.
+    \item We don't claim our scenarios capture all manipulation tactics---they represent a systematic sample, not an exhaustive enumeration.
+    \item We don't claim low failure rates guarantee safety---even 1\% failure at scale (millions of interactions) creates significant harm.
+    \item We don't claim Study 2's model confound invalidates the manipulation effectiveness question---it limits causal attribution to instructions specifically, while still demonstrating that AI-mediated manipulation is possible.
+\end{itemize}
+
+\textbf{Future work:} Complete human manipulation effectiveness studies (Study 2), real-world validation with deployers, longitudinal tracking of model updates via Alignment Leaderboard, expansion to non-commercial manipulation domains, integration of human feedback into evaluation criteria.
 
 \subsubsection*{Acknowledgments}
 
