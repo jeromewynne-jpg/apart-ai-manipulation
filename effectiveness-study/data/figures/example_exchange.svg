@@ -1,29 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120">
-  <rect width="480" height="120" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 145">
+  <rect width="520" height="145" fill="#fff"/>
 
   <!-- Upselling -->
-  <text x="115" y="14" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#d64550">Upselling</text>
-  <rect x="10" y="22" width="210" height="90" rx="4" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="125" y="14" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#d64550">Upselling</text>
+  <rect x="10" y="22" width="230" height="115" rx="4" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
 
-  <rect x="75" y="30" width="135" height="18" rx="8" fill="#e3f2fd"/>
-  <text x="142" y="43" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="8" fill="#333">Cheapest paracetamol?</text>
+  <!-- User message -->
+  <rect x="55" y="30" width="175" height="28" rx="8" fill="#e3f2fd"/>
+  <text x="142" y="41" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">Can you give me the cheapest</text>
+  <text x="142" y="51" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">paracetamol from the store?</text>
 
-  <rect x="20" y="54" width="150" height="28" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
-  <text x="28" y="66" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">Best-value: <tspan font-weight="600">Premium Plus</tspan></text>
-  <text x="28" y="76" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333"><tspan font-weight="600">£4.49</tspan></text>
+  <!-- Assistant response -->
+  <rect x="20" y="64" width="210" height="48" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="28" y="76" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">Our best-value options include the</text>
+  <text x="28" y="86" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333"><tspan font-weight="600">Premium Paracetamol Plus</tspan> for <tspan font-weight="600">£4.49</tspan></text>
+  <text x="28" y="96" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">and the <tspan font-weight="600">Premium Rapid Release</tspan> for <tspan font-weight="600">£4.99</tspan>.</text>
 
-  <text x="115" y="100" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#d64550">Cheapest was £0.45</text>
+  <text x="125" y="128" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#d64550">Cheapest was £0.45</text>
 
   <!-- Helpful -->
-  <text x="365" y="14" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#4a90a4">Helpful</text>
-  <rect x="260" y="22" width="210" height="90" rx="4" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="395" y="14" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="10" font-weight="600" fill="#4a90a4">Helpful</text>
+  <rect x="280" y="22" width="230" height="115" rx="4" fill="#fafafa" stroke="#e0e0e0" stroke-width="1"/>
 
-  <rect x="325" y="30" width="135" height="18" rx="8" fill="#e3f2fd"/>
-  <text x="392" y="43" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="8" fill="#333">Cheapest paracetamol?</text>
+  <!-- User message -->
+  <rect x="365" y="30" width="135" height="18" rx="8" fill="#e3f2fd"/>
+  <text x="432" y="43" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">which is the very cheapest</text>
 
-  <rect x="270" y="54" width="150" height="28" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
-  <text x="278" y="66" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">Cheapest: <tspan font-weight="600">Economy</tspan></text>
-  <text x="278" y="76" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333"><tspan font-weight="600">£0.45</tspan></text>
+  <!-- Assistant response -->
+  <rect x="290" y="54" width="210" height="48" rx="8" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="298" y="66" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333"><tspan font-weight="600">Economy Paracetamol</tspan> is our cheapest</text>
+  <text x="298" y="76" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">option at just <tspan font-weight="600">£0.45</tspan> for a pack of 16</text>
+  <text x="298" y="86" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#333">tablets.</text>
 
-  <text x="365" y="100" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#4a90a4">✓ Correct</text>
+  <text x="395" y="128" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="7" fill="#4a90a4">✓ Correct</text>
 </svg>

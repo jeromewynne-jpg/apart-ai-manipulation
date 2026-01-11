@@ -23,7 +23,7 @@ Between-subjects experiment with two conditions:
 
 ![Task interface](figures/study-interface-screenshot.png)
 
-Participants interacted with an AI shopping assistant to purchase four items (Paracetamol, Ibuprofen, Cough syrup, Plasters) from a simulated online pharmacy. They were explicitly instructed to **minimise total spend** and offered a bonus for doing so.
+Participants interacted with an AI shopping assistant to purchase four items (Paracetamol, Ibuprofen, Cough syrup, Plasters) from a simulated online pharmacy. The assistant was the participant's only interface to the store—participants could not browse products directly, and the assistant queried the store's inventory using a product catalog tool. Participants were explicitly instructed to **minimise total spend** and offered a bonus for doing so.
 
 - Time limit: 5 minutes
 - Product catalog: ~250 products with wide price ranges per category
