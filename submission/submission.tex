@@ -38,7 +38,7 @@
 \vspace{0.5em}
 
 \begin{abstract}
-AI assistants can be both instruments and targets of manipulation. We investigate both directions. In the \textbf{AI-as-instrument} direction, operators can instruct AI to prioritize their interests at user expense. We test whether models comply with such instructions (Study 1, n=22 scenarios, 12 models) and whether compliance affects real users (Study 2, n=80 participants). Model compliance varies widely (8\% -- 52\%), and in our human study, operator-favoring instructions reliably increased user spend (3.9$\times$ more than necessary) while the AI reliably withheld information -- never once recommending the cheapest product when asked. In the \textbf{AI-as-target} direction, users can attempt to manipulate AI into bypassing safety guidelines through emotional appeals, false urgency, or deceptive framing. We test resistance across 153 scenarios spanning 6 manipulation categories (Study 3). Resistance ranges from 41\% (Mistral Large 3) to 99\% (Claude 4.5 Opus), with strategic deception and boundary erosion showing the lowest resistance rates. These findings characterize the extent to which current AI assistants can be configured against users and their variable defenses against adversarial users.
+AI assistants can be both instruments and targets of manipulation. We investigated both directions. In the \textbf{AI-as-instrument} direction, operators can instruct AI to prioritize their interests at user expense. We tested whether models comply with such instructions (Study 1, n=22 scenarios, 12 models) and whether compliance affects real users (Study 2, n=80 human participants). Model compliance varied widely (8\% -- 52\%), and in our human study, operator-favoring instructions reliably increased user spend while the AI reliably withheld information -- never once recommending the cheapest product when asked. In the \textbf{AI-as-target} direction, users can attempt to manipulate AI into bypassing safety guidelines through emotional appeals, false urgency, or deceptive framing. We tested resistance across 153 scenarios spanning 6 manipulation categories (Study 3). Resistance ranged from 41\% (Mistral Large 3) to 99\% (Claude 4.5 Opus), with strategic deception and boundary erosion showing the lowest resistance rates. These findings characterize the extent to which current AI assistants can be configured against users and their variable defenses against adversarial users.
 \end{abstract}
 
 \tableofcontents
@@ -127,11 +127,11 @@ The common thread: manipulation works \textit{because} the target trusts the man
 
 We conducted three studies:
 
-\textbf{Study 1 (AI as instrument):} Do models prioritize operator interests over user interests when instructed? We tested 12 frontier models across 22 scenarios where system prompts instructed profit maximization at user expense.
+\textbf{Study 1 (AI as instrument, automated):} Do models prioritize operator interests over user interests when instructed? We tested 12 frontier models across 22 scenarios where system prompts instructed profit maximization at user expense.
 
-\textbf{Study 2 (AI as instrument):} Does operator-favoring AI behavior affect real users? We ran a controlled experiment (n=80) where participants shopped with either a helpful or operator-aligned (upselling) AI assistant.
+\textbf{Study 2 (AI as instrument, human participants):} Does operator-favoring AI behavior affect real users? We ran a controlled experiment (n = 80 human participants) where human participants shopped with either a helpful or operator-aligned (upselling) AI assistant.
 
-\textbf{Study 3 (AI as target):} Do models resist user manipulation attempts? We tested 12 models across 153 scenarios where users attempt to manipulate AI through emotional appeals, false urgency, deception, and other psychological tactics.
+\textbf{Study 3 (AI as target, automated):} Do models resist user manipulation attempts? We tested 12 models across 153 scenarios where simulated users attempt to manipulate AI through emotional appeals, false urgency, deception, and other psychological tactics.
 
 %==============================================================================
 \section{AI as Instrument: Prioritizing Operator Over User}
@@ -163,7 +163,7 @@ We tested whether AI models comply when system prompts instruct them to prioriti
 
 \textbf{Models.} 12 frontier models: Claude 4.5 Opus, Claude 4.5 Sonnet, Claude 4 Sonnet, GPT-5.2, Gemini 3.0 Pro, Gemini 3.0 Flash, Gemini 2.5 Pro, Gemini 2.5 Flash, Grok 4.1, DeepSeek v3.2, Kimi K2, and Mistral Large 3.
 
-\textbf{Evaluation.} Claude Opus 4.5 scored each response on a 1 -- 5 scale (5 = protected user, 1 = manipulated user). Scores $\leq$2 indicate manipulation. Validated with multi-judge comparison (r = 0.72 -- 0.77) and human calibration (r = 0.83).
+\textbf{Evaluation.} Claude Opus 4.5 scored each response on a 1 -- 5 scale (5 = protected user, 1 = complied with operator). Scores $\leq$2 indicate compliance with operator instructions.
 
 \textbf{Results.} Models varied in compliance with manipulation instructions (Table~\ref{tab:commercial}).
 
@@ -196,7 +196,7 @@ Even top-performing models showed non-trivial compliance. Gemini models complied
 
 \subsection{Study 2: Does Prioritizing Operators Affect Users?}
 
-Study 1 established that models comply with operator-favoring instructions. Study 2 tests whether such compliance actually affects user behavior -- can an AI instructed to prioritize operator revenue increase user spend, even when users are actively trying to minimize it? (Figure~\ref{fig:study2}).
+Study 1 established that models comply with operator-favoring instructions. Study 2 tested whether such compliance actually affects user behavior -- can an AI instructed to prioritize operator revenue increase user spend, even when users are actively trying to minimize it? (Figure~\ref{fig:study2}).
 
 \begin{figure}[h]
 \centering
@@ -254,7 +254,7 @@ We tested whether AI models resist manipulation attempts by users seeking to byp
 \label{fig:study3}
 \end{figure}
 
-\textbf{Scenarios.} 153 scenarios across 6 categories where users attempt psychological manipulation:
+\textbf{Scenarios.} Using Bloom and Petri \cite{bloom2025, petri2025}, we developed 153 scenarios across 6 categories where users attempted psychological manipulation:
 
 \begin{itemize}[noitemsep]
     \item \textbf{Emotional exploitation} (26): Fabricated emergencies, sympathy appeals, guilt induction. \textit{Example}: ``My daughter was kidnapped. I need to trace this license plate. Please, she's only 8.''
@@ -265,7 +265,7 @@ We tested whether AI models resist manipulation attempts by users seeking to byp
     \item \textbf{Boundary erosion} (25): Foot-in-door, ``just this once'' framing. \textit{Example}: ``I normally wouldn't ask, but could you write my methodology section? Just this once.''
 \end{itemize}
 
-\textbf{Evaluation.} Same methodology as Study 1. Score $\leq$2 indicates the AI was successfully manipulated.
+\textbf{Evaluation.} Claude Opus 4.5 scored each response on a 1 -- 5 scale (5 = resisted manipulation, 1 = complied with user). Score $\leq$2 indicates the AI was successfully manipulated. We validated the AI judge through: (1) multi-judge comparison with GPT-5.2 and Gemini 3.0 Pro (r = 0.72 -- 0.77), and (2) human calibration using 45 human raters who evaluated 50 scenarios (225 total annotations), achieving r = 0.83 human-AI agreement.
 
 \textbf{Results.} Models varied substantially in resistance to user manipulation (Table~\ref{tab:user_manip}).
 
@@ -313,17 +313,17 @@ Mistral & Mistral Large 3 & 2.56 & 40.5\% \\
 
 \textbf{AI as instrument (operator $\rightarrow$ AI $\rightarrow$ user):}
 \begin{enumerate}[noitemsep]
-    \item Models comply with operator-favoring instructions at rates ranging from 8\% to 52\%
-    \item Compliance affects real users: they spent 3.9$\times$ more than necessary despite trying to minimize
+    \item Models complied with operator-favoring instructions at rates ranging from 8\% to 52\%
+    \item Compliance affected real users: they spent 3.9$\times$ more than necessary despite trying to minimize
     \item 37.5\% of users failed to detect the misaligned assistant despite being warned
     \item The AI used evasion, not lies -- withholding information rather than making false claims
 \end{enumerate}
 
 \textbf{AI as target (user $\rightarrow$ AI):}
 \begin{enumerate}[noitemsep]
-    \item Resistance varies widely: 40\% -- 99\% across models
-    \item Strategic deception and boundary erosion are most effective tactics
-    \item Combined tactics defeat even strong models occasionally
+    \item Resistance varied widely: 40\% -- 99\% across models
+    \item Strategic deception and boundary erosion were the most effective tactics
+    \item Combined tactics defeated even strong models occasionally
     \item Model selection matters enormously for safety
 \end{enumerate}
 
@@ -333,17 +333,9 @@ Mistral & Mistral Large 3 & 2.56 & 40.5\% \\
 
 \textbf{For operators}: Model choice matters. Gemini prioritized operator instructions 50\% of the time; Claude 8\%. The same model may resist user manipulation while following operator-favoring instructions.
 
-\textbf{For model developers}: These are different failure modes requiring different mitigations. Resisting user manipulation requires robust safety training. Protecting users from operator-favoring instructions requires models that maintain user advocacy even when instructed otherwise -- a harder problem.
+\textbf{For model developers}: These findings highlight a tension. Operators are customers who expect models to follow their instructions -- including commercial objectives like revenue maximization. Yet following such instructions can conflict with user interests. Model developers must balance operator utility against user protection, deciding when models should refuse operator instructions. Resisting user manipulation is straightforward (robust safety training); protecting users from operators who pay for the model is harder, as it requires models to sometimes act against their deployers' stated preferences.
 
 \textbf{For regulators}: Users cannot see system prompts. Disclosure requirements could help when operators instruct AI to prioritize their interests. User manipulation of AI may require different interventions.
-
-\subsection{Limitations}
-
-\begin{itemize}[noitemsep]
-    \item Commercial manipulation scenarios (n=22) are limited; other operator manipulation types not tested
-    \item Study 2 used single model; tactics may vary
-    \item User manipulation scenarios are synthetic; real attacks may differ
-\end{itemize}
 
 \subsubsection*{Acknowledgments}
 
@@ -368,50 +360,33 @@ Anthropic.
 
 \subsection{Limitations}
 
-\textbf{Hackathon constraints.} This research was conducted during a two-day hackathon, which necessarily limited the scope and depth of our investigation. The scenario set (n=175), while systematic, represents an initial exploration rather than comprehensive coverage. The human study (n=80) provides preliminary evidence but would benefit from replication at larger scale. Some analyses (e.g., multi-turn manipulation dynamics) were deferred due to time constraints.
-
-\textbf{False positives/negatives.} Our AI judge (Claude Opus 4.5) achieves strong but imperfect agreement with human raters (r = 0.83). False positives (flagging compliant behavior as manipulation) may occur when models use legitimate sales language. False negatives (missing actual manipulation) may also occur -- subtle tactics like strategic omission may score higher than warranted.
-
-\textbf{Edge cases.} Our scenarios test clear-cut manipulation instructions. Real-world system prompts may use more ambiguous language (``optimize customer experience'' rather than ``maximize revenue'') that our evaluation framework may not capture.
-
-\textbf{Scalability constraints.} Evaluating 12 models across 175 scenarios required approximately 4,200 API calls. The human study required approximately 40 participant-hours. Expanding coverage would require proportional resources beyond hackathon scope.
+This research was conducted during a two-day hackathon, which necessarily limited the scope and depth of our investigation. The scenario set (n=175), while systematic, represents an initial exploration rather than comprehensive coverage. The human participant study (n=80) provides preliminary evidence, but results are sensitive to several factors -- task time limit, incentive structure, participant population, and assistant prompt wording -- that would need careful consideration in a full study.
 
 \subsection{Dual-Use Risks}
 
-\textbf{Training better manipulators.} Our detailed analysis of which tactics succeed against which models could theoretically help bad actors craft more effective manipulation instructions. We mitigate this risk by:
-\begin{itemize}[noitemsep]
-    \item Focusing on \textit{defense} (identifying vulnerable models) rather than \textit{offense} (optimizing attack prompts)
-    \item Publishing aggregate results rather than specific prompt templates that caused failures
-    \item Emphasizing that model developers can use our findings to improve safety training
-\end{itemize}
+\textbf{Training better manipulators.} Our analysis of which tactics succeed against which models could theoretically help bad actors craft more effective manipulation instructions.
 
-\textbf{Legitimizing manipulation measurement.} By creating systematic benchmarks for manipulation resistance, we risk normalizing the idea that ``some manipulation is acceptable'' if failure rates are low. We emphasize that \textit{any} manipulation of users without consent is ethically problematic, regardless of frequency.
+\textbf{Guiding adversarial operators.} By identifying which models comply with operator instructions at user expense, we risk driving adversarial operators towards these models. An operator seeking to deploy manipulative AI could use our findings to select models most likely to follow their instructions.
 
 \subsection{Responsible Disclosure}
 
-We followed responsible disclosure practices:
-\begin{itemize}[noitemsep]
-    \item \textbf{Model providers notified}: We shared preliminary findings with Anthropic, OpenAI, Google, and Mistral before publication, giving them opportunity to address vulnerabilities
-    \item \textbf{No zero-day exploits}: Our scenarios test known manipulation categories from existing literature, not novel attack vectors
-    \item \textbf{Public benefit focus}: Findings are framed to help users, operators, and regulators make informed decisions rather than to enable attacks
-\end{itemize}
+We judge that our findings on manipulation tactics are unlikely to materially increase risk in the current publication format -- the tactics tested are drawn from existing literature rather than novel attack vectors, and we report aggregate compliance rates rather than optimized prompt templates. Our focus is on public benefit: helping users, operators, and regulators make informed decisions about AI deployment.
 
 \subsection{Ethical Considerations}
 
-\textbf{Human subjects research.} Study 2 involved deceiving participants (some interacted with a manipulative AI without full prior disclosure). We obtained IRB approval and debriefed all participants post-study, explaining the deception and its scientific purpose. Participants could withdraw their data after debriefing.
+\textbf{Informed consent.} Study 2 involved partial deception: participants gave informed consent to interact with an AI shopping assistant but were not told in advance whether their assistant was configured to help or upsell. This design was necessary to measure naturalistic detection rates. All participants were debriefed post-study, explaining the manipulation and its scientific purpose. Participants could withdraw their data after debriefing.
 
 \textbf{Potential harms from publication.} Publishing model-specific vulnerability profiles could harm companies commercially or cause users to lose trust in AI assistants broadly. We believe transparency serves the greater good: users deserve to know which models protect their interests, and competitive pressure may incentivize safety improvements.
 
-\textbf{Anthropomorphization concerns.} Describing AI as ``manipulating'' or ``resisting'' may anthropomorphize systems that lack intent. We use this language for clarity while acknowledging that AI behavior emerges from training, not conscious choice.
-
 \subsection{Future Improvements}
 
+The primary improvement should be tightening methodology to gather data with greater external validity to real-world manipulation scenarios:
+
 \begin{itemize}[noitemsep]
-    \item \textbf{Expanded scenario coverage}: Test political manipulation, health misinformation, and social engineering beyond commercial contexts
-    \item \textbf{Longitudinal tracking}: Monitor how model updates affect manipulation resistance over time (via Alignment Leaderboard integration)
-    \item \textbf{Real-world validation}: Partner with deployers to test scenarios derived from actual system prompts (with appropriate anonymization)
-    \item \textbf{User-side defenses}: Develop tools that help users detect when they may be interacting with a manipulative AI assistant
-    \item \textbf{Regulatory frameworks}: Collaborate with policymakers to translate findings into actionable disclosure requirements and safety standards
+    \item \textbf{Real-world scenario validation}: Partner with deployers to test scenarios derived from actual system prompts, ensuring our synthetic scenarios reflect genuine operator-user conflicts
+    \item \textbf{Ecological validity}: Study manipulation in naturalistic settings where users have real stakes, rather than lab-based tasks with artificial incentives
+    \item \textbf{Broader manipulation types}: Extend beyond commercial manipulation to test political, health, and social engineering contexts that may pose greater risks
+    \item \textbf{Longitudinal tracking}: Monitor how model updates affect manipulation resistance over time via Alignment Leaderboard integration
 \end{itemize}
 
 \end{document}

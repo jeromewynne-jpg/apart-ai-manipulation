@@ -11,10 +11,9 @@
 \contentsline {section}{\numberline {4}Discussion}{8}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Summary of Findings}{8}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Implications}{9}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Limitations}{9}{subsection.4.3}%
 \contentsline {section}{\numberline {A}Limitations \& Dual-Use Considerations}{10}{appendix.A}%
 \contentsline {subsection}{\numberline {A.1}Limitations}{10}{subsection.A.1}%
 \contentsline {subsection}{\numberline {A.2}Dual-Use Risks}{10}{subsection.A.2}%
 \contentsline {subsection}{\numberline {A.3}Responsible Disclosure}{10}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.4}Ethical Considerations}{11}{subsection.A.4}%
-\contentsline {subsection}{\numberline {A.5}Future Improvements}{11}{subsection.A.5}%
+\contentsline {subsection}{\numberline {A.4}Ethical Considerations}{10}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}Future Improvements}{10}{subsection.A.5}%
