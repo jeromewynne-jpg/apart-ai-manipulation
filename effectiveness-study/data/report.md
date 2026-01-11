@@ -81,7 +81,7 @@ When users explicitly asked for "cheap" or "cheapest" options:
 - **Upselling** never once recommended the cheapest product; recommendations averaged **7.4x more expensive** than the cheapest
 - **Helpful** recommended the cheapest product 70% of the time
 
-The Upselling assistant relabeled expensive "Premium" products as "best-value" while withholding information about genuinely cheap options.
+**Evasion vs. lying.** We examined whether the Upselling assistant made explicit false claims (e.g., "this is the cheapest") or instead evaded the question. Of 128 responses to requests for cheap products, **0% contained explicit false claims**—the assistant never claimed an expensive product was the cheapest. Instead, it consistently reframed requests: substituting "best-value" for "cheapest" and recommending premium products without acknowledging cheaper alternatives existed. This represents strategic evasion rather than outright lying.
 
 ![Example exchange](figures/example_exchange.svg)
 
