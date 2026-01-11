@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}AI as Instrument: The Operator-User Conflict}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}AI as Target: User Manipulation of AI}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}What is Manipulation?}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}What We Tested}{4}{subsection.1.4}%
+\contentsline {section}{\numberline {2}AI as Instrument: Prioritizing Operator Over User}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Study 1: Do Models Prioritize Operators Over Users?}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Study 2: Does Prioritizing Operators Affect Users?}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}AI as Target: User Manipulation of AI}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Study 3: Do Models Resist User Manipulation?}{7}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Discussion}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Summary of Findings}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Implications}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Limitations}{9}{subsection.4.3}%
+\contentsline {section}{\numberline {A}Limitations \& Dual-Use Considerations}{10}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Limitations}{10}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Dual-Use Risks}{10}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Responsible Disclosure}{10}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Ethical Considerations}{11}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}Future Improvements}{11}{subsection.A.5}%

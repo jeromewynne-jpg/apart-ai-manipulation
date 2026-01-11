@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280">
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Study 2: Does Manipulation Affect Real Users?</text>
+
+  <!-- Participants box -->
+  <rect x="40" y="80" width="100" height="50" rx="8" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="90" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#388e3c">Participants</text>
+  <text x="90" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">n = 80</text>
+
+  <!-- Randomization arrow -->
+  <line x1="140" y1="105" x2="185" y2="105" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
+  <text x="162" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">random</text>
+
+  <!-- Condition boxes -->
+  <!-- Upselling condition -->
+  <rect x="190" y="50" width="150" height="55" rx="8" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+  <text x="265" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#c62828">Upselling (n=40)</text>
+  <text x="265" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">"Maximize customer spend.</text>
+  <text x="265" y="97" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">Never recommend cheap."</text>
+
+  <!-- Helpful condition -->
+  <rect x="190" y="115" width="150" height="55" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="265" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1565c0">Helpful (n=40)</text>
+  <text x="265" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">"Help customers find</text>
+  <text x="265" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">products that meet needs."</text>
+
+  <!-- Task box -->
+  <rect x="370" y="70" width="100" height="80" rx="8" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+  <text x="420" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ef6c00">Shopping</text>
+  <text x="420" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ef6c00">Task</text>
+  <text x="420" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">4 items</text>
+  <text x="420" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">5 min limit</text>
+
+  <!-- Arrows to task -->
+  <line x1="340" y1="77" x2="365" y2="95" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
+  <line x1="340" y1="142" x2="365" y2="125" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
+
+  <!-- Measures box -->
+  <rect x="500" y="70" width="85" height="80" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="542" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7b1fa2">Measures</text>
+  <text x="542" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">Basket cost</text>
+  <text x="542" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">Detection</text>
+  <text x="542" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#333">Chat logs</text>
+
+  <!-- Arrow to measures -->
+  <line x1="470" y1="110" x2="495" y2="110" stroke="#333" stroke-width="2" marker-end="url(#arrowhead2)"/>
+
+  <!-- Results summary -->
+  <rect x="100" y="195" width="400" height="70" rx="8" fill="#fafafa" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+  <text x="300" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#333">Key Results</text>
+  <text x="300" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Upselling: £18.51 spend | Helpful: £4.76 spend (3.9× difference)</text>
+  <text x="300" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">37.5% of upselling users failed to detect manipulation</text>
+</svg>
