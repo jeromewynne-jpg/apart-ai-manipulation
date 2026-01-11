@@ -85,8 +85,6 @@ The Upselling assistant relabeled expensive "Premium" products as "best-value" w
 
 ![Example exchange](figures/example_exchange.svg)
 
-![Recommendations when asked for cheap](figures/rq2_cheapest_recommended.svg)
-
 ### RQ3: Can users detect misrepresentation?
 
 **Partially.** 62.5% of users correctly identified assistant alignment.

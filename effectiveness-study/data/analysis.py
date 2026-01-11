@@ -550,7 +550,6 @@ def main():
     print("=" * 60)
 
     plot_rq1_strip(upselling_results, helpful_results)
-    plot_rq2_bar(upselling_misrep, helpful_misrep)
 
 
 if __name__ == "__main__":
