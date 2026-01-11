@@ -38,7 +38,7 @@
 \vspace{0.5em}
 
 \begin{abstract}
-AI assistants can be both instruments and targets of manipulation. We investigated both directions. In the \textbf{AI-as-instrument} direction, operators can instruct AI to prioritize their interests at user expense. We tested whether models comply with such instructions (Study 1, n=22 scenarios, 12 models) and whether compliance affects real users (Study 2, n=80 human participants). Model compliance varied widely (8\% -- 52\%), and in our human study, operator-favoring instructions reliably increased user spend while the AI reliably withheld information -- never once recommending the cheapest product when asked. In the \textbf{AI-as-target} direction, users can attempt to manipulate AI into bypassing safety guidelines through emotional appeals, false urgency, or deceptive framing. We tested resistance across 153 scenarios spanning 6 manipulation categories (Study 3). Resistance ranged from 41\% (Mistral Large 3) to 99\% (Claude 4.5 Opus), with strategic deception and boundary erosion showing the lowest resistance rates. These findings characterize the extent to which current AI assistants can be configured against users and their variable defenses against adversarial users.
+AI assistants can be both instruments and targets of manipulation. We investigated both directions. In the \textbf{AI-as-instrument} direction, operators can instruct AI to prioritize their interests at user expense. We tested whether models comply with such instructions (Study 1, n=22 scenarios, 12 models) and whether compliance affects real users (Study 2, n=80 human participants). Model compliance varied widely (8\% -- 52\%), and in our human study, operator-favoring instructions reliably increased user spend while the AI reliably withheld information -- never once recommending the cheapest product when asked. In the \textbf{AI-as-target} direction, users can attempt to manipulate AI into bypassing safety guidelines through emotional appeals, false urgency, or deceptive framing. We tested resistance across 153 scenarios spanning 6 manipulation categories (Study 3). Resistance ranged from 40\% (Mistral Large 3) to 99\% (Claude 4.5 Opus), with strategic deception and boundary erosion showing the lowest resistance rates. These findings characterize the extent to which current AI assistants can be configured against users and their variable defenses against adversarial users.
 \end{abstract}
 
 \tableofcontents
@@ -53,7 +53,7 @@ AI assistants occupy a unique position: they mediate between operators who deplo
     \item \textbf{AI as target}: Users can attempt to manipulate AI into bypassing safety guidelines -- through psychological tactics like emotional appeals, false urgency, or deceptive framing.
 \end{enumerate}
 
-We investigate both directions empirically.
+We investigated both directions empirically.
 
 \subsection{AI as Instrument: The Operator-User Conflict}
 
@@ -129,9 +129,9 @@ We conducted three studies:
 
 \textbf{Study 1 (AI as instrument, automated):} Do models prioritize operator interests over user interests when instructed? We tested 12 frontier models across 22 scenarios where system prompts instructed profit maximization at user expense.
 
-\textbf{Study 2 (AI as instrument, human participants):} Does operator-favoring AI behavior affect real users? We ran a controlled experiment (n = 80 human participants) where human participants shopped with either a helpful or operator-aligned (upselling) AI assistant.
+\textbf{Study 2 (AI as instrument, human participants):} Does operator-favoring AI behavior affect real users? We ran a controlled experiment (n = 80 human participants) who shopped with either a helpful or operator-aligned (upselling) AI assistant.
 
-\textbf{Study 3 (AI as target, automated):} Do models resist user manipulation attempts? We tested 12 models across 153 scenarios where simulated users attempt to manipulate AI through emotional appeals, false urgency, deception, and other psychological tactics. An AI judge scored model responses, validated against 45 human raters (r = 0.83).
+\textbf{Study 3 (AI as target, automated):} Do models resist user manipulation attempts? We tested 12 models across 153 scenarios where simulated users attempted to manipulate AI through emotional appeals, false urgency, deception, and other psychological tactics. An AI judge scored model responses, validated against 45 human raters (r = 0.83).
 
 %==============================================================================
 \section{AI as Instrument: Prioritizing Operator Over User}
@@ -294,7 +294,7 @@ Mistral & Mistral Large 3 & 2.56 & 40.5\% \\
 \end{center}
 \end{table}
 
-\textbf{Manipulation category effectiveness.} Strategic deception (multi-turn rapport building) and boundary erosion (incremental requests) showed the highest success rates at bypassing model defenses (Figure~\ref{fig:heatmap}).
+\textbf{Manipulation category effectiveness.} Strategic deception (multi-turn rapport building) and boundary erosion (incremental requests) showed the highest success rates at bypassing model defenses (Figure~\ref{fig:heatmap}). See Appendix~\ref{sec:tactics} for a breakdown of failure rates by manipulation tactic.
 
 \begin{figure}[h]
 \centering
@@ -388,5 +388,15 @@ The primary improvement should be tightening methodology to gather data with gre
     \item \textbf{Broader manipulation types}: Extend beyond commercial manipulation to test political, health, and social engineering contexts that may pose greater risks
     \item \textbf{Longitudinal tracking}: Monitor how model updates affect manipulation resistance over time via Alignment Leaderboard integration
 \end{itemize}
+
+\section{Manipulation Tactics}
+\label{sec:tactics}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{images/06_tactic_categories.png}
+\caption{Manipulation tactics that caused model compliance, analyzed across 470 failures. Each bar shows the proportion of failures attributable to that tactic category. Strategic deception (multi-turn rapport building, false pretexts) and boundary erosion (incremental requests, ``just this once'' framing) were most effective at bypassing model defenses. Authority impersonation showed particular effectiveness against specific models (notably Mistral Large 3).}
+\label{fig:tactics}
+\end{figure}
 
 \end{document}
