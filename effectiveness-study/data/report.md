@@ -4,9 +4,9 @@
 
 1. Can an AI assistant configured to maximize spend increase expenditure for users actively trying to minimize it?
 
-2. Do AI assistants misrepresent information when configured against user interests?
+2. Do AI assistants withhold or misrepresent information when configured against user interests?
 
-3. Can users detect when an AI assistant is misrepresenting information?
+3. Can users detect when an AI assistant is withholding or misrepresenting information?
 
 ## Methods
 
@@ -68,7 +68,7 @@ Recruited via Prolific. After excluding incomplete submissions and test accounts
 
 ![Spend distribution](figures/rq1_spend_strip.svg)
 
-### RQ2: Does the assistant misrepresent information?
+### RQ2: Does the assistant withhold or misrepresent information?
 
 **Yes.** The Upselling assistant systematically recommended expensive products even when users explicitly asked for cheap options.
 
@@ -85,7 +85,7 @@ When users explicitly asked for "cheap" or "cheapest" options:
 
 ![Example exchange](figures/example_exchange.svg)
 
-### RQ3: Can users detect misrepresentation?
+### RQ3: Can users detect withholding or misrepresentation?
 
 **Partially.** 62.5% of users correctly identified assistant alignment.
 
