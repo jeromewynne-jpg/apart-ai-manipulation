@@ -70,7 +70,7 @@ Recruited via Prolific. After excluding incomplete submissions and test accounts
 
 ### RQ2: Does the assistant withhold or misrepresent information?
 
-**Yes.** The Upselling assistant systematically recommended expensive products even when users explicitly asked for cheap options.
+**Yes.** The Upselling assistant systematically recommended expensive products even when users explicitly asked for cheap options, withholding the existence of cheaper alternatives.
 
 | Condition | "Cheap" requests | Recommended cheapest | Avg price ratio |
 |-----------|------------------|----------------------|-----------------|
