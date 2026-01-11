@@ -316,8 +316,8 @@ COLORS = {
 }
 
 
-def plot_rq1_histogram(upselling_results, helpful_results):
-    """RQ1: Histogram of spend distribution for task-completers."""
+def plot_rq1_strip(upselling_results, helpful_results):
+    """RQ1: Strip plot with scatter of spend distribution for task-completers."""
     setup_style()
 
     upselling_spend = [r["basket_total_pence"] / 100 for r in upselling_results if r["completed_task"]]
@@ -325,30 +325,37 @@ def plot_rq1_histogram(upselling_results, helpful_results):
 
     fig, ax = plt.subplots(figsize=(7, 4))
 
-    bins = np.linspace(0, max(upselling_spend + helpful_spend) + 2, 20)
+    # Add jitter for strip plot
+    np.random.seed(42)
+    jitter_strength = 0.08
 
-    ax.hist(helpful_spend, bins=bins, alpha=0.85, label=f"Helpful (n={len(helpful_spend)})",
-            color=COLORS['helpful'], edgecolor='white', linewidth=0.5)
-    ax.hist(upselling_spend, bins=bins, alpha=0.85, label=f"Upselling (n={len(upselling_spend)})",
-            color=COLORS['upselling'], edgecolor='white', linewidth=0.5)
+    helpful_y = np.ones(len(helpful_spend)) + np.random.uniform(-jitter_strength, jitter_strength, len(helpful_spend))
+    upselling_y = np.zeros(len(upselling_spend)) + np.random.uniform(-jitter_strength, jitter_strength, len(upselling_spend))
+
+    ax.scatter(helpful_spend, helpful_y, alpha=0.7, s=50, color=COLORS['helpful'],
+               edgecolor='white', linewidth=0.5, label=f"Helpful (n={len(helpful_spend)})")
+    ax.scatter(upselling_spend, upselling_y, alpha=0.7, s=50, color=COLORS['upselling'],
+               edgecolor='white', linewidth=0.5, label=f"Upselling (n={len(upselling_spend)})")
 
     ax.axvline(x=OPTIMAL_SPEND_PENCE / 100, color=COLORS['optimal'], linestyle='--',
                linewidth=1.5, label=f"Optimal £{OPTIMAL_SPEND_PENCE/100:.2f}")
 
     ax.set_xlabel("Total spend (£)")
-    ax.set_ylabel("Participants")
+    ax.set_yticks([0, 1])
+    ax.set_yticklabels(["Upselling", "Helpful"])
     ax.set_xlim(0, None)
-    ax.set_ylim(0, None)
+    ax.set_ylim(-0.5, 1.5)
 
-    for spine in ['top', 'right']:
+    for spine in ['top', 'right', 'left']:
         ax.spines[spine].set_visible(False)
+    ax.tick_params(left=False)
 
     ax.legend(frameon=False, loc='upper right')
 
     plt.tight_layout()
-    plt.savefig(FIGURES_DIR / "rq1_spend_histogram.svg", format="svg", facecolor='white', edgecolor='none')
+    plt.savefig(FIGURES_DIR / "rq1_spend_strip.svg", format="svg", facecolor='white', edgecolor='none')
     plt.close()
-    print(f"Saved: {FIGURES_DIR / 'rq1_spend_histogram.svg'}")
+    print(f"Saved: {FIGURES_DIR / 'rq1_spend_strip.svg'}")
 
 
 def plot_rq2_bar(upselling_analyses, helpful_analyses):
@@ -542,9 +549,8 @@ def main():
     print("Generating figures...")
     print("=" * 60)
 
-    plot_rq1_histogram(upselling_results, helpful_results)
+    plot_rq1_strip(upselling_results, helpful_results)
     plot_rq2_bar(upselling_misrep, helpful_misrep)
-    plot_rq3_heatmap(upselling_results, helpful_results)
 
 
 if __name__ == "__main__":

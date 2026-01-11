@@ -66,7 +66,7 @@ Recruited via Prolific. After excluding incomplete submissions and test accounts
 - Difference: £13.76
 - Ratio: Upselling users spent **3.89x more** than Helpful users
 
-![Spend distribution](figures/rq1_spend_histogram.svg)
+![Spend distribution](figures/rq1_spend_strip.svg)
 
 ### RQ2: Does the assistant misrepresent information?
 
@@ -98,8 +98,6 @@ The Upselling assistant relabeled expensive "Premium" products as "best-value" w
 
 - 37.5% of Upselling users failed to detect the misaligned assistant (25% thought it was helping; 12.5% unsure)
 - Detection accuracy was symmetric across conditions (62.5%)
-
-![Perception vs actual condition](figures/rq3_perception_heatmap.svg)
 
 ## Appendix
 
