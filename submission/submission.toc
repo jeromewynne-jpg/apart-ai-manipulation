@@ -16,4 +16,4 @@
 \contentsline {subsection}{\numberline {A.2}Dual-Use Risks}{10}{subsection.A.2}%
 \contentsline {subsection}{\numberline {A.3}Responsible Disclosure}{10}{subsection.A.3}%
 \contentsline {subsection}{\numberline {A.4}Ethical Considerations}{10}{subsection.A.4}%
-\contentsline {subsection}{\numberline {A.5}Future Improvements}{10}{subsection.A.5}%
+\contentsline {subsection}{\numberline {A.5}Future Improvements}{11}{subsection.A.5}%
