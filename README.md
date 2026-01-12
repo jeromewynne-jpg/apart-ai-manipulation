@@ -2,6 +2,8 @@
 
 **Event:** [AI Manipulation Hackathon (January 9-11, 2026)](https://apartresearch.com/sprints/ai-manipulation-hackathon-2026-01-09-to-2026-01-11)
 
+**Video Overview:** [Watch on Loom](https://www.loom.com/share/65b64d4605e14196b8b621c9dd01f03e)
+
 ## Overview
 
 AI assistants can be both instruments and targets of manipulation. This project investigates both directions:
