@@ -1,52 +1,68 @@
-# AI Manipulation Hackathon
+# Who Does Your AI Serve? Manipulation By and Of AI Assistants
 
 **Event:** [AI Manipulation Hackathon (January 9-11, 2026)](https://apartresearch.com/sprints/ai-manipulation-hackathon-2026-01-09-to-2026-01-11)
 
-## Background
+## Overview
 
-The line between authentic interaction and strategic manipulation is disappearing as AI systems master deception, sycophancy, sandbagging, and psychological exploitation at scale. Our ability to detect, measure, and counter these behaviors is dangerously underdeveloped.
+AI assistants can be both instruments and targets of manipulation. This project investigates both directions:
 
-This project investigates AI-mediated manipulation: when a principal uses an AI chatbot to steer user decisions in ways that benefit the principal at the user's expense.
+- **AI as Instrument:** Operators instruct AI to prioritize their interests at the expense of users
+- **AI as Target:** Users attempt to manipulate AI into bypassing safety guidelines
 
-## Deployments
+## Studies
 
-| Platform | URL |
-|----------|-----|
-| Deliberate Lab | [chocolate-disco-capacitor.web.app](https://chocolate-disco-capacitor.web.app/#/) |
+### Study 1: Operator Compliance (Automated)
+Do models comply when operators instruct them to prioritize revenue over user interests?
 
-## Documents
+- 12 frontier models tested across 22 commercial scenarios
+- Compliance rates ranged from 8% (Claude 4.5 Opus) to 52% (Gemini 3.0 Pro)
+- **Folder:** [`study1-operator-compliance/`](study1-operator-compliance/)
 
-| Document | Description |
-|----------|-------------|
-| [Research Questions](research-questions.md) | Problem framing and research questions |
-| [Effectiveness Study](effectiveness-study/manipulation-effectiveness-study-design.md) | Study design for measuring manipulation effectiveness and user awareness |
-| [Compliance Study](compliance-study/manipulation-compliance-study-design.md) | Study design for probing model refusal thresholds |
-| [Submission Template](submission-template.md) | Hackathon submission template |
+### Study 2: Human Participants
+Does operator-favoring AI behavior affect real users?
 
-## Project Folders
+- n=80 participants recruited via Prolific
+- Upselling AI increased spend by 3.9x; never recommended cheapest product when asked
+- 37.5% of users failed to detect manipulation
+- **Folder:** [`study2-human-participants/`](study2-human-participants/)
+- **Live deployment:** [chocolate-disco-capacitor.web.app](https://chocolate-disco-capacitor.web.app/#/)
 
-| Folder | Description |
-|--------|-------------|
-| [manipulation-results/](manipulation-results/) | Evaluation results, analysis scripts, and visualizations for 12 models across 176 scenarios |
-| [manipulation-results/analysis/](manipulation-results/analysis/) | Visualization scripts, GPT-5.2 tactic classifier, and generated figures |
-| [petri-experiments/](petri-experiments/) | Petri eval framework experiment configs and runner scripts |
-| [manipulation-deep-dive/](manipulation-deep-dive/) | Bloom scenario YAML definitions for 7 manipulation behavior types |
-| [deliberate-lab-fork/](deliberate-lab-fork/) | Human study platform - Firebase/Angular app for Prolific experiments |
-| [effectiveness-study/](effectiveness-study/) | Study design for measuring manipulation effectiveness on humans |
-| [compliance-study/](compliance-study/) | Study design for probing model refusal thresholds |
+### Study 3: User Manipulation (Automated)
+Do models resist psychological manipulation attempts by users?
 
-## Key Results
+- 12 models tested across 153 scenarios spanning 6 manipulation categories
+- Resistance ranged from 40% (Mistral Large 3) to 99% (Claude 4.5 Opus)
+- AI judge validated against 45 human raters (r=0.83)
+- **Folder:** [`study3-user-manipulation/`](study3-user-manipulation/)
 
-- **12 models evaluated** across 176 manipulation scenarios (2,112 total evaluations)
-- **470 failure cases** (score ≤ 2) analyzed with GPT-5.2 tactic classification
-- **12 manipulation tactics** identified (see [TACTIC_ANALYSIS.md](manipulation-results/analysis/TACTIC_ANALYSIS.md))
-- **Best model:** Claude 4.5 Opus (4.85 avg) | **Worst:** Mistral Large 3 (2.46 avg)
-- **Universal weakness:** Commercial optimization - all models struggle
+## Repository Structure
 
-See [VISUALIZATION_INSIGHTS.md](manipulation-results/analysis/VISUALIZATION_INSIGHTS.md) for detailed figure analysis.
+```
+├── study1-operator-compliance/     # AI as Instrument (automated)
+│   ├── petri-experiments/          # Scenarios, analysis scripts
+│   └── compliance-study/           # Study design
+│
+├── study2-human-participants/      # AI as Instrument (human study)
+│   ├── deliberate-lab-fork/        # Firebase/Angular web app
+│   └── effectiveness-study/        # Data & analysis
+│
+├── study3-user-manipulation/       # AI as Target (automated)
+│   ├── manipulation-deep-dive/     # Taxonomy, behavior definitions
+│   ├── manipulation-results/       # Results, figures, analysis
+│   └── human_calibration_study/    # Judge validation
+│
+├── submission/                     # Final hackathon submission
+│
+└── archive/                        # Old materials (submission-v1, planning docs)
+```
 
-## Hackathon Info
+## Key Findings
 
-- **Prizes:** $2,000 in cash prizes
-- **Rewards:** Presentation at IASEAI workshop (Paris, Feb 26 2026), Apart Fellowship invitation
-- **Deadline:** Sunday evening, January 11, 2026
+- **Model selection matters:** The same models that resist user manipulation may readily follow operator instructions that harm users
+- **Evasion, not lying:** The upselling AI withheld information rather than making false claims
+- **Detection is hard:** Over a third of users failed to detect the misaligned assistant
+- **Tactics vary in effectiveness:** Strategic deception and boundary erosion bypassed defenses most often
+
+## Submission
+
+See [`submission/`](submission/) for the final hackathon report (PDF and LaTeX source).

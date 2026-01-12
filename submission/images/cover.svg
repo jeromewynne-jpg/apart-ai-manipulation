@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90a4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357a8c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="operatorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c73e54;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5c9e7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a8a68;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.05">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+    </pattern>
+    <rect width="800" height="450" fill="url(#grid)"/>
+  </g>
+
+  <!-- Connection lines (behind nodes) -->
+  <!-- Operator to AI -->
+  <path d="M 200 140 Q 300 180 340 225" stroke="#e94560" stroke-width="3" fill="none" opacity="0.6"/>
+  <polygon points="340,220 350,235 335,235" fill="#e94560" opacity="0.8"/>
+
+  <!-- AI to User (manipulation path) -->
+  <path d="M 460 225 Q 500 180 600 140" stroke="#e94560" stroke-width="3" fill="none" opacity="0.6" stroke-dasharray="8,4"/>
+  <polygon points="595,145 610,135 605,152" fill="#e94560" opacity="0.8"/>
+
+  <!-- User to AI (manipulation attempt) -->
+  <path d="M 600 340 Q 500 300 460 255" stroke="#d4a04a" stroke-width="3" fill="none" opacity="0.6"/>
+  <polygon points="465,260 450,250 460,267" fill="#d4a04a" opacity="0.8"/>
+
+  <!-- Operator node (top left) -->
+  <g transform="translate(145, 85)">
+    <circle cx="55" cy="55" r="50" fill="url(#operatorGrad)" opacity="0.9"/>
+    <circle cx="55" cy="55" r="50" fill="none" stroke="#ff6b7a" stroke-width="2" opacity="0.5"/>
+    <!-- Building icon -->
+    <rect x="35" y="40" width="40" height="35" fill="white" opacity="0.9" rx="2"/>
+    <rect x="40" y="47" width="8" height="8" fill="#e94560"/>
+    <rect x="52" y="47" width="8" height="8" fill="#e94560"/>
+    <rect x="40" y="60" width="8" height="8" fill="#e94560"/>
+    <rect x="52" y="60" width="8" height="8" fill="#e94560"/>
+    <text x="55" y="115" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="600" fill="#e94560">OPERATOR</text>
+  </g>
+
+  <!-- AI node (center) -->
+  <g transform="translate(345, 170)">
+    <circle cx="55" cy="55" r="58" fill="url(#aiGrad)" opacity="0.95"/>
+    <circle cx="55" cy="55" r="58" fill="none" stroke="#6bb3c7" stroke-width="2" opacity="0.5"/>
+    <!-- AI brain/circuit icon -->
+    <circle cx="55" cy="50" r="22" fill="none" stroke="white" stroke-width="2.5" opacity="0.9"/>
+    <circle cx="47" cy="45" r="4" fill="white" opacity="0.9"/>
+    <circle cx="63" cy="45" r="4" fill="white" opacity="0.9"/>
+    <path d="M 47 58 Q 55 66 63 58" stroke="white" stroke-width="2.5" fill="none" opacity="0.9"/>
+    <line x1="55" y1="28" x2="55" y2="18" stroke="white" stroke-width="2" opacity="0.7"/>
+    <line x1="35" y1="38" x2="28" y2="32" stroke="white" stroke-width="2" opacity="0.7"/>
+    <line x1="75" y1="38" x2="82" y2="32" stroke="white" stroke-width="2" opacity="0.7"/>
+    <text x="55" y="125" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="600" fill="#4a90a4">AI ASSISTANT</text>
+  </g>
+
+  <!-- User node (top right) -->
+  <g transform="translate(545, 85)">
+    <circle cx="55" cy="55" r="50" fill="url(#userGrad)" opacity="0.9"/>
+    <circle cx="55" cy="55" r="50" fill="none" stroke="#7ac494" stroke-width="2" opacity="0.5"/>
+    <!-- Person icon -->
+    <circle cx="55" cy="42" r="12" fill="white" opacity="0.9"/>
+    <path d="M 35 75 Q 35 55 55 55 Q 75 55 75 75" fill="white" opacity="0.9"/>
+    <text x="55" y="115" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" font-weight="600" fill="#5c9e7a">USER</text>
+  </g>
+
+  <!-- Adversarial user node (bottom right) -->
+  <g transform="translate(545, 285)">
+    <circle cx="55" cy="55" r="50" fill="#2a2a3e" opacity="0.9"/>
+    <circle cx="55" cy="55" r="50" fill="none" stroke="#d4a04a" stroke-width="2" opacity="0.7"/>
+    <!-- Person with mask icon -->
+    <circle cx="55" cy="42" r="12" fill="#d4a04a" opacity="0.9"/>
+    <path d="M 35 75 Q 35 55 55 55 Q 75 55 75 75" fill="#d4a04a" opacity="0.9"/>
+    <text x="55" y="115" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#d4a04a">ADVERSARIAL</text>
+    <text x="55" y="130" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="13" font-weight="600" fill="#d4a04a">USER</text>
+  </g>
+
+  <!-- Labels for arrows -->
+  <text x="245" y="165" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#e94560" opacity="0.9">hidden</text>
+  <text x="240" y="178" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#e94560" opacity="0.9">instructions</text>
+
+  <text x="505" y="155" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#e94560" opacity="0.9">manipulation</text>
+  <text x="520" y="168" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#e94560" opacity="0.9">at user</text>
+  <text x="520" y="181" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#e94560" opacity="0.9">expense</text>
+
+  <text x="505" y="295" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#d4a04a" opacity="0.9">psychological</text>
+  <text x="520" y="308" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" fill="#d4a04a" opacity="0.9">tactics</text>
+
+  <!-- Title -->
+  <text x="400" y="405" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="26" font-weight="700" fill="white">Who Does Your AI Serve?</text>
+  <text x="400" y="432" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" fill="#8a8a9a">Manipulation By and Of AI Assistants</text>
+
+  <!-- Section labels -->
+  <g transform="translate(80, 380)">
+    <rect x="0" y="0" width="140" height="24" rx="12" fill="#e94560" opacity="0.2"/>
+    <text x="70" y="16" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#e94560">AI AS INSTRUMENT</text>
+  </g>
+
+  <g transform="translate(580, 380)">
+    <rect x="0" y="0" width="140" height="24" rx="12" fill="#d4a04a" opacity="0.2"/>
+    <text x="70" y="16" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="11" font-weight="600" fill="#d4a04a">AI AS TARGET</text>
+  </g>
+</svg>
